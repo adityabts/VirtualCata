@@ -1,21 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FiSmile, FiUser } from "react-icons/fi";
 
 function Signup() {
   return (
     <div>
       {/* <div className="pageloader" /> */}
-      <div className="infraloader is-active" /> 
+      <div className="infraloader is-active" />
       <div className="signup-wrapper">
         <div className="fake-nav">
-          <a href="/" className="logo">
+          <Link to="/" className="logo">
             <img
               src="assets/img/logo/friendkit-bold.svg"
               alt=""
               width={112}
               height={28}
             />
-          </a>
+          </Link>
         </div>
         <div className="process-bar-wrap">
           <div className="process-bar">
@@ -26,7 +27,7 @@ function Signup() {
                 id="step-dot-1"
                 className="dot is-first is-active is-current"
                 data-step={0}>
-                <i data-feather="smile" />
+                <FiSmile />
               </div>
               <div id="step-dot-2" className="dot is-second" data-step={25}>
                 <i data-feather="user" />
@@ -90,7 +91,7 @@ function Signup() {
                     </p>
                     <a
                       className="button is-fullwidth process-button"
-                      data-step="step-dot-2">
+                      data-step={"step-dot-2"}>
                       Continue
                     </a>
                   </div>
@@ -121,7 +122,7 @@ function Signup() {
                     </p>
                     <a
                       className="button is-fullwidth process-button"
-                      data-step="step-dot-2">
+                      data-step={"step-dot-2"}>
                       Continue
                     </a>
                   </div>
@@ -150,11 +151,12 @@ function Signup() {
                       Create a personal account to be able to do some awesome
                       things.
                     </p>
-                    <a
+                    <Link
+                      to="/"
                       className="button is-fullwidth process-button"
                       data-step="step-dot-2">
                       Continue
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -193,12 +195,12 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a className="button process-button" data-step="step-dot-1">
+                <a className="button process-button" data-step={"step-dot-1"}>
                   Back
                 </a>
                 <a
                   className="button process-button is-next"
-                  data-step="step-dot-3">
+                  data-step={"step-dot-3"}>
                   Next
                 </a>
               </div>
@@ -230,12 +232,12 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a className="button process-button" data-step="step-dot-2">
+                <a className="button process-button" data-step={"step-dot-2"}>
                   Back
                 </a>
                 <a
                   className="button process-button is-next"
-                  data-step="step-dot-4">
+                  data-step={"step-dot-4"}>
                   Next
                 </a>
               </div>
@@ -274,12 +276,12 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a className="button process-button" data-step="step-dot-3">
+                <a className="button process-button" data-step={"step-dot-3"}>
                   Back
                 </a>
                 <a
                   className="button process-button is-next"
-                  data-step="step-dot-5">
+                  data-step={"step-dot-5"}>
                   Next
                 </a>
               </div>
@@ -301,7 +303,7 @@ function Signup() {
                   <Link
                     id="signup-finish"
                     className="button is-fullwidth"
-                    to="home1.html">
+                    to="/">
                     Let Me In
                   </Link>
                 </div>

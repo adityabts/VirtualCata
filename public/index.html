@@ -7,6 +7,8 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Virtual Cata..." />
 
+    <base href="/" />
+
     <link rel="icon" type="image/png" href="assets/img/favicon.png" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
@@ -29,13 +31,15 @@
 
     <title>Virtual Cata</title>
   </head>
-  <body class="is-white">
+  <body>
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
 
   <script src="%PUBLIC_URL%/assets/js/app.js"></script>
-  <script src="https://js.stripe.com/v3/"></script>
+  <!-- <script src="https://js.stripe.com/v3/"></script> -->
   <script src="%PUBLIC_URL%/assets/data/tipuedrop_content.js"></script>
 
   <!-- Core js -->
