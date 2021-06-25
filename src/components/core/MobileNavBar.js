@@ -5,6 +5,7 @@ import Explorer from './Explorer';
 export default function MobileNavBar() {
   const [showNotification,setShowNotification] = useState(false);
   const [showExplorer,setShowExplorer] = useState(false);
+  const [searchActive,setSearchActive] = useState(false);
   const toggleExplorer = () => {setShowExplorer(!showExplorer)}
   const toggleNotification = () => {setShowNotification(!showNotification)}
 
@@ -12,7 +13,7 @@ export default function MobileNavBar() {
         <div>
         <nav className="navbar mobile-navbar is-hidden-desktop" aria-label="main navigation">
           {/* Brand */}
-          <div className="navbar-brand">
+          <div className={`navbar-brand ${searchActive? 'is-hidden' : ''}`}>
             <a className="navbar-item" href="/">
               <img className="light-image" src="assets/img/logo/friendkit-bold.svg" alt="" />
               <img className="dark-image" src="assets/img/logo/friendkit-white.svg" alt="" />
@@ -29,8 +30,8 @@ export default function MobileNavBar() {
                 <i className="mdi mdi-apps" />
               </a>
             </div>
-            <div id="open-mobile-search" className="navbar-item is-icon">
-              <a className="icon-link is-primary" href="javascript:void(0);">
+            <div className="navbar-item is-icon">
+              <a className="icon-link is-primary" onClick={() => setSearchActive(true)}>
                 <i data-feather="search" />
               </a>
             </div>
@@ -42,7 +43,7 @@ export default function MobileNavBar() {
             </div>
           </div>
           {/* Navbar mobile menu */}
-          <div className="navbar-menu">
+          <div className={`navbar-menu ${searchActive? 'is-hidden' : ''}`}>
             {/* Account */}
             <div className="navbar-item has-dropdown is-active">
               <a href="/navbar-v1-profile-main.html" className="navbar-link">
@@ -96,13 +97,13 @@ export default function MobileNavBar() {
             </div>
           </div>
           {/*Search*/}
-          <div className="mobile-search is-hidden">
+          <div className={`mobile-search ${searchActive? '' : 'is-hidden'}`}>
             <div className="control">
               <input id="tipue_drop_input_mobile" className="input" placeholder="Search..." />
               <div className="form-icon">
                 <i data-feather="search" />
               </div>
-              <div className="close-icon">
+              <div className="close-icon" onClick={() => {setSearchActive(false)}}>
                 <i data-feather="x" />
               </div>
               <div id="tipue_drop_content_mobile" className="tipue-drop-content" />

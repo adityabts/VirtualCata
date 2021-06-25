@@ -17,9 +17,9 @@ function initResponsiveMenu() {
       }
     });
     $('#open-mobile-search, .mobile-search .close-icon').on("click", function () {
-      $('.mobile-search .input').val('');
-      $('.mobile-navbar').find('.navbar-brand, .navbar-menu, .mobile-search').toggleClass('is-hidden');
-      $('.mobile-search .input').focus();
+      // $('.mobile-search .input').val('');
+      // $('.mobile-navbar').find('.navbar-brand, .navbar-menu, .mobile-search').toggleClass('is-hidden');
+      // $('.mobile-search .input').focus();
     });
   }
 }
