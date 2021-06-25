@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiMonitor, FiCalendar, FiLayout, FiArchive, FiCheck, FiSettings, FiUsers, FiBarChart2,FiX } from "react-icons/fi";
-
+import { Link } from 'react-router-dom';
 
 export default function SideBar() {
     return (
@@ -36,10 +36,10 @@ export default function SideBar() {
                     <div className="menu-block">
                       <ul>
                         <li className="is-active">
-                          <a>
+                          <Link to="/template">
                             <FiLayout />
                             <span>Dashboard</span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
                           <a>

@@ -132,22 +132,22 @@ function initSuggestionSearch() {
 
 
 function initNavDropdowns() {
-  $('.drop-trigger').click(function () {
-    $('.nav-drop').removeClass('is-active');
-    $(this).find('.nav-drop').addClass('is-active');
+  // $('.drop-trigger').click(function () {
+  //   $('.nav-drop').removeClass('is-active');
+  //   $(this).find('.nav-drop').addClass('is-active');
 
-    if ($(this).hasClass('is-account')) {
-      $(this).addClass('is-opened');
-    }
-  });
-  $(document).click(function (e) {
-    var target = e.target;
+  //   if ($(this).hasClass('is-account')) {
+  //     $(this).addClass('is-opened');
+  //   }
+  // });
+  // $(document).click(function (e) {
+  //   var target = e.target;
 
-    if (!$(target).is('.nav-drop') && !$(target).parents().is('.drop-trigger')) {
-      $('.nav-drop').removeClass('is-active');
-      $('.is-account').removeClass('is-opened');
-    }
-  });
+  //   if (!$(target).is('.nav-drop') && !$(target).parents().is('.drop-trigger')) {
+  //     $('.nav-drop').removeClass('is-active');
+  //     $('.is-account').removeClass('is-opened');
+  //   }
+  // });
 }
 
 ; //Init Cart dropdown
