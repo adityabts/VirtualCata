@@ -1,12 +1,10 @@
 import React from "react";
-import DeskNav from "../NavBar/NavDesk";
-import NavMob from "../NavBar/NavMob";
+import NavBar from "../core/NavBar";
 
 function Home() {
   return (
     <div>
-      <DeskNav />
-      <NavMob />
+      <NavBar />
     </div>
   );
 }
