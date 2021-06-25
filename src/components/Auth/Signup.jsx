@@ -6,7 +6,6 @@ function Signup() {
   return (
     <div>
       {/* <div className="pageloader" /> */}
-      <div className="infraloader is-active" />
       <div className="signup-wrapper">
         <div className="fake-nav">
           <Link to="/" className="logo">
