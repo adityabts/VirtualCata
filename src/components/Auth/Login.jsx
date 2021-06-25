@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
+  let initialState = { username: "", password: "" };
+  const [credentials, setCredentials] = useState(initialState);
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
   return (
     <div>
-      {/* Pageloader */}
-      {/* <div className="pageloader" /> */}
-      {/* <div className="infraloader is-active" /> */}
-
       <div className="login-wrapper">
         {/* Main Wrapper */}
         <div className="login-wrapper columns is-gapless">
@@ -17,7 +20,7 @@ function Login() {
               <div className="hero-body">
                 <div className="container">
                   <div className="left-caption">
-                    <h2>Join an Exciting Social Experience.</h2>
+                    <h2>Join an Exciting Virtual Experience.</h2>
                   </div>
                 </div>
               </div>
@@ -52,8 +55,11 @@ function Login() {
                       <div className="control">
                         <input
                           className="input email-input"
-                          type="text"
-                          placeholder="jennadavis@gmail.com"
+                          type="email"
+                          placeholder="johndoe@domain.com"
+                          name="username"
+                          value={credentials.username}
+                          onChange={handleChange}
                         />
                         <div className="input-icon">
                           <i data-feather="user" />
@@ -66,6 +72,9 @@ function Login() {
                           className="input password-input"
                           type="password"
                           placeholder="●●●●●●●"
+                          name="password"
+                          value={credentials.password}
+                          onChange={handleChange}
                         />
                         <div className="input-icon">
                           <i data-feather="lock" />
@@ -116,8 +125,8 @@ function Login() {
                   </div>
                   <div className="section forgot-password">
                     <div className="has-text-centered">
-                      <a href="#">Forgot passwords?</a>
-                      <Link to="/signup">Sign Up ?</Link>
+                      <a href="#">Forgot passwords ? </a>
+                      <Link to="/signup"> Sign Up ?</Link>
                     </div>
                   </div>
                 </div>
