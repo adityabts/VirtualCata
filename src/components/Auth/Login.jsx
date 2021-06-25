@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
     <div>
       {/* Pageloader */}
-      <div className="pageloader" />
+      {/* <div className="pageloader" /> */}
       <div className="infraloader is-active" />
       <div className="login-wrapper">
         {/* Main Wrapper */}
@@ -121,7 +122,7 @@ function Login() {
                   <div className="section forgot-password">
                     <div className="has-text-centered">
                       <a href="#">Forgot passwords?</a>
-                      <a href="signup.html">Sign Up ?</a>
+                      <Link to="/signup">Sign Up ?</Link>
                     </div>
                   </div>
                 </div>

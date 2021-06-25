@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
   return (
     <div>
-      <div className="pageloader" />
-      <div className="infraloader is-active" />
+      {/* <div className="pageloader" /> */}
+      <div className="infraloader is-active" /> 
       <div className="signup-wrapper">
         <div className="fake-nav">
           <a href="/" className="logo">
@@ -297,12 +298,12 @@ function Signup() {
                     We just sent you a confirmation email. PLease confirm your
                     account within 24 hours.
                   </p>
-                  <a
+                  <Link
                     id="signup-finish"
                     className="button is-fullwidth"
-                    href="home1.html">
+                    to="home1.html">
                     Let Me In
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
