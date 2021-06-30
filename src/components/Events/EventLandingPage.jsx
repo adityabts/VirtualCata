@@ -1,7 +1,31 @@
 import React from "react";
-import NavBar from "../core/NavBar";
+import NavBar from "../core/NavBar/NavBar";
 
 function EventLandingPage() {
+  const event = {
+    location: '123 Gilmore Street, Loise Lane, CA',
+    coverPicture: 'https://via.placeholder.com/1600x460',
+    title: 'Wine tasting with Estebe',
+    dateTime: 'Saturday, Jul 21 2021 @ 5:00 PM - 11:00 PM',
+    phoneNumber: '+(1) 555-888-1265',
+    emailAddress: 'something@something.com',
+    presenter: 'Presenter Name',
+    website: 'https://www.something.com',
+    eventDetails: `<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
+                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
+                    Scisse enim te quis coarguere possit? Quid de Platone aut de
+                    Democrito loquar.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
+                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
+                    Scisse enim te quis coarguere possit? Quid de Platone aut de
+                    Democrito loquar? Duo Reges: constructio interrete. Quod
+                    equidem non reprehendo; Bonum integritas corporis.
+                  </p>`,
+    
+  }
   return (
     <div>
       <NavBar />
@@ -12,7 +36,7 @@ function EventLandingPage() {
           <div className="event-cover">
             <img
               className="cover-image"
-              src="https://via.placeholder.com/1600x460"
+              src={event.coverPicture}
               data-demo-src="assets/img/demo/unsplash/55.jpg"
               alt=""
             />
@@ -21,8 +45,8 @@ function EventLandingPage() {
           <div className="event-content">
             <div className="event-head">
               <div className="left">
-                <h2>Wine tasting with Estebe</h2>
-                <h3>Saturday, Jul 21 2021 @ 5:00 PM - 11:00 PM</h3>
+                <h2>{event.title}</h2>
+                <h3>{event.dateTime}</h3>
                 <div className="button-separator">
                   <i data-feather="chevron-right" />
                 </div>
@@ -34,7 +58,7 @@ function EventLandingPage() {
                     <span>Host</span>
                   </div>
                   <div className="info-body">
-                    <p>Whole Foods, CA</p>
+                    <p>{event.hostName}</p>
                   </div>
                 </div>
                 <div className="info-block">
@@ -45,7 +69,7 @@ function EventLandingPage() {
                     <span>Location (Live from)</span>
                   </div>
                   <div className="info-body">
-                    <a>123 Gilmore Street, Lois Lane, CA</a>
+                    <a>{event.location}</a>
                   </div>
                 </div>
                 <div className="info-block">
@@ -102,19 +126,7 @@ function EventLandingPage() {
               <div className="left">
                 <div className="details-block">
                   <h3>Event Details</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
-                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
-                    Scisse enim te quis coarguere possit? Quid de Platone aut de
-                    Democrito loquar.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
-                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
-                    Scisse enim te quis coarguere possit? Quid de Platone aut de
-                    Democrito loquar? Duo Reges: constructio interrete. Quod
-                    equidem non reprehendo; Bonum integritas corporis.
-                  </p>
+                  <div dangerouslySetInnerHTML={{ __html: event.eventDetails }}/>
                 </div>
                 <div className="details-block">
                   <h3>Event Photos and Videos</h3>
@@ -170,7 +182,7 @@ function EventLandingPage() {
               </div>
               {/*Right side*/}
               <div className="right">
-                <div className="event-owner">
+                <div className="event-owner mt-3">
                   <img
                     className="avatar"
                     src="https://via.placeholder.com/150x150"
@@ -180,7 +192,7 @@ function EventLandingPage() {
                   />
                   <div className="meta">
                     <span>Event presenter</span>
-                    <span>Trade Winds Speciality</span>
+                    <span>{event.presenter}</span>
                   </div>
                 </div>
                 <div className="side-block">
@@ -188,7 +200,7 @@ function EventLandingPage() {
                     <span>Phone Number</span>
                   </div>
                   <div className="side-body">
-                    <a>+(1) 555-888-1265</a>
+                    <a>{event.phoneNumber}</a>
                   </div>
                 </div>
                 <div className="side-block">
@@ -196,7 +208,7 @@ function EventLandingPage() {
                     <span>Email Address</span>
                   </div>
                   <div className="side-body">
-                    <a>estebe@tradewindsspeciality.com</a>
+                    <a>{event.emailAddress}</a>
                   </div>
                 </div>
                 <div className="side-block">
@@ -205,9 +217,9 @@ function EventLandingPage() {
                   </div>
                   <div className="side-body">
                     <a
-                      href="https://www.tradewindsspecialty.com"
+                      href={event.website}
                       target="_blank">
-                      https://www.tradewindsspecialty.com
+                      {event.website}
                     </a>
                   </div>
                 </div>

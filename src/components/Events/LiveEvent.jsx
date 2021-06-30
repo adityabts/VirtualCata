@@ -1,7 +1,78 @@
 import React from "react";
-import NavBar from "../core/NavBar";
+import NavBar from "../core/NavBar/NavBar"
 
 function LiveEvent() {
+  const comments = [
+    {
+      authorProfilePicture: 'https://via.placeholder.com/150x150',
+      authorName: 'John Doe',
+      time: '4 hours ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Murenam te accusante defenderem.',
+      likesCount: 17,
+      dislikesCount: 4
+    },
+    {
+      authorProfilePicture: 'https://via.placeholder.com/150x150',
+      authorName: 'John Doe',
+      time: '4 hours ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Murenam te accusante defenderem.',
+      likesCount: 17,
+      dislikesCount: 4
+    },
+    {
+      authorProfilePicture: 'https://via.placeholder.com/150x150',
+      authorName: 'John Doe',
+      time: '4 hours ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Murenam te accusante defenderem.',
+      likesCount: 17,
+      dislikesCount: 4
+    },
+    {
+      authorProfilePicture: 'https://via.placeholder.com/150x150',
+      authorName: 'John Doe',
+      time: '4 hours ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Murenam te accusante defenderem.',
+      likesCount: 17,
+      dislikesCount: 4
+    },
+    {
+      authorProfilePicture: 'https://via.placeholder.com/150x150',
+      authorName: 'John Doe',
+      time: '4 hours ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Murenam te accusante defenderem.',
+      likesCount: 17,
+      dislikesCount: 4
+    },
+  ]
+
+  const event = {
+    location: '123 Gilmore Street, Loise Lane, CA',
+    viewsCount: 244,
+    followersCount: 1599,
+    coverPicture: 'https://via.placeholder.com/1600x460',
+    title: 'Wine tasting with Estebe',
+    dateTime: 'Saturday, Jul 21 2021 @ 5:00 PM - 11:00 PM',
+    phoneNumber: '+(1) 555-888-1265',
+    emailAddress: 'something@something.com',
+    presenter: 'Presenter Name',
+    website: 'https://www.something.com',
+    eventDetails: `<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
+                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
+                    Scisse enim te quis coarguere possit? Quid de Platone aut de
+                    Democrito loquar.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
+                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
+                    Scisse enim te quis coarguere possit? Quid de Platone aut de
+                    Democrito loquar? Duo Reges: constructio interrete. Quod
+                    equidem non reprehendo; Bonum integritas corporis.
+                  </p>`,
+    
+  }
+
+
   return (
     <div>
       <NavBar />
@@ -79,9 +150,9 @@ function LiveEvent() {
                 </div>
               </div>
               <div className="meta-box video-meta">
-                <div className="video-title">Trade Winds Speciality</div>
+                <div className="video-title">{event.title}</div>
                 <div className="video-subtitle">
-                  <div className="views-count">457 223 views</div>
+                  <div className="views-count">{event.viewsCount} views</div>
                   <div className="quick-actions">
                     <a className="quick-action">
                       <i data-feather="thumbs-up" />
@@ -110,20 +181,15 @@ function LiveEvent() {
                     alt=""
                   />
                   <div className="meta">
-                    <span>Estebe Salgado</span>
-                    <span>Uploaded 10 days ago</span>
+                    <span>{event.presenter}</span>
+                    <span>{event.dateTime}</span>
                   </div>
-                  <a className="button">Follow 1.52M</a>
+                  <a className="button">Follow {event.followersCount}</a>
                 </div>
               </div>
               <div className="meta-box video-description">
                 <h4>Description</h4>
-                <p>
-                  Quis non odit sordidos, vanos, leves, futtiles? Vide, quantum,
-                  inquam, fallare, Torquate. Duo Reges: constructio interrete.
-                  Vestri haec verecundius, illi fortasse constantius. Si longus,
-                  levis dictata sunt. Magna laus.
-                </p>
+                <div dangerouslySetInnerHTML={{ __html: event.eventDetails  }} />
                 <div className="additional-description content">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -212,454 +278,57 @@ function LiveEvent() {
                   </div>
                 </div>
                 <div className="comments-count">
-                  <h3>Comments (9)</h3>
+                  <h3>Comments ({comments.length})</h3>
                 </div>
-                <div className="media is-comment">
-                  <div className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/dan.jpg"
-                        data-user-popover={1}
-                        alt=""
-                      />
-                      <div className="badge">
-                        <i data-feather="check" />
+                {
+                  comments.map((item) => (
+                  <div className="media is-comment">
+                    <figure className="media-left">
+                      <div className="avatar-wrap is-smaller">
+                        <img
+                          src={item.authorProfilePicture}
+                          data-demo-src="assets/img/avatars/milly.jpg"
+                          data-user-popover={7}
+                          alt=""
+                        />
                       </div>
-                    </div>
-                  </div>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>Dan Walker</a> <small> · 3 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis porta eros lacus, nec ultricies elit blandit non.
-                        Suspendisse pellentesque mauris sit amet dolor blandit
-                        rutrum. Nunc in tempus turpis.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>23</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>3</span>
-                        </div>
+                    </figure>
+                    <div className="media-content">
+                      <div className="comment-meta">
+                        <h4>
+                          <a>{item.authorName}</a> <small> · {item.time}</small>
+                        </h4>
+                        <p>
+                          {item.commentText}
+                        </p>
                       </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="nested-replies">
-                      <a className="header">
-                        <span>5 Replies</span>
-                        <i data-feather="chevron-down" />
-                      </a>
-                      <div className="nested-comments">
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/gaelle.jpeg"
-                                data-user-popover={11}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Gaelle Morris</a>
-                                <small> · 30 minutes ago</small>
-                              </h4>
-                              <p>
-                                <span className="mention">@Dan Walker</span>{" "}
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non. Suspendisse
-                                pellentesque mauris sit amet dolor blandit
-                                rutrum. Nunc in tempus turpis.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>2</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
+                      <div className="comment-stats-wrap">
+                        <div className="comment-stats">
+                          <div className="stat is-likes">
+                            <i data-feather="thumbs-up" />
+                            <span>{item.likesCount}</span>
+                          </div>
+                          <div className="stat is-dislikes">
+                            <i data-feather="thumbs-down" />
+                            <span>{item.dislikesCount}</span>
                           </div>
                         </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/rolf.jpg"
-                                data-user-popover={13}
-                                alt=""
-                              />
-                              <div className="badge">
-                                <i data-feather="check" />
-                              </div>
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Rolf Krupp</a>{" "}
-                                <small> · 50 minutes ago</small>
-                              </h4>
-                              <p>
-                                <span className="mention">@Gaelle Morris</span>{" "}
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>1</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/bobby.jpg"
-                                data-user-popover={8}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Bobby Brown</a> <small> · 1 hour ago</small>
-                              </h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>5</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>1</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/stella.jpg"
-                                data-user-popover={2}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Stella Bergmann</a>
-                                <small> · 2 hours ago</small>
-                              </h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>0</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/edward.jpeg"
-                                data-user-popover={5}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Edward Mayers</a>{" "}
-                                <small> · 3 hours ago</small>
-                              </h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>6</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
+                        <div className="comment-actions">
+                          <a className="comment-action is-like">
+                            <i data-feather="thumbs-up" />
+                          </a>
+                          <a className="comment-action is-dislike">
+                            <i data-feather="thumbs-down" />
+                          </a>
+                          <a className="comment-action is-reply">
+                            <i data-feather="message-circle" />
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                {/* Comment */}
-                <div className="media is-comment">
-                  <figure className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/milly.jpg"
-                        data-user-popover={7}
-                        alt=""
-                      />
-                    </div>
-                  </figure>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>Milly Augutine</a> <small> · 4 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>8</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>0</span>
-                        </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="media is-comment">
-                  <figure className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/elise.jpg"
-                        data-user-popover={6}
-                        alt=""
-                      />
-                    </div>
-                  </figure>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>Elise Walker</a> <small> · 5 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis porta eros lacus, nec ultricies elit blandit non.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>3</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>0</span>
-                        </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="media is-comment">
-                  <figure className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/placeholder-m.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </figure>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>John Doe</a> <small> · 5 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis porta eros lacus, nec ultricies elit blandit non.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>12</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>4</span>
-                        </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))
+                }
               </div>
             </div>
             <div className="related-side">

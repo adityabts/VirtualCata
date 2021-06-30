@@ -1,7 +1,124 @@
 import React from "react";
-import NavBar from "../core/NavBar";
+import NavBar from "../core/NavBar/NavBar";
 
 function PastEvent() {
+  const comments = [
+    {
+      author: 'Joey Tribbiani',
+      time: '2 Days ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.',
+      likes: 22,
+      dislikes: 4
+    },
+    {
+      author: 'Joey Tribbiani',
+      time: '2 Days ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.',
+      likes: 22,
+      dislikes: 4
+    },
+    {
+      author: 'Joey Tribbiani',
+      time: '2 Days ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.',
+      likes: 22,
+      dislikes: 4
+    },
+    {
+      author: 'Joey Tribbiani',
+      time: '2 Days ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.',
+      likes: 22,
+      dislikes: 4
+    },
+    {
+      author: 'Joey Tribbiani',
+      time: '2 Days ago',
+      commentText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.',
+      likes: 22,
+      dislikes: 4
+    },
+  ]
+
+  const suggestedVideos = [
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    {
+      thumbnail : 'https://via.placeholder.com/120x90',
+      brandThumbnail : 'https://via.placeholder.com/150x150',
+      title: 'Wine Tasting by Whole Foods',
+      hostName :'Whole Foods',
+      attendeesCount : 120
+    },
+    
+  ]
+
+  const eventData = {
+    title: 'Trade Winds Speciality',
+    viewsCount: 1423,
+    description: `Quis non odit sordidos, vanos, leves, futtiles? Vide, quantum,
+                  inquam, fallare, Torquate. Duo Reges: constructio interrete.
+                  Vestri haec verecundius, illi fortasse constantius. Si longus,
+                  levis dictata sunt. Magna laus.`,
+    author: 'Estebe Salgado',     
+    brandThumbnail: 'https://via.placeholder.com/150x150',
+    time: '3 days ago',
+  }
+
   return (
     <div>
       <NavBar />
@@ -79,9 +196,9 @@ function PastEvent() {
                 </div>
               </div>
               <div className="meta-box video-meta">
-                <div className="video-title">Trade Winds Speciality</div>
+                <div className="video-title">{eventData.title}</div>
                 <div className="video-subtitle">
-                  <div className="views-count">457 223 views</div>
+                  <div className="views-count">{eventData.viewsCount} views</div>
                   <div className="quick-actions">
                     <a className="quick-action">
                       <i data-feather="thumbs-up" />
@@ -105,13 +222,13 @@ function PastEvent() {
                 </div>
                 <div className="video-owner">
                   <img
-                    src="https://via.placeholder.com/150x150"
+                    src={eventData.brandThumbnail}
                     data-demo-src="https://yt3.ggpht.com/a/AATXAJwGpWL7g1YRC4p5kDEJRyaCDSGCk5u48UqmUqN_sw=s88-c-k-c0xffffffff-no-rj-mo"
                     alt=""
                   />
                   <div className="meta">
-                    <span>Estebe Salgado</span>
-                    <span>Uploaded 10 days ago</span>
+                    <span>{eventData.author}</span>
+                    <span>{eventData.time}</span>
                   </div>
                   <a className="button">Follow 1.52M</a>
                 </div>
@@ -214,452 +331,54 @@ function PastEvent() {
                 <div className="comments-count">
                   <h3>Comments (9)</h3>
                 </div>
-                <div className="media is-comment">
-                  <div className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/dan.jpg"
-                        data-user-popover={1}
-                        alt=""
-                      />
-                      <div className="badge">
-                        <i data-feather="check" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>Dan Walker</a> <small> · 3 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis porta eros lacus, nec ultricies elit blandit non.
-                        Suspendisse pellentesque mauris sit amet dolor blandit
-                        rutrum. Nunc in tempus turpis.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>23</span>
+                {
+                  comments.map(item => (
+                    <div className="media is-comment">
+                      <figure className="media-left">
+                        <div className="avatar-wrap is-smaller">
+                          <img
+                            src="https://via.placeholder.com/150x150"
+                            data-demo-src="assets/img/avatars/placeholder-m.jpg"
+                            alt=""
+                          />
                         </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>3</span>
+                      </figure>
+                      <div className="media-content">
+                        <div className="comment-meta">
+                          <h4>
+                            <a>{item.author}</a> <small> · {item.time}</small>
+                          </h4>
+                          <p>
+                            {item.commentText}
+                          </p>
                         </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="nested-replies">
-                      <a className="header">
-                        <span>5 Replies</span>
-                        <i data-feather="chevron-down" />
-                      </a>
-                      <div className="nested-comments">
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/gaelle.jpeg"
-                                data-user-popover={11}
-                                alt=""
-                              />
+                        <div className="comment-stats-wrap">
+                          <div className="comment-stats">
+                            <div className="stat is-likes">
+                              <i data-feather="thumbs-up" />
+                              <span>{item.likes}</span>
                             </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Gaelle Morris</a>{" "}
-                                <small> · 30 minutes ago</small>
-                              </h4>
-                              <p>
-                                <span className="mention">@Dan Walker</span>{" "}
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non. Suspendisse
-                                pellentesque mauris sit amet dolor blandit
-                                rutrum. Nunc in tempus turpis.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>2</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
+                            <div className="stat is-dislikes">
+                              <i data-feather="thumbs-down" />
+                              <span>{item.dislikes}</span>
                             </div>
                           </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/rolf.jpg"
-                                data-user-popover={13}
-                                alt=""
-                              />
-                              <div className="badge">
-                                <i data-feather="check" />
-                              </div>
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Rolf Krupp</a>{" "}
-                                <small> · 50 minutes ago</small>
-                              </h4>
-                              <p>
-                                <span className="mention">@Gaelle Morris</span>{" "}
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>1</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/bobby.jpg"
-                                data-user-popover={8}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Bobby Brown</a> <small> · 1 hour ago</small>
-                              </h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>5</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>1</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/stella.jpg"
-                                data-user-popover={2}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Stella Bergmann</a>{" "}
-                                <small> · 2 hours ago</small>
-                              </h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>0</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*Nested comment */}
-                        <div className="media is-comment is-nested">
-                          <figure className="media-left">
-                            <div className="avatar-wrap is-smaller">
-                              <img
-                                src="https://via.placeholder.com/150x150"
-                                data-demo-src="assets/img/avatars/edward.jpeg"
-                                data-user-popover={5}
-                                alt=""
-                              />
-                            </div>
-                          </figure>
-                          <div className="media-content">
-                            <div className="comment-meta">
-                              <h4>
-                                <a>Edward Mayers</a>{" "}
-                                <small> · 3 hours ago</small>
-                              </h4>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Duis porta eros lacus, nec
-                                ultricies elit blandit non.
-                              </p>
-                            </div>
-                            <div className="comment-stats-wrap">
-                              <div className="comment-stats">
-                                <div className="stat is-likes">
-                                  <i data-feather="thumbs-up" />
-                                  <span>6</span>
-                                </div>
-                                <div className="stat is-dislikes">
-                                  <i data-feather="thumbs-down" />
-                                  <span>0</span>
-                                </div>
-                              </div>
-                              <div className="comment-actions">
-                                <a className="comment-action is-like">
-                                  <i data-feather="thumbs-up" />
-                                </a>
-                                <a className="comment-action is-dislike">
-                                  <i data-feather="thumbs-down" />
-                                </a>
-                                <a className="comment-action is-reply">
-                                  <i data-feather="message-circle" />
-                                </a>
-                              </div>
-                            </div>
+                          <div className="comment-actions">
+                            <a className="comment-action is-like">
+                              <i data-feather="thumbs-up" />
+                            </a>
+                            <a className="comment-action is-dislike">
+                              <i data-feather="thumbs-down" />
+                            </a>
+                            <a className="comment-action is-reply">
+                              <i data-feather="message-circle" />
+                            </a>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                {/* Comment */}
-                <div className="media is-comment">
-                  <figure className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/milly.jpg"
-                        data-user-popover={7}
-                        alt=""
-                      />
-                    </div>
-                  </figure>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>Milly Augutine</a> <small> · 4 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>8</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>0</span>
-                        </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="media is-comment">
-                  <figure className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/elise.jpg"
-                        data-user-popover={6}
-                        alt=""
-                      />
-                    </div>
-                  </figure>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>Elise Walker</a> <small> · 5 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis porta eros lacus, nec ultricies elit blandit non.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>3</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>0</span>
-                        </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="media is-comment">
-                  <figure className="media-left">
-                    <div className="avatar-wrap is-smaller">
-                      <img
-                        src="https://via.placeholder.com/150x150"
-                        data-demo-src="assets/img/avatars/placeholder-m.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </figure>
-                  <div className="media-content">
-                    <div className="comment-meta">
-                      <h4>
-                        <a>John Doe</a> <small> · 5 hours ago</small>
-                      </h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis porta eros lacus, nec ultricies elit blandit non.
-                      </p>
-                    </div>
-                    <div className="comment-stats-wrap">
-                      <div className="comment-stats">
-                        <div className="stat is-likes">
-                          <i data-feather="thumbs-up" />
-                          <span>12</span>
-                        </div>
-                        <div className="stat is-dislikes">
-                          <i data-feather="thumbs-down" />
-                          <span>4</span>
-                        </div>
-                      </div>
-                      <div className="comment-actions">
-                        <a className="comment-action is-like">
-                          <i data-feather="thumbs-up" />
-                        </a>
-                        <a className="comment-action is-dislike">
-                          <i data-feather="thumbs-down" />
-                        </a>
-                        <a className="comment-action is-reply">
-                          <i data-feather="message-circle" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                }              
               </div>
             </div>
             <div className="related-side">
@@ -714,241 +433,38 @@ function PastEvent() {
                   <h4 className="related-title">Suggested</h4>
                 </div>
                 {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c18.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">Eaten Alive</a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/icons/logos/metamovies.svg"
-                          data-page-popover={2}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Meta Movies</span>
-                          <span className="video-views">98K views</span>
+                {
+                  suggestedVideos.map(item => (
+                    <div className="media related-card">
+                      <div className="media-left">
+                        <a className="image">
+                          <img
+                            src={item.thumbnail}
+                            data-demo-src="assets/img/demo/video/home/collections/c18.jpg"
+                            alt=""
+                          />
+                        </a>
+                      </div>
+                      <div className="media-content">
+                        <div className="video-meta">
+                          <a className="related-title">{item.title}</a>
+                          <div className="submeta">
+                            <img
+                              src={item.brandThumbnail}
+                              data-demo-src="assets/img/icons/logos/metamovies.svg"
+                              data-page-popover={2}
+                              alt=""
+                            />
+                            <div className="info">
+                              <span className="video-account">{item.hostName}</span>
+                              <span className="video-views">{item.attendeesCount}</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c19.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">Forgotten</a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/icons/logos/metamovies.svg"
-                          data-page-popover={2}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Meta Movies</span>
-                          <span className="video-views">479K views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c20.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">The Wastelands</a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/icons/logos/metamovies.svg"
-                          data-page-popover={2}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Meta Movies</span>
-                          <span className="video-views">112K views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c3.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">I was at the VidCon 2019</a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/avatars/dan.jpg"
-                          data-user-popover={1}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Dan Walker</span>
-                          <span className="video-views">265 032 views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c1.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">
-                        The best keyboards for 2019!
-                      </a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/avatars/brian.jpg"
-                          data-user-popover={19}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Brian Stevenson</span>
-                          <span className="video-views">8167 views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c6.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">Make your makeups glossy</a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/avatars/milly.jpg"
-                          data-user-popover={7}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Milly Augustine</span>
-                          <span className="video-views">8167 views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c14.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">I tried the new Bolt 403</a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/avatars/edward.jpeg"
-                          data-user-popover={5}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Edward Mayers</span>
-                          <span className="video-views">8167 views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Related Video */}
-                <div className="media related-card">
-                  <div className="media-left">
-                    <a className="image">
-                      <img
-                        src="https://via.placeholder.com/120x90"
-                        data-demo-src="assets/img/demo/video/home/collections/c10.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="media-content">
-                    <div className="video-meta">
-                      <a className="related-title">
-                        Raspberry cupcakes in 5 minutes
-                      </a>
-                      <div className="submeta">
-                        <img
-                          src="https://via.placeholder.com/150x150"
-                          data-demo-src="assets/img/avatars/mike.jpg"
-                          data-user-popover={12}
-                          alt=""
-                        />
-                        <div className="info">
-                          <span className="video-account">Mike Lasalle</span>
-                          <span className="video-views">8167 views</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                }
               </div>
             </div>
           </div>

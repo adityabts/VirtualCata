@@ -1,7 +1,103 @@
 import React from "react";
-import NavBar from "../core/NavBar";
+import NavBar from "../core/NavBar/NavBar";
 
 function Home() {
+  const userData = {
+    profilePicture: 'https://via.placeholder.com/150x150',
+    firstName: 'Chandler',
+    lastName: 'Bing',
+    emailAddress: 'something@something.com'
+  }
+
+  const userStats = {
+    eventsCount: 20,
+    interestsCount: 12,
+    followingsCount: 36,
+  }
+
+  const upcomingEventsList = [
+    {
+      id:1,
+      brandLogo:'assets/img/icons/shop/brands/1.svg',
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      eventDate: '10 - 12 - 2021',
+      eventTime: '20: 00',
+      eventHost: 'Whole Foods',
+      eventPresenter: 'Trade Winds',  
+    },
+    {
+      id:2,
+      brandLogo:'assets/img/icons/shop/brands/2.svg',
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      eventDate: '10 - 12 - 2021',
+      eventTime: '20: 00',
+      eventHost: 'Whole Foods',
+      eventPresenter: 'Trade Winds',  
+    },
+    {
+      id:3,
+      brandLogo:'assets/img/icons/shop/brands/3.svg',
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      eventDate: '10 - 12 - 2021',
+      eventTime: '20: 00',
+      eventHost: 'Whole Foods',
+      eventPresenter: 'Trade Winds',  
+    },
+    {
+      id:4,
+      brandLogo:'assets/img/icons/shop/brands/4.svg',
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      eventDate: '10 - 12 - 2021',
+      eventTime: '20: 00',
+      eventHost: 'Whole Foods',
+      eventPresenter: 'Trade Winds',  
+    },
+  ]
+
+  const liveEventsList = [
+    {
+      id:1,
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      liveUsersCount: 137,
+      streamThumbnail: 'https://via.placeholder.com/400x200',  
+    },
+    {
+      id:2,
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      liveUsersCount: 137,
+      streamThumbnail: 'https://via.placeholder.com/400x200',  
+    },
+    {
+      id:3,
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      liveUsersCount: 137,
+      streamThumbnail: 'https://via.placeholder.com/400x200',  
+    },
+    {
+      id:4,
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      liveUsersCount: 137,
+      streamThumbnail: 'https://via.placeholder.com/400x200',  
+    },
+    {
+      id:5,
+      eventTitle: 'Wine tasting for ABC brand by John Doe',
+      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      liveUsersCount: 137,
+      streamThumbnail: 'https://via.placeholder.com/400x200',  
+    },
+    
+  ]
+
+
   return (
     <div>
       <NavBar />
@@ -327,29 +423,29 @@ function Home() {
               <div className="header-inner">
                 <div className="store-block">
                   <div className="img-container">
-                    <img src="https://via.placeholder.com/150x150" alt="" />
+                    <img src={userData.profilePicture} alt="" />
                     <div className="follow-badge is-hidden">
                       <i data-feather="check" />
                     </div>
                   </div>
                   <div className="store-meta">
-                    <h3>Chandler Bing</h3>
-                    <span>chandlerbing@bing.com</span>
+                    <h3>{`${userData.firstName} ${userData.lastName}`}</h3>
+                    <span>{userData.emailAddress}</span>
                   </div>
                 </div>
                 <div className="activity-block">
                   <h3>Overview</h3>
                   <div className="inner-wrap">
                     <div className="stat-block">
-                      <div className="stat-number">20</div>
+                      <div className="stat-number">{userStats.eventsCount}</div>
                       <span>Events</span>
                     </div>
                     <div className="stat-block is-bordered">
-                      <div className="stat-number">8</div>
+                      <div className="stat-number">{userStats.interestsCount}</div>
                       <span>Interests</span>
                     </div>
                     <div className="stat-block">
-                      <div className="stat-number">2.1K</div>
+                      <div className="stat-number">{userStats.followingsCount}</div>
                       <span>Following</span>
                     </div>
                   </div>
@@ -372,242 +468,71 @@ function Home() {
           <div className="store-sections">
             <div className="container">
               {/*Products*/}
-              <div id="live-tab" className="store-tab-pane">
+              <div id="live-tab" className="store-tab-pane is-active">
                 <div className="columns is-multiline">
                   {/* /partials/commerce/products/products-list.html */}
                   {/*Product*/}
-                  <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
-                    <div
-                      className="product-card"
-                      data-name="Wine tasting for XYZ brand"
-                      data-host="Whole Foods"
-                      data-colors="true"
-                      data-variants="true"
-                      data-path="assets/img/products/1">
-                      <div className="video-collection">
-                        <a className="episode">
-                          <img
-                            src="https://via.placeholder.com/400x200"
-                            data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="product-info">
-                        <h3>Wine tasting for XYZ brand</h3>
-                        <p>
-                          Event short details capped to 80 words including space
-                          Event short details capped to 80 words including space
-                        </p>
-                      </div>
-                      <div className="product-actions">
-                        <div className="left">
-                          <i
-                            data-feather="eye"
-                            style={{
-                              stroke: "#5596e6 !important",
-                              fill: "transparent !important",
-                            }}
-                          />
-                          <span> 147</span>
-                        </div>
+
+                  {liveEventsList.map(
+                    event => (
+                      <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
                         <div
-                          className="right"
+                          className="product-card"
                           data-name="Wine tasting for XYZ brand"
-                          data-price="Trade Winds Speciality"
+                          data-host="Whole Foods"
                           data-colors="true"
                           data-variants="true"
                           data-path="assets/img/products/1">
-                          <a
-                            className="button is-solid accent-button raised quickview-trigger"
-                            style={{
-                              position: "inherit",
-                              top: "0 !important",
-                              right: "0 !important",
-                              width: "100% !important",
-                            }}>
-                            <i data-feather="eye" />
-                            <span>Watch Now</span>
-                          </a>
+                          <div className="video-collection">
+                            <a className="episode">
+                              <img
+                                src={event.streamThumbnail}
+                                data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="product-info">
+                            <h3>{event.eventTitle}</h3>
+                            <p>
+                              {event.eventSubTitle}
+                            </p>
+                          </div>
+                          <div className="product-actions">
+                            <div className="left">
+                              <i
+                                data-feather="eye"
+                                style={{
+                                  stroke: "#5596e6 !important",
+                                  fill: "transparent !important",
+                                }}
+                              />
+                              <span>{event.liveUsersCount}</span>
+                            </div>
+                            <div
+                              className="right"
+                              data-name="Wine tasting for XYZ brand"
+                              data-price="Trade Winds Speciality"
+                              data-colors="true"
+                              data-variants="true"
+                              data-path="assets/img/products/1">
+                              <a
+                                className="button is-solid accent-button raised quickview-trigger"
+                                style={{
+                                  position: "inherit",
+                                  top: "0 !important",
+                                  right: "0 !important",
+                                  width: "100% !important",
+                                }}>
+                                <i data-feather="eye" />
+                                <span>Watch Now</span>
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  {/*Product*/}
-                  <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
-                    <div
-                      className="product-card"
-                      data-name="Wine tasting for XYZ brand"
-                      data-host="Whole Foods"
-                      data-colors="true"
-                      data-variants="true"
-                      data-path="assets/img/products/1">
-                      <div className="video-collection">
-                        <a className="episode">
-                          <img
-                            src="https://via.placeholder.com/400x200"
-                            data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="product-info">
-                        <h3>Wine tasting for XYZ brand</h3>
-                        <p>
-                          Event short details capped to 80 words including space
-                          Event short details capped to 80 words including space
-                        </p>
-                      </div>
-                      <div className="product-actions">
-                        <div className="left">
-                          <i
-                            data-feather="eye"
-                            style={{
-                              stroke: "#5596e6 !important",
-                              fill: "transparent !important",
-                            }}
-                          />
-                          <span> 147</span>
-                        </div>
-                        <div
-                          className="right"
-                          data-name="Wine tasting for XYZ brand"
-                          data-price="Trade Winds Speciality"
-                          data-colors="true"
-                          data-variants="true"
-                          data-path="assets/img/products/1">
-                          <a
-                            className="button is-solid accent-button raised quickview-trigger"
-                            style={{
-                              position: "inherit",
-                              top: "0 !important",
-                              right: "0 !important",
-                              width: "100% !important",
-                            }}>
-                            <i data-feather="eye" />
-                            <span>Watch Now</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/*Product*/}
-                  <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
-                    <div
-                      className="product-card"
-                      data-name="Wine tasting for XYZ brand"
-                      data-host="Whole Foods"
-                      data-colors="true"
-                      data-variants="true"
-                      data-path="assets/img/products/1">
-                      <div className="video-collection">
-                        <a className="episode">
-                          <img
-                            src="https://via.placeholder.com/400x200"
-                            data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="product-info">
-                        <h3>Wine tasting for XYZ brand</h3>
-                        <p>
-                          Event short details capped to 80 words including space
-                          Event short details capped to 80 words including space
-                        </p>
-                      </div>
-                      <div className="product-actions">
-                        <div className="left">
-                          <i
-                            data-feather="eye"
-                            style={{
-                              stroke: "#5596e6 !important",
-                              fill: "transparent !important",
-                            }}
-                          />
-                          <span> 147</span>
-                        </div>
-                        <div
-                          className="right"
-                          data-name="Wine tasting for XYZ brand"
-                          data-price="Trade Winds Speciality"
-                          data-colors="true"
-                          data-variants="true"
-                          data-path="assets/img/products/1">
-                          <a
-                            className="button is-solid accent-button raised quickview-trigger"
-                            style={{
-                              position: "inherit",
-                              top: "0 !important",
-                              right: "0 !important",
-                              width: "100% !important",
-                            }}>
-                            <i data-feather="eye" />
-                            <span>Watch Now</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/*Product*/}
-                  <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
-                    <div
-                      className="product-card"
-                      data-name="Wine tasting for XYZ brand"
-                      data-host="Whole Foods"
-                      data-colors="true"
-                      data-variants="true"
-                      data-path="assets/img/products/1">
-                      <div className="video-collection">
-                        <a className="episode">
-                          <img
-                            src="https://via.placeholder.com/400x200"
-                            data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="product-info">
-                        <h3>Wine tasting for XYZ brand</h3>
-                        <p>
-                          Event short details capped to 80 words including space
-                          Event short details capped to 80 words including space
-                        </p>
-                      </div>
-                      <div className="product-actions">
-                        <div className="left">
-                          <i
-                            data-feather="eye"
-                            style={{
-                              stroke: "#5596e6 !important",
-                              fill: "transparent !important",
-                            }}
-                          />
-                          <span> 147</span>
-                        </div>
-                        <div
-                          className="right"
-                          data-name="Wine tasting for XYZ brand"
-                          data-price="Trade Winds Speciality"
-                          data-colors="true"
-                          data-variants="true"
-                          data-path="assets/img/products/1">
-                          <a
-                            className="button is-solid accent-button raised quickview-trigger"
-                            style={{
-                              position: "inherit",
-                              top: "0 !important",
-                              right: "0 !important",
-                              width: "100% !important",
-                            }}>
-                            <i data-feather="eye" />
-                            <span>Watch Now</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/*Product*/}
+                    )
+                  )}
                   <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
                     <div
                       className="product-card"
@@ -669,133 +594,43 @@ function Home() {
                 </div>
               </div>
               {/*Upcoming*/}
-              <div id="upcoming-tab" className="store-tab-pane is-active">
+              <div id="upcoming-tab" className="store-tab-pane">
                 <div className="columns is-multiline">
                   {/* /partials/commerce/products/products-brands.html */}
                   {/*Brand*/}
-                  <div className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
-                    <div className="brand-card">
-                      <img src="assets/img/icons/shop/brands/1.svg" alt="" />
-                      <div className="meta">
-                        <h3>Wine tasting for aabc Brand by Estabe</h3>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit.
-                        </p>
-                      </div>
-                      <div className="brand-stats">
-                        <div className="brand-stat">
-                          <span>10 - 12 - 2021</span>
-                          <span>Date</span>
+                  {upcomingEventsList.map( (event) => 
+                    (
+                    <div className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
+                      <div className="brand-card">
+                        <img src={event.brandLogo} alt="" />
+                        <div className="meta">
+                          <h3>{event.eventTitle}</h3>
+                          <p>
+                            {event.eventSubTitle}
+                          </p>
                         </div>
-                        <div className="brand-stat">
-                          <span>20 : 00</span>
-                          <span>Time</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Whole Foods</span>
-                          <span>Host</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Trade Winds</span>
-                          <span>Presenter</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/*Brand*/}
-                  <div className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
-                    <div className="brand-card">
-                      <img src="assets/img/icons/shop/brands/2.svg" alt="" />
-                      <div className="meta">
-                        <h3>Wine tasting for aabc Brand by Estabe</h3>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit.
-                        </p>
-                      </div>
-                      <div className="brand-stats">
-                        <div className="brand-stat">
-                          <span>10 - 12 - 2021</span>
-                          <span>Date</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>20 : 00</span>
-                          <span>Time</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Whole Foods</span>
-                          <span>Host</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Trade Winds</span>
-                          <span>Presenter</span>
+                        <div className="brand-stats">
+                          <div className="brand-stat">
+                            <span>{event.eventDate}</span>
+                            <span>Date</span>
+                          </div>
+                          <div className="brand-stat">
+                            <span>{event.eventTime}</span>
+                            <span>Time</span>
+                          </div>
+                          <div className="brand-stat">
+                            <span>{event.eventHost}</span>
+                            <span>Host</span>
+                          </div>
+                          <div className="brand-stat">
+                            <span>{event.eventPresenter}</span>
+                            <span>Presenter</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  {/*Brand*/}
-                  <div className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
-                    <div className="brand-card">
-                      <img src="assets/img/icons/shop/brands/3.svg" alt="" />
-                      <div className="meta">
-                        <h3>Wine tasting for aabc Brand by Estabe</h3>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit.
-                        </p>
-                      </div>
-                      <div className="brand-stats">
-                        <div className="brand-stat">
-                          <span>10 - 12 - 2021</span>
-                          <span>Date</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>20 : 00</span>
-                          <span>Time</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Whole Foods</span>
-                          <span>Host</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Trade Winds</span>
-                          <span>Presenter</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/*Brand*/}
-                  <div className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
-                    <div className="brand-card">
-                      <img src="assets/img/icons/shop/brands/5.svg" alt="" />
-                      <div className="meta">
-                        <h3>Wine tasting for aabc Brand by Estabe</h3>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit.
-                        </p>
-                      </div>
-                      <div className="brand-stats">
-                        <div className="brand-stat">
-                          <span>10 - 12 - 2021</span>
-                          <span>Date</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>20 : 00</span>
-                          <span>Time</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Whole Foods</span>
-                          <span>Host</span>
-                        </div>
-                        <div className="brand-stat">
-                          <span>Trade Winds</span>
-                          <span>Presenter</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    )
+                  )}
                 </div>
               </div>
               {/*subscribed*/}
