@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import SideBar from "./components/core/SideBar/SideBar";
@@ -13,28 +13,30 @@ import PastEvent from "./components/Events/PastEvent";
 import AdminProfile from "./components/Profile/AdminProfile";
 import AdminAbout from "./components/Profile/AdminAbout";
 import UserProfile from "./components/UserProfile/UserProfile";
+import { Fragment } from "react";
 
 function App() {
 	return (
-		<Switch>
-			<Route exact path="/login" component={Login} />
-			<Route exact path="/signup" component={Signup} />
-			<Route exact path="/sidebar" component={SideBar} />
-			<Route exact path="/topbar" component={DesktopNavBar} />
-			<Route exact path="/mobilebar" component={MobileNavBar} />
-			<Route exact path="/navbar" component={NavBar} />
-			<Route exact path="/template" component={Blank} />
-			<Route exact path="/landing" component={EventLandingPage} />
-			<Route exact path="/live" component={LiveEvent} />
-			<Route exact path="/past" component={PastEvent} />
-			<Route exact path="/adminProfile" component={AdminProfile} />
-			<Route exact path="/adminAbout" component={AdminAbout} />
-			<Route path="/userProfile" component={UserProfile} />
-
-			<Route exact path="/home" component={Home} />
-			
-			<Route path="/" component={Home} />
-		</Switch>
+		<Fragment>
+			<NavBar />
+			<Switch>
+				<Route exact path="/login" component={Login} />
+				<Route exact path="/signup" component={Signup} />
+				<Route exact path="/sidebar" component={SideBar} />
+				<Route exact path="/topbar" component={DesktopNavBar} />
+				<Route exact path="/mobilebar" component={MobileNavBar} />
+				<Route exact path="/navbar" component={NavBar} />
+				<Route exact path="/template" component={Blank} />
+				<Route exact path="/landing" component={EventLandingPage} />
+				<Route exact path="/live" component={LiveEvent} />
+				<Route exact path="/past" component={PastEvent} />
+				<Route exact path="/adminProfile" component={AdminProfile} />
+				<Route exact path="/adminAbout" component={AdminAbout} />
+				<Route path="/userProfile" component={UserProfile} />
+				<Route exact path="/home" component={Home} />	
+				<Redirect path="/" to="/home" />
+			</Switch>
+		</Fragment>
 	);
 }
 
