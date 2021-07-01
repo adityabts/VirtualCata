@@ -29,7 +29,7 @@ function App() {
 			<Route exact path="/past" component={PastEvent} />
 			<Route exact path="/adminProfile" component={AdminProfile} />
 			<Route exact path="/adminAbout" component={AdminAbout} />
-			<Route exact path="/userProfile" component={UserProfile} />
+			<Route path="/userProfile" component={UserProfile} />
 
 			<Route exact path="/home" component={Home} />
 			
