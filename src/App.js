@@ -1,6 +1,8 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import ResetPassword from "./components/Auth/ResetPassword";
+import ForgotPassword from './components/Auth/ForgotPassword';
 import SideBar from "./components/core/SideBar/SideBar";
 import DesktopNavBar from "./components/core/NavBar/DesktopNavBar";
 import MobileNavBar from "./components/core/NavBar/MobileNavBar";
@@ -22,6 +24,10 @@ function App() {
 			<Switch>
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/signup" component={Signup} />
+				<Route exact path="/reset-password" component={ResetPassword} />
+				<Route exact path="/forgot-password" component={ForgotPassword} />
+				<Route exact path="/signup" component={Signup} />
+				
 				<Route exact path="/sidebar" component={SideBar} />
 				<Route exact path="/topbar" component={DesktopNavBar} />
 				<Route exact path="/mobilebar" component={MobileNavBar} />
@@ -34,7 +40,7 @@ function App() {
 				<Route exact path="/adminAbout" component={AdminAbout} />
 				<Route path="/userProfile" component={UserProfile} />
 				<Route exact path="/home" component={Home} />	
-				<Redirect path="/" to="/home" />
+				{/* <Redirect path="/" component={Signup} /> */}
 			</Switch>
 		</Fragment>
 	);
