@@ -83,9 +83,11 @@ function Login() {
                     </div>
                     <div className="field">
                       <div className="column">
-                        <button className="button is-solid primary-button raised is-rounded is-fullwidth">
-                          Login
-                        </button>
+                        <Link to="../home">
+                          <button className="button is-solid primary-button raised is-rounded is-fullwidth">
+                            Login
+                          </button>
+                        </Link>
                       </div>
                     </div>
                     <div className="field">

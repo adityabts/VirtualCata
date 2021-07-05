@@ -1,4 +1,6 @@
 import React from 'react'
+import DarkModeSwitch from '../DarkModeSwitch';
+import { Link } from 'react-router-dom';
 
 export default function NavDrop({ isActive }) {
     return (
@@ -6,22 +8,12 @@ export default function NavDrop({ isActive }) {
             <div className="inner">
                 <div className="nav-drop-header">
                     <span className="username">Jenna Davis</span>
-                    <label className="theme-toggle">
-                        <input type="checkbox" />
-                        <span className="toggler">
-                            <span className="dark">
-                                <i data-feather="moon" />
-                            </span>
-                            <span className="light">
-                                <i data-feather="sun" />
-                            </span>
-                        </span>
-                    </label>
+                    <DarkModeSwitch />
                 </div>
                 <div className="nav-drop-body account-items">
-                    <a
+                    <Link
                         id="profile-link"
-                        href="/profile-main.html"
+                        to="/userProfile"
                         className="account-item">
                         <div className="media">
                             <div className="media-left">
@@ -41,9 +33,9 @@ export default function NavDrop({ isActive }) {
                                 <i data-feather="check" />
                             </div>
                         </div>
-                    </a>
+                    </Link>
                     <hr className="account-divider" />
-                    <a href="/options-settings.html" className="account-item">
+                    <Link to="/userProfile" className="account-item">
                         <div className="media">
                             <div className="icon-wrap">
                                 <i data-feather="settings" />
@@ -53,7 +45,7 @@ export default function NavDrop({ isActive }) {
                                 <small>Access widget settings.</small>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                     <a className="account-item">
                         <div className="media">
                             <div className="icon-wrap">

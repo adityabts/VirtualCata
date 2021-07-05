@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../core/NavBar/NavBar";
+import { FiInstagram, FiFacebook, FiLinkedin, FiTwitter, FiChevronRight, FiPlay, FiShare2, FiCalendar, FiMapPin } from "react-icons/fi";
 
 function EventLandingPage() {
   const event = {
@@ -48,12 +49,13 @@ function EventLandingPage() {
                 <h2>{event.title}</h2>
                 <h3>{event.dateTime}</h3>
                 <div className="button-separator">
-                  <i data-feather="chevron-right" />
+                  <FiChevronRight />
                 </div>
                 <div className="info-block">
                   <div className="info-head">
                     <div className="event-icon">
-                      <i data-feather="calendar" />
+                      {/* <i data-feather="calendar" /> */}
+                      <FiCalendar/>
                     </div>
                     <span>Host</span>
                   </div>
@@ -64,7 +66,8 @@ function EventLandingPage() {
                 <div className="info-block">
                   <div className="info-head">
                     <div className="event-icon">
-                      <i data-feather="map-pin" />
+                      {/* <i data-feather="map-pin" /> */}
+                      <FiMapPin/>
                     </div>
                     <span>Location (Live from)</span>
                   </div>
@@ -75,23 +78,24 @@ function EventLandingPage() {
                 <div className="info-block">
                   <div className="info-head">
                     <div className="event-icon">
-                      <i data-feather="share-2" />
+                      {/* <i data-feather="share-2" /> */}
+                      <FiShare2/>
                     </div>
                     <span>Share</span>
                   </div>
                   <div className="info-body">
                     <div className="socials">
                       <a>
-                        <i data-feather="facebook" />
+                        <FiFacebook/>
                       </a>
                       <a>
-                        <i data-feather="twitter" />
+                        <FiTwitter/>
                       </a>
                       <a>
-                        <i data-feather="linkedin" />
+                        <FiLinkedin/>
                       </a>
                       <a>
-                        <i data-feather="instagram" />
+                        <FiInstagram/>
                       </a>
                     </div>
                   </div>
@@ -138,7 +142,7 @@ function EventLandingPage() {
                       <div className="video-overlay" />
                       <div className="playbutton">
                         <div className="icon-play">
-                          <i data-feather="play" />
+                          <FiPlay />
                         </div>
                       </div>
                     </div>

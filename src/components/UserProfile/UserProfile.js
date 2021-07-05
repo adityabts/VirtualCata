@@ -16,6 +16,7 @@ function UserProfile(props) {
   console.log("UF",props)
   return (
     <Fragment>
+      <NavBar />
       <SideBar {...props} />
       <div class="view-wrapper is-full">
         <div className="settings-wrapper">
@@ -27,7 +28,7 @@ function UserProfile(props) {
             <Route exact path="/userProfile/account" render={() => <Personal {...props}/>} />
             <Route exact path="/userProfile/privacy" render={() => <Privacy {...props}/>} />
             <Route exact path="/userProfile/security" render={() => <Security {...props}/>} />
-            <Redirect path={`${match}/`} to="/" />
+            <Redirect path="/userProfile" to="/userProfile/general" />
           </Switch>
         </div>
       </div>

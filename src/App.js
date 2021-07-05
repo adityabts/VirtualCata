@@ -20,7 +20,7 @@ import { Fragment } from "react";
 function App() {
 	return (
 		<Fragment>
-			<NavBar />
+			{/* <NavBar /> */}
 			<Switch>
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/signup" component={Signup} />
@@ -40,7 +40,7 @@ function App() {
 				<Route exact path="/adminAbout" component={AdminAbout} />
 				<Route path="/userProfile" component={UserProfile} />
 				<Route exact path="/home" component={Home} />	
-				{/* <Redirect path="/" component={Signup} /> */}
+				<Redirect path="/" to="/login" />
 			</Switch>
 		</Fragment>
 	);

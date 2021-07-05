@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FiSmile, FiUser } from "react-icons/fi";
+import { FiFlag, FiSmile, FiUser, FiImage, FiLock } from "react-icons/fi";
 
 function Signup() {
+
+  const [stepValue, setStepValue] = useState(1);
+
+  const nextStep = () => {
+    setStepValue(stepValue + 1);
+  }
+
+  const prevStep = () => {
+    setStepValue(stepValue - 1);
+  }
+
   return (
     <div>
       {/* <div className="pageloader" /> */}
@@ -24,47 +35,66 @@ function Signup() {
               <div className="bar" />
               <div
                 id="step-dot-1"
-                className="dot is-first is-active is-current"
+                className={`dot is-first ${stepValue === 1 ? "is-active" : ""} ${stepValue > 1 ? "is-current" : ""}`}
+                // className="dot is-first is-current"
                 data-step={0}>
                 <FiSmile />
               </div>
-              <div id="step-dot-2" className="dot is-second" data-step={25}>
-                <i data-feather="user" />
+              <div
+                id="step-dot-2"
+                className={`dot is-second ${stepValue === 2 ? "is-active" : ""} ${stepValue > 2 ? "is-current" : ""}`}
+                data-step={25}
+              >
+                <FiUser />
               </div>
-              <div id="step-dot-3" className="dot is-third" data-step={50}>
-                <i data-feather="image" />
+              <div
+                id="step-dot-3"
+                className={`dot is-third ${stepValue === 3 ? "is-active" : ""} ${stepValue > 3 ? "is-current" : ""}`}
+                // className="dot is-third"
+                data-step={50}>
+                <FiImage />
               </div>
-              <div id="step-dot-4" className="dot is-fourth" data-step={75}>
-                <i data-feather="lock" />
+              <div
+                id="step-dot-4"
+                className={`dot is-fourth ${stepValue === 4 ? "is-active" : ""} ${stepValue > 4 ? "is-current" : ""}`}
+                // className="dot is-fourth"
+                data-step={75}
+              >
+                <FiLock />
               </div>
-              <div id="step-dot-5" className="dot is-fifth" data-step={100}>
-                <i data-feather="flag" />
+              <div
+                id="step-dot-5"
+                className={`dot is-fifth ${stepValue === 5 ? "is-active" : ""} ${stepValue > 5 ? "is-current" : ""}`}
+                // className="dot is-fifth"
+                data-step={100}
+              >
+                <FiFlag />
               </div>
             </div>
           </div>
         </div>
-        <div className="outer-panel">
+        <div className="outer-panel">   
           <div className="outer-panel-inner">
             <div className="process-title">
-              <h2 id="step-title-1" className="step-title is-active">
+              <h2 id="step-title-1" className={`step-title ${stepValue === 1 ? "is-active" : ""}`}>
                 Welcome, select an account type.
               </h2>
-              <h2 id="step-title-2" className="step-title">
+              <h2 id="step-title-2" className={`step-title ${stepValue === 2 ? "is-active" : ""}`}>
                 Tell us more about you.
               </h2>
-              <h2 id="step-title-3" className="step-title">
+              <h2 id="step-title-3" className={`step-title ${stepValue === 3 ? "is-active" : ""}`}>
                 Upload a profile picture.
               </h2>
-              <h2 id="step-title-4" className="step-title">
+              <h2 id="step-title-4" className={`step-title ${stepValue === 4 ? "is-active" : ""}`}>
                 Secure your account.
               </h2>
-              <h2 id="step-title-5" className="step-title">
+              <h2 id="step-title-5" className={`step-title ${stepValue === 5 ? "is-active" : ""}`}>
                 You're all set. Ready?
               </h2>
             </div>
-            <div id="signup-panel-1" className="process-panel-wrap is-active">
-              <div className="columns mt-4">
-                <div className="column is-4">
+            <div id="signup-panel-1" className={`process-panel-wrap ${stepValue === 1 ? "is-active" : "is-narrow"}`}>
+              <div className="columns mt-4" style={{justifyContent:'center'}}>
+                {/* <div className="column is-4">
                   <div className="account-type">
                     <div className="type-image">
                       <img
@@ -94,7 +124,7 @@ function Signup() {
                       Continue
                     </a>
                   </div>
-                </div>
+                </div> */}
                 <div className="column is-4">
                   <div className="account-type">
                     <div className="type-image">
@@ -121,12 +151,14 @@ function Signup() {
                     </p>
                     <a
                       className="button is-fullwidth process-button"
-                      data-step={"step-dot-2"}>
+                      data-step={"step-dot-2"}
+                      onClick={nextStep}
+                    >
                       Continue
                     </a>
                   </div>
                 </div>
-                <div className="column is-4">
+                {/* <div className="column is-4">
                   <div className="account-type">
                     <div className="type-image">
                       <img
@@ -157,10 +189,10 @@ function Signup() {
                       Continue
                     </Link>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
-            <div id="signup-panel-2" className="process-panel-wrap is-narrow">
+            <div id="signup-panel-2" className={`process-panel-wrap ${stepValue === 2 ? "is-active" : "is-narrow"}`}>
               <div className="form-panel">
                 <div className="field">
                   <label>First Name</label>
@@ -194,17 +226,18 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a className="button process-button" data-step={"step-dot-1"}>
+                <a className="button process-button" data-step={"step-dot-1"} onClick={prevStep}>
                   Back
                 </a>
                 <a
                   className="button process-button is-next"
-                  data-step={"step-dot-3"}>
+                  data-step={"step-dot-3"}
+                  onClick={nextStep}>
                   Next
                 </a>
               </div>
             </div>
-            <div id="signup-panel-3" className="process-panel-wrap is-narrow">
+            <div id="signup-panel-3" className={`process-panel-wrap ${stepValue === 3 ? "is-active" : "is-narrow"}`}>
               <div className="form-panel">
                 <div className="photo-upload">
                   <div className="preview">
@@ -231,17 +264,18 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a className="button process-button" data-step={"step-dot-2"}>
+                <a className="button process-button" data-step={"step-dot-2"} onClick={prevStep}>
                   Back
                 </a>
                 <a
                   className="button process-button is-next"
-                  data-step={"step-dot-4"}>
+                  data-step={"step-dot-4"}
+                  onClick={nextStep}>
                   Next
                 </a>
               </div>
             </div>
-            <div id="signup-panel-4" className="process-panel-wrap is-narrow">
+            <div id="signup-panel-4" className={`process-panel-wrap ${stepValue === 4 ? "is-active" : "is-narrow"}`}>
               <div className="form-panel">
                 <div className="field">
                   <label>Password</label>
@@ -275,17 +309,19 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a className="button process-button" data-step={"step-dot-3"}>
+                <a className="button process-button" data-step={"step-dot-3"} onClick={prevStep}>
                   Back
                 </a>
                 <a
                   className="button process-button is-next"
-                  data-step={"step-dot-5"}>
+                  data-step={"step-dot-5"}
+                  onClick={nextStep}
+                >
                   Next
                 </a>
               </div>
             </div>
-            <div id="signup-panel-5" className="process-panel-wrap is-narrow">
+            <div id="signup-panel-5" className={`process-panel-wrap ${stepValue === 5 ? "is-active" : "is-narrow"}`}>
               <div className="form-panel">
                 <img
                   className="success-image"
@@ -302,7 +338,7 @@ function Signup() {
                   <Link
                     id="signup-finish"
                     className="button is-fullwidth"
-                    to="/">
+                    to="/home">
                     Let Me In
                   </Link>
                 </div>
