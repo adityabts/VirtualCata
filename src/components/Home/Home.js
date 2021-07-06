@@ -1,7 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import NavBar from "../core/NavBar/NavBar";
+import { FiEye } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 function Home() {
+
+  const tabs = {
+    liveEvents : 0,
+    upcomingEvents: 1,
+    subscribedEvents: 2,
+  }
+
+  const [activeTab, setActiveTab] = useState(tabs.liveEvents);
+
+
   const userData = {
     profilePicture: 'https://via.placeholder.com/150x150',
     firstName: 'Chandler',
@@ -98,6 +110,38 @@ function Home() {
   ]
 
 
+  const filterCategories = [
+    {
+      categoryImage: 'assets/img/icons/shop/all.svg',
+      categoryTitle: 'All',
+    },
+    {
+      categoryImage: 'assets/img/icons/shop/men.svg',
+      categoryTitle: 'Men',
+    },
+    {
+      categoryImage: 'assets/img/icons/shop/skirt.svg',
+      categoryTitle: 'Women',
+    },
+    {
+      categoryImage: 'assets/img/icons/shop/hat.svg',
+      categoryTitle: 'Hats',
+    },
+    {
+      categoryImage: 'assets/img/icons/shop/backpack.svg',
+      categoryTitle: 'Bags',
+    },
+    {
+      categoryImage: 'assets/img/icons/shop/shoes.svg',
+      categoryTitle: 'Shoes',
+    },
+    {
+      categoryImage: 'assets/img/icons/shop/clock.svg',
+      categoryTitle: 'Accessories',
+    },
+  ]
+
+
   return (
     <div>
       <NavBar />
@@ -130,128 +174,27 @@ function Home() {
               </div>
               <div className="shop-categories">
                 {/*Category*/}
-                <div className="category-item">
-                  <input
-                    type="radio"
-                    name="category_selection"
-                    defaultChecked
-                  />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/all.svg"
-                      alt=""
+                {filterCategories.map( item => 
+                  <div className="category-item">
+                    <input
+                      type="radio"
+                      name="category_selection"
                     />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/all-dark.svg"
-                      alt=""
-                    />
-                    <h4>All</h4>
+                    <div className="item-inner">
+                      <img
+                        className="light-image"
+                        src={item.categoryImage}
+                        alt=""
+                      />
+                      <img
+                        className="dark-image"
+                        src={item.categoryImage}
+                        alt=""
+                      />
+                      <h4>{item.categoryTitle}</h4>
+                    </div>
                   </div>
-                </div>
-                {/*Category*/}
-                <div className="category-item">
-                  <input type="radio" name="category_selection" />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/men.svg"
-                      alt=""
-                    />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/men-dark.svg"
-                      alt=""
-                    />
-                    <h4>Men</h4>
-                  </div>
-                </div>
-                {/*Category*/}
-                <div className="category-item">
-                  <input type="radio" name="category_selection" />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/skirt.svg"
-                      alt=""
-                    />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/skirt-dark.svg"
-                      alt=""
-                    />
-                    <h4>Women</h4>
-                  </div>
-                </div>
-                {/*Category*/}
-                <div className="category-item">
-                  <input type="radio" name="category_selection" />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/hat.svg"
-                      alt=""
-                    />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/hat-dark.svg"
-                      alt=""
-                    />
-                    <h4>Hats</h4>
-                  </div>
-                </div>
-                {/*Category*/}
-                <div className="category-item">
-                  <input type="radio" name="category_selection" />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/backpack.svg"
-                      alt=""
-                    />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/backpack-dark.svg"
-                      alt=""
-                    />
-                    <h4>Bags</h4>
-                  </div>
-                </div>
-                {/*Category*/}
-                <div className="category-item">
-                  <input type="radio" name="category_selection" />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/shoes.svg"
-                      alt=""
-                    />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/shoes-dark.svg"
-                      alt=""
-                    />
-                    <h4>Shoes</h4>
-                  </div>
-                </div>
-                {/*Category*/}
-                <div className="category-item">
-                  <input type="radio" name="category_selection" />
-                  <div className="item-inner">
-                    <img
-                      className="light-image"
-                      src="assets/img/icons/shop/clock.svg"
-                      alt=""
-                    />
-                    <img
-                      className="dark-image"
-                      src="assets/img/icons/shop/clock-dark.svg"
-                      alt=""
-                    />
-                    <h4>Accessories</h4>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -452,13 +395,25 @@ function Home() {
                 </div>
               </div>
               <div className="store-tabs">
-                <a data-tab="live-tab" className="tab-control">
+                <a
+                  data-tab="live-tab"
+                  className={`tab-control ${activeTab === tabs.liveEvents ? "is-active" : ""}`}
+                  onClick={() => {setActiveTab(tabs.liveEvents)}}
+                >
                   Live Events
                 </a>
-                <a data-tab="upcoming-tab" className="tab-control is-active">
+                <a 
+                  data-tab="upcoming-tab"
+                  className={`tab-control ${activeTab === tabs.upcomingEvents ? "is-active" : ""}`}
+                  onClick={() => {setActiveTab(tabs.upcomingEvents)}}
+                >
                   Upcoming
                 </a>
-                <a data-tab="subscribed-tab" className="tab-control">
+                <a
+                  data-tab="subscribed-tab"
+                  className={`tab-control ${activeTab === tabs.subscribedEvents ? "is-active" : ""}`}
+                  onClick={() => {setActiveTab(tabs.subscribedEvents)}}
+                >
                   Subscribed
                 </a>
                 <div className="store-naver" />
@@ -467,15 +422,15 @@ function Home() {
           </div>
           <div className="store-sections">
             <div className="container">
-              {/*Products*/}
-              <div id="live-tab" className="store-tab-pane is-active">
+              {/*Live Events*/}
+              <div id="live-tab" className={`store-tab-pane ${activeTab === tabs.liveEvents ? "is-active" : ""}`} >
                 <div className="columns is-multiline">
                   {/* /partials/commerce/products/products-list.html */}
                   {/*Product*/}
 
                   {liveEventsList.map(
                     event => (
-                      <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
+                      <Link to="/past" className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
                         <div
                           className="product-card"
                           data-name="Wine tasting for XYZ brand"
@@ -500,13 +455,17 @@ function Home() {
                           </div>
                           <div className="product-actions">
                             <div className="left">
-                              <i
+                              {/* <i
                                 data-feather="eye"
                                 style={{
                                   stroke: "#5596e6 !important",
                                   fill: "transparent !important",
                                 }}
-                              />
+                              /> */}
+                              <FiEye style={{
+                                  stroke: "#5596e6 !important",
+                                  fill: "transparent !important",
+                                }}/>
                               <span>{event.liveUsersCount}</span>
                             </div>
                             <div
@@ -530,10 +489,10 @@ function Home() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     )
                   )}
-                  <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
+                  {/* <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
                     <div
                       className="product-card"
                       data-name="Wine tasting for XYZ brand"
@@ -589,18 +548,18 @@ function Home() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/*Product*/}
                 </div>
               </div>
-              {/*Upcoming*/}
-              <div id="upcoming-tab" className="store-tab-pane">
+              {/*Upcoming Events*/}
+              <div id="upcoming-tab"  className={`store-tab-pane ${activeTab === tabs.upcomingEvents ? "is-active" : ""}`} >
                 <div className="columns is-multiline">
                   {/* /partials/commerce/products/products-brands.html */}
                   {/*Brand*/}
                   {upcomingEventsList.map( (event) => 
                     (
-                    <div className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
+                    <Link to="/landing" className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
                       <div className="brand-card">
                         <img src={event.brandLogo} alt="" />
                         <div className="meta">
@@ -628,13 +587,13 @@ function Home() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                     )
                   )}
                 </div>
               </div>
-              {/*subscribed*/}
-              <div id="subscribed-tab" className="store-tab-pane">
+              {/*Subscribed Events*/}
+              <div id="subscribed-tab"  className={`store-tab-pane ${activeTab === tabs.subscribedEvents ? "is-active" : ""}`} >
                 {/* /partials/commerce/products/products-followers.html */}
                 {/* Messages list container */}
                 {/* /partials/pages/inbox/inbox-center-container.html */}

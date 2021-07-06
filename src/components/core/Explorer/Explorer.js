@@ -2,6 +2,7 @@ import React from "react";
 
 function Explorer({ isActive }) {
 	return (
+		isActive && 
 		<div className={`explorer-menu ${isActive && "is-active"}`}>
 			<div className="explorer-inner">
 				<div className="explorer-container">
