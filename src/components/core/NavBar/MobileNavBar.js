@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NotificationDrop from "../Notifications/NotificationDrop";
 import Explorer from "../Explorer/Explorer";
+import logo from  './vclogo.png';
 
 export default function MobileNavBar() {
 	const [showNotification, setShowNotification] = useState(false);
@@ -22,12 +23,12 @@ export default function MobileNavBar() {
 					<a className="navbar-item" href="/">
 						<img
 							className="light-image"
-							src="assets/img/logo/friendkit-bold.svg"
+							src={logo}
 							alt=""
 						/>
 						<img
 							className="dark-image"
-							src="assets/img/logo/friendkit-white.svg"
+							src={logo}
 							alt=""
 						/>
 					</a>

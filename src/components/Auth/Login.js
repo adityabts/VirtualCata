@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import img from './vclogo.png';
 
 function Login() {
   let initialState = { username: "", password: "" };
@@ -32,7 +33,7 @@ function Login() {
               {/*Logo*/}
               <div className="logo-wrap">
                 <div className="wrap-inner">
-                  <img src="assets/img/logo/vc-logo.png" alt="" />
+                  <img src={img} alt="" />
                 </div>
               </div>
               {/*Login Form*/}
@@ -44,7 +45,7 @@ function Login() {
                       <i data-feather="check" />
                     </div>
                     <img
-                      src="assets/img/logo/vc-logo.png"
+                      src={img}
                       data-demo-src="assets/img/avatars/jenna.png"
                       alt=""
                     />

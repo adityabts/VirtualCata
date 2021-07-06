@@ -4,6 +4,7 @@ import NotificationDrop from "../Notifications/NotificationDrop";
 import NavDrop from "../NavDrop/NavDrop";
 import { FiBell } from "react-icons/fi";
 import { IoAppsSharp } from "react-icons/io5";
+import logo from  './vclogo.png';
 
 function DesktopNavBar() {
 	const [showNotification, setShowNotification] = useState(false);
@@ -30,14 +31,14 @@ function DesktopNavBar() {
 					<a href="/" className="navbar-item">
 						<img
 							className="logo light-image"
-							src="assets/img/logo/friendkit-bold.svg"
+							src={logo}
 							width={112}
 							height={28}
 							alt=""
 						/>
 						<img
 							className="logo dark-image"
-							src="assets/img/logo/friendkit-white.svg"
+							src={logo}
 							width={112}
 							height={28}
 							alt=""
