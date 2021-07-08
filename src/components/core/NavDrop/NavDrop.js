@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
 import authContext from "../../../Context/authContext";
+import { FiLifeBuoy, FiPower, FiSettings } from "react-icons/fi";
 
 export default function NavDrop({ isActive }) {
   let history = useHistory();
@@ -67,7 +68,8 @@ export default function NavDrop({ isActive }) {
           <Link to="/userProfile" className="account-item">
             <div className="media">
               <div className="icon-wrap">
-                <i data-feather="settings" />
+                {/* <i data-feather="settings" /> */}
+                <FiSettings />
               </div>
               <div className="media-content">
                 <h3>Settings</h3>
@@ -78,7 +80,8 @@ export default function NavDrop({ isActive }) {
           <a className="account-item">
             <div className="media">
               <div className="icon-wrap">
-                <i data-feather="life-buoy" />
+                {/* <i data-feather="life-buoy" /> */}
+                <FiLifeBuoy />
               </div>
               <div className="media-content">
                 <h3>Help</h3>
@@ -89,11 +92,12 @@ export default function NavDrop({ isActive }) {
           <a className="account-item">
             <div className="media">
               <div className="icon-wrap">
-                <i data-feather="power" />
+                {/* <i data-feather="power" /> */}
+                <FiPower />
               </div>
               {/* <div className="media-content"> */}
               <GoogleLogout
-                style={"undefined"}
+                style={{background:'transparent', boxShadow: 'unset'}}
                 className="media-content"
                 clientId={clientId}
                 onLogoutSuccess={onSuccess}
