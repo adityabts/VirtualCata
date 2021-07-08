@@ -50,7 +50,7 @@ function Login() {
                       alt=""
                     />
                   </div>
-                  {/*Form*/}
+                  {/*Form*/}   
                   <div className="login-form">
                     <div className="field">
                       <div className="control">

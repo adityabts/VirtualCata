@@ -1,9 +1,41 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { FiFlag, FiSmile, FiUser, FiImage, FiLock } from "react-icons/fi";
+import { FiFlag, FiSmile, FiUser, FiImage, FiLock, FiPlus } from "react-icons/fi";
 import { GoogleLogin } from "react-google-login";
 import { refreshTokenSetup } from "../../utils/refreshToken";
+import logo from './vclogo.png';
 import authContext from "../../Context/authContext";
+
+const interestsList = [
+  {
+    id:1,
+    thumbnail: 'https://img-premium.flaticon.com/png/512/3143/premium/3143902.png?token=exp=1625756612~hmac=db5f13a484b9f56b1bca79d246903872',
+    title: 'Food & Beverages',
+  },
+  {
+    id:2,
+    thumbnail: 'https://image.flaticon.com/icons/png/512/2928/2928158.png',
+    title: 'Health & Fitness',
+  },{
+    id:3,
+    thumbnail: 'https://img-premium.flaticon.com/png/512/3143/premium/3143902.png?token=exp=1625756612~hmac=db5f13a484b9f56b1bca79d246903872',
+    title: 'Food & Beverages',
+  },
+  {
+    id:4,
+    thumbnail: 'https://image.flaticon.com/icons/png/512/2928/2928158.png',
+    title: 'Health & Fitness',
+  },{
+    id:5,
+    thumbnail: 'https://img-premium.flaticon.com/png/512/3143/premium/3143902.png?token=exp=1625756612~hmac=db5f13a484b9f56b1bca79d246903872',
+    title: 'Food & Beverages',
+  },
+  {
+    id:6,
+    thumbnail: 'https://image.flaticon.com/icons/png/512/2928/2928158.png',
+    title: 'Health & Fitness',
+  },
+];
 
 function Signup() {
   let clientId = process.env.REACT_APP_CLIENT_ID_GOOGLE;
@@ -11,8 +43,22 @@ function Signup() {
   let { allData, setAllData } = useContext(authContext);
 
   const [userDetails, setUserDetails] = useState(allData.userDetails);
+  const [userInterests, setUseInterests] = useState([]);
 
   const [stepValue, setStepValue] = useState(1);
+
+  const handleSelect = (interest) => {
+    let newValue = [...userInterests];
+    if(userInterests.includes(interest))
+    {
+      newValue =  userInterests.filter((items) => items.id !== interest.id);
+    }
+    else {
+      newValue.push(interest);
+    }
+    setUseInterests(newValue);
+    console.log(newValue);
+  }
 
   const nextStep = () => {
     setStepValue(stepValue + 1);
@@ -35,6 +81,14 @@ function Signup() {
     refreshTokenSetup(res);
   };
 
+  const validateInputs = () => {
+    const emailTest = new RegExp("e");
+    const nameTest = new RegExp("e");
+    const phoneNumberTest = new RegExp("e");
+    const passwordTest = new RegExp("e");
+
+  }
+
   const onFailure = (res) => {
     console.log("Login failed: res:", res);
   };
@@ -46,7 +100,7 @@ function Signup() {
         <div className="fake-nav">
           <Link to="/" className="logo">
             <img
-              src="assets/img/logo/friendkit-bold.svg"
+              src={logo}
               alt=""
               width={112}
               height={28}
@@ -142,37 +196,6 @@ function Signup() {
               <div
                 className="columns mt-4"
                 style={{ justifyContent: "center" }}>
-                {/* <div className="column is-4">
-                  <div className="account-type">
-                    <div className="type-image">
-                      <img
-                        className="type-illustration"
-                        src="assets/img/illustrations/signup/type-1.svg"
-                        alt=""
-                      />
-                      <img
-                        className="type-bg light-image"
-                        src="assets/img/illustrations/signup/type-1-bg.svg"
-                        alt=""
-                      />
-                      <img
-                        className="type-bg dark-image"
-                        src="assets/img/illustrations/signup/type-1-bg-dark.svg"
-                        alt=""
-                      />
-                    </div>
-                    <h3>Company</h3>
-                    <p>
-                      Create a company account to be able to do some awesome
-                      things.
-                    </p>
-                    <a
-                      className="button is-fullwidth process-button"
-                      data-step={"step-dot-2"}>
-                      Continue
-                    </a>
-                  </div>
-                </div> */}
                 <div className="column is-4">
                   <div className="account-type">
                     <div className="type-image">
@@ -192,17 +215,17 @@ function Signup() {
                         alt=""
                       />
                     </div>
-                    <h3>Public Person</h3>
+                    <h3>Welcome to Virtual Cata</h3>
                     <p>
-                      Create a public account to be able to do some awesome
+                      Create an account to be able to do some awesome
                       things.
                     </p>
-                    <a
+                    <button
                       className="button is-fullwidth process-button"
                       data-step={"step-dot-2"}
                       onClick={nextStep}>
-                      Native Signup
-                    </a>
+                      Signup with Email
+                    </button>
                     <GoogleLogin
                       clientId={clientId}
                       buttonText="Sign Up"
@@ -217,38 +240,6 @@ function Signup() {
                     />
                   </div>
                 </div>
-                {/* <div className="column is-4">
-                  <div className="account-type">
-                    <div className="type-image">
-                      <img
-                        className="type-illustration"
-                        src="assets/img/illustrations/signup/type-3.svg"
-                        alt=""
-                      />
-                      <img
-                        className="type-bg light-image"
-                        src="assets/img/illustrations/signup/type-3-bg.svg"
-                        alt=""
-                      />
-                      <img
-                        className="type-bg dark-image"
-                        src="assets/img/illustrations/signup/type-3-bg-dark.svg"
-                        alt=""
-                      />
-                    </div>
-                    <h3>Personal</h3>
-                    <p>
-                      Create a personal account to be able to do some awesome
-                      things.
-                    </p>
-                    <Link
-                      to="/"
-                      className="button is-fullwidth process-button"
-                      data-step="step-dot-2">
-                      Continue
-                    </Link>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div
@@ -284,32 +275,32 @@ function Signup() {
                   </div>
                 </div>
                 <div className="field">
-                  <label>Email</label>
+                  <label>Zip Code</label>
                   <div className="control">
                     <input
-                      type="text"
+                      type="number"
                       className="input"
-                      placeholder="Enter your email address"
+                      placeholder="Enter your Zip Code"
                       onChange={handleChange}
-                      value={userDetails.email}
-                      name="email"
+                      value={userDetails.zipCode}
+                      name="zipCode"
                     />
                   </div>
                 </div>
               </div>
               <div className="buttons">
-                <a
+                <button
                   className="button process-button"
                   data-step={"step-dot-1"}
                   onClick={prevStep}>
                   Back
-                </a>
-                <a
+                </button>
+                <button
                   className="button process-button is-next"
                   data-step={"step-dot-3"}
                   onClick={nextStep}>
                   Next
-                </a>
+                </button>
               </div>
             </div>
             <div
@@ -320,9 +311,9 @@ function Signup() {
               <div className="form-panel">
                 <div className="photo-upload">
                   <div className="preview">
-                    <a className="upload-button">
-                      <i data-feather="plus" />
-                    </a>
+                    <button className="upload-button">
+                      <FiPlus />
+                    </button>
                     <img
                       id="upload-preview"
                       src={
@@ -347,18 +338,18 @@ function Signup() {
                 </div>
               </div>
               <div className="buttons">
-                <a
+                <button
                   className="button process-button"
                   data-step={"step-dot-2"}
                   onClick={prevStep}>
                   Back
-                </a>
-                <a
+                </button>
+                <button
                   className="button process-button is-next"
                   data-step={"step-dot-4"}
                   onClick={nextStep}>
                   Next
-                </a>
+                </button>
               </div>
             </div>
             <div
@@ -367,6 +358,29 @@ function Signup() {
                 stepValue === 4 ? "is-active" : "is-narrow"
               }`}>
               <div className="form-panel">
+                <div className="field">
+                  <label>Email</label>
+                  <div className="control">
+                    <input
+                      type="email"
+                      className="input"
+                      placeholder="Enter your email address"
+                      onChange={handleChange}
+                      value={userDetails.email}
+                      name="email"
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label>Phone Number</label>
+                  <div className="control">
+                    <input
+                      type="tel"
+                      className="input"
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+                </div>
                 <div className="field">
                   <label>Password</label>
                   <div className="control">
@@ -387,30 +401,20 @@ function Signup() {
                     />
                   </div>
                 </div>
-                <div className="field">
-                  <label>Phone Number</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                </div>
               </div>
               <div className="buttons">
-                <a
+                <button
                   className="button process-button"
                   data-step={"step-dot-3"}
                   onClick={prevStep}>
                   Back
-                </a>
-                <a
+                </button>
+                <button
                   className="button process-button is-next"
                   data-step={"step-dot-5"}
                   onClick={nextStep}>
                   Next
-                </a>
+                </button>
               </div>
             </div>
             <div
@@ -425,12 +429,27 @@ function Signup() {
                   alt=""
                 />
                 <div className="success-text">
-                  <h3>Congratz, you successfully created your account.</h3>
-                  <p>
-                    {" "}
-                    We just sent you a confirmation email. PLease confirm your
-                    account within 24 hours.
-                  </p>
+                  <h3>We are almost done. Select a few of your Interests</h3>
+                  </div>
+                  <div>
+                  <div className="columns is-multiline flex-portrait mt-5">
+                    {
+                      interestsList.map(
+                        item => <div className="column is-4">
+                        <div
+                          className="" 
+                          className={`card signup-interests-card ${ userInterests. includes(item) ? "is-selected" : ""}`} 
+                          onClick={() => handleSelect(item)}
+                        >
+                          <img src={item.thumbnail} style={{maxHeight: '40px'}}/>
+                          <p>{item.title}</p>
+                        </div>
+                        </div>)
+                    }
+                    <div>
+
+                    </div>
+                  </div>
                   <Link
                     id="signup-finish"
                     className="button is-fullwidth"

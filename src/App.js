@@ -44,7 +44,6 @@ function App() {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/forgot-password" component={ForgotPassword} />
-          <Route exact path="/signup" component={Signup} />
 
           <Route exact path="/landing" component={EventLandingPage} />
           <Route exact path="/live" component={LiveEvent} />
