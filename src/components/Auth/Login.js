@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import img from "./vclogo.png";
 
 function Login() {
   let initialState = { username: "", password: "" };
@@ -20,7 +21,7 @@ function Login() {
               <div className="hero-body">
                 <div className="container">
                   <div className="left-caption">
-                    <h2>Join an Exciting Virtual Experience.</h2>
+                    <h2>Join an Exciting Virtual Experience. </h2>
                   </div>
                 </div>
               </div>
@@ -32,7 +33,7 @@ function Login() {
               {/*Logo*/}
               <div className="logo-wrap">
                 <div className="wrap-inner">
-                  <img src="assets/img/logo/vc-logo.png" alt="" />
+                  <img src={img} alt="" />
                 </div>
               </div>
               {/*Login Form*/}
@@ -44,7 +45,7 @@ function Login() {
                       <i data-feather="check" />
                     </div>
                     <img
-                      src="assets/img/logo/vc-logo.png"
+                      src={img}
                       data-demo-src="assets/img/avatars/jenna.png"
                       alt=""
                     />
@@ -83,9 +84,11 @@ function Login() {
                     </div>
                     <div className="field">
                       <div className="column">
-                        <button className="button is-solid primary-button raised is-rounded is-fullwidth">
-                          Login
-                        </button>
+                        <Link to="../home">
+                          <button className="button is-solid primary-button raised is-rounded is-fullwidth">
+                            Login
+                          </button>
+                        </Link>
                       </div>
                     </div>
                     <div className="field">

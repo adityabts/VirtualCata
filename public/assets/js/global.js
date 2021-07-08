@@ -42,53 +42,6 @@ function initBgImages() {
 }
 
 ;
-/* ==========================================================================
-Dark mode
-========================================================================== */
-//Get Theme
-
-function setThemeToLocalStorage(value) {
-  window.localStorage.setItem('theme', value);
-
-  if (!$('#friendkit-demo-landing').length) {
-    if (value === 'dark') {
-      $('body').addClass('is-dark');
-    } else {
-      $('body').removeClass('is-dark');
-    }
-  }
-}
-
-function toggleTheme() {
-  var theme = window.localStorage.getItem('theme');
-  console.log(theme);
-
-  if (theme != null && theme != undefined) {
-    setThemeToLocalStorage(theme);
-
-    if (theme === 'dark') {
-      $('.theme-toggle input').prop('checked', true);
-    }
-
-    $(document).trigger('themeChange', theme);
-  }
-
-  $('.theme-toggle input').on('change', function () {
-    if ($(this).prop('checked') === true) {
-      console.log('checked');
-      setThemeToLocalStorage('dark');
-      $('.theme-toggle input').prop('checked', true);
-      $(document).trigger('themeChange', 'dark');
-    } else {
-      setThemeToLocalStorage('light');
-      $('.theme-toggle input').prop('checked', false);
-      $(document).trigger('themeChange', 'light');
-    }
-  });
-}
-/* ==========================================================================
-Pageloader
-========================================================================== */
 
 
 function initPageloader() {

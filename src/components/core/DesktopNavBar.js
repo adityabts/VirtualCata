@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { FiLifeBuoy, FiSettings, FiPower } from "react-icons/fi";
+import DarkModeSwitch from "./DarkModeSwitch";
 import Explorer from "./Explorer";
 import NotificationDrop from "./NotificationDrop";
+import { Link } from "react-router-dom";
 
 function DesktopNavBar() {
   const [showNotification, setShowNotification] = useState(false);
@@ -85,23 +88,13 @@ function DesktopNavBar() {
               <div className="nav-drop is-account-dropdown">
                 <div className="inner">
                   <div className="nav-drop-header">
-                    <span className="username">Jenna Davis</span>
-                    <label className="theme-toggle">
-                      <input type="checkbox" />
-                      <span className="toggler">
-                        <span className="dark">
-                          <i data-feather="moon" />
-                        </span>
-                        <span className="light">
-                          <i data-feather="sun" />
-                        </span>
-                      </span>
-                    </label>
+                    <span className="username">Jenna Davos</span>
+                      <DarkModeSwitch />
                   </div>
                   <div className="nav-drop-body account-items">
-                    <a
+                    <Link
                       id="profile-link"
-                      href="/profile-main.html"
+                      to="/userProfile"
                       className="account-item">
                       <div className="media">
                         <div className="media-left">
@@ -121,7 +114,7 @@ function DesktopNavBar() {
                           <i data-feather="check" />
                         </div>
                       </div>
-                    </a>
+                    </Link>
                     <hr className="account-divider" />
                     <a href="/pages-main.html" className="account-item">
                       <div className="media">
@@ -187,7 +180,8 @@ function DesktopNavBar() {
                     <a href="/options-settings.html" className="account-item">
                       <div className="media">
                         <div className="icon-wrap">
-                          <i data-feather="settings" />
+                          {/* <i data-feather="settings" /> */}
+                          <FiSettings />
                         </div>
                         <div className="media-content">
                           <h3>Settings</h3>
@@ -198,7 +192,8 @@ function DesktopNavBar() {
                     <a className="account-item">
                       <div className="media">
                         <div className="icon-wrap">
-                          <i data-feather="life-buoy" />
+                          {/* <i data-feather="life-buoy" /> */}
+                          <FiLifeBuoy />
                         </div>
                         <div className="media-content">
                           <h3>Help</h3>
@@ -210,6 +205,7 @@ function DesktopNavBar() {
                       <div className="media">
                         <div className="icon-wrap">
                           <i data-feather="power" />
+                          <FiPower />
                         </div>
                         <div className="media-content">
                           <h3>Log out</h3>

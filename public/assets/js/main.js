@@ -40,7 +40,7 @@ $(document).ready(function () {
     window.open(href);
   }); //Toggle Dark mode
 
-  toggleTheme(); //Code highlight init
+  // toggleTheme(); //Code highlight init
 
   $('.highlight-block code').each(function (i, block) {
     hljs.highlightBlock(block);
