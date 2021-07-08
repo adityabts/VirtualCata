@@ -287,6 +287,19 @@ function Signup() {
                     />
                   </div>
                 </div>
+                <div className="field">
+                  <label>Date of Birth</label>
+                  <div className="control">
+                    <input
+                      type="date"
+                      className="input"
+                      placeholder="Enter your Date of Birth"
+                      onChange={handleChange}
+                      value={userDetails.dateOfBirth}
+                      name="dateOfBirth"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="buttons">
                 <button
