@@ -1,146 +1,152 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import NavBar from "../core/NavBar/NavBar";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import authContext from "../../Context/authContext";
 
 function Home() {
+  let { allData, setAllData } = useContext(authContext);
 
   const tabs = {
-    liveEvents : 0,
+    liveEvents: 0,
     upcomingEvents: 1,
     subscribedEvents: 2,
-  }
+  };
 
   const [activeTab, setActiveTab] = useState(tabs.liveEvents);
 
-
   const userData = {
-    profilePicture: 'https://via.placeholder.com/150x150',
-    firstName: 'Chandler',
-    lastName: 'Bing',
-    emailAddress: 'something@something.com'
-  }
+    profilePicture: allData.userDetails.imageUrl
+      ? allData.userDetails.imageUrl
+      : "https://via.placeholder.com/150x150",
+    firstName: allData.userDetails.givenName
+      ? allData.userDetails.givenName
+      : "Chandler",
+    lastName: allData.userDetails.familyName
+      ? allData.userDetails.familyName
+      : "Bing",
+    emailAddress: allData.userDetails.email
+      ? allData.userDetails.email
+      : "something@something.com",
+  };
 
   const userStats = {
     eventsCount: 20,
     interestsCount: 12,
     followingsCount: 36,
-  }
+  };
 
   const upcomingEventsList = [
     {
-      id:1,
-      brandLogo:'assets/img/icons/shop/brands/1.svg',
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      eventDate: '10 - 12 - 2021',
-      eventTime: '20: 00',
-      eventHost: 'Whole Foods',
-      eventPresenter: 'Trade Winds',  
+      id: 1,
+      brandLogo: "assets/img/icons/shop/brands/1.svg",
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      eventDate: "10 - 12 - 2021",
+      eventTime: "20: 00",
+      eventHost: "Whole Foods",
+      eventPresenter: "Trade Winds",
     },
     {
-      id:2,
-      brandLogo:'assets/img/icons/shop/brands/2.svg',
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      eventDate: '10 - 12 - 2021',
-      eventTime: '20: 00',
-      eventHost: 'Whole Foods',
-      eventPresenter: 'Trade Winds',  
+      id: 2,
+      brandLogo: "assets/img/icons/shop/brands/2.svg",
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      eventDate: "10 - 12 - 2021",
+      eventTime: "20: 00",
+      eventHost: "Whole Foods",
+      eventPresenter: "Trade Winds",
     },
     {
-      id:3,
-      brandLogo:'assets/img/icons/shop/brands/3.svg',
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      eventDate: '10 - 12 - 2021',
-      eventTime: '20: 00',
-      eventHost: 'Whole Foods',
-      eventPresenter: 'Trade Winds',  
+      id: 3,
+      brandLogo: "assets/img/icons/shop/brands/3.svg",
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      eventDate: "10 - 12 - 2021",
+      eventTime: "20: 00",
+      eventHost: "Whole Foods",
+      eventPresenter: "Trade Winds",
     },
     {
-      id:4,
-      brandLogo:'assets/img/icons/shop/brands/4.svg',
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      eventDate: '10 - 12 - 2021',
-      eventTime: '20: 00',
-      eventHost: 'Whole Foods',
-      eventPresenter: 'Trade Winds',  
+      id: 4,
+      brandLogo: "assets/img/icons/shop/brands/4.svg",
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      eventDate: "10 - 12 - 2021",
+      eventTime: "20: 00",
+      eventHost: "Whole Foods",
+      eventPresenter: "Trade Winds",
     },
-  ]
+  ];
 
   const liveEventsList = [
     {
-      id:1,
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      id: 1,
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       liveUsersCount: 137,
-      streamThumbnail: 'https://via.placeholder.com/400x200',  
+      streamThumbnail: "https://via.placeholder.com/400x200",
     },
     {
-      id:2,
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      id: 2,
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       liveUsersCount: 137,
-      streamThumbnail: 'https://via.placeholder.com/400x200',  
+      streamThumbnail: "https://via.placeholder.com/400x200",
     },
     {
-      id:3,
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      id: 3,
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       liveUsersCount: 137,
-      streamThumbnail: 'https://via.placeholder.com/400x200',  
+      streamThumbnail: "https://via.placeholder.com/400x200",
     },
     {
-      id:4,
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      id: 4,
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       liveUsersCount: 137,
-      streamThumbnail: 'https://via.placeholder.com/400x200',  
+      streamThumbnail: "https://via.placeholder.com/400x200",
     },
     {
-      id:5,
-      eventTitle: 'Wine tasting for ABC brand by John Doe',
-      eventSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      id: 5,
+      eventTitle: "Wine tasting for ABC brand by John Doe",
+      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       liveUsersCount: 137,
-      streamThumbnail: 'https://via.placeholder.com/400x200',  
+      streamThumbnail: "https://via.placeholder.com/400x200",
     },
-    
-  ]
-
+  ];
 
   const filterCategories = [
     {
-      categoryImage: 'assets/img/icons/shop/all.svg',
-      categoryTitle: 'All',
+      categoryImage: "assets/img/icons/shop/all.svg",
+      categoryTitle: "All",
     },
     {
-      categoryImage: 'assets/img/icons/shop/men.svg',
-      categoryTitle: 'Men',
+      categoryImage: "assets/img/icons/shop/men.svg",
+      categoryTitle: "Men",
     },
     {
-      categoryImage: 'assets/img/icons/shop/skirt.svg',
-      categoryTitle: 'Women',
+      categoryImage: "assets/img/icons/shop/skirt.svg",
+      categoryTitle: "Women",
     },
     {
-      categoryImage: 'assets/img/icons/shop/hat.svg',
-      categoryTitle: 'Hats',
+      categoryImage: "assets/img/icons/shop/hat.svg",
+      categoryTitle: "Hats",
     },
     {
-      categoryImage: 'assets/img/icons/shop/backpack.svg',
-      categoryTitle: 'Bags',
+      categoryImage: "assets/img/icons/shop/backpack.svg",
+      categoryTitle: "Bags",
     },
     {
-      categoryImage: 'assets/img/icons/shop/shoes.svg',
-      categoryTitle: 'Shoes',
+      categoryImage: "assets/img/icons/shop/shoes.svg",
+      categoryTitle: "Shoes",
     },
     {
-      categoryImage: 'assets/img/icons/shop/clock.svg',
-      categoryTitle: 'Accessories',
+      categoryImage: "assets/img/icons/shop/clock.svg",
+      categoryTitle: "Accessories",
     },
-  ]
-
+  ];
 
   return (
     <div>
@@ -174,12 +180,9 @@ function Home() {
               </div>
               <div className="shop-categories">
                 {/*Category*/}
-                {filterCategories.map( item => 
+                {filterCategories.map((item) => (
                   <div className="category-item">
-                    <input
-                      type="radio"
-                      name="category_selection"
-                    />
+                    <input type="radio" name="category_selection" />
                     <div className="item-inner">
                       <img
                         className="light-image"
@@ -194,7 +197,7 @@ function Home() {
                       <h4>{item.categoryTitle}</h4>
                     </div>
                   </div>
-                )}
+                ))}
               </div>
             </div>
           </div>
@@ -384,11 +387,15 @@ function Home() {
                       <span>Events</span>
                     </div>
                     <div className="stat-block is-bordered">
-                      <div className="stat-number">{userStats.interestsCount}</div>
+                      <div className="stat-number">
+                        {userStats.interestsCount}
+                      </div>
                       <span>Interests</span>
                     </div>
                     <div className="stat-block">
-                      <div className="stat-number">{userStats.followingsCount}</div>
+                      <div className="stat-number">
+                        {userStats.followingsCount}
+                      </div>
                       <span>Following</span>
                     </div>
                   </div>
@@ -397,23 +404,32 @@ function Home() {
               <div className="store-tabs">
                 <a
                   data-tab="live-tab"
-                  className={`tab-control ${activeTab === tabs.liveEvents ? "is-active" : ""}`}
-                  onClick={() => {setActiveTab(tabs.liveEvents)}}
-                >
+                  className={`tab-control ${
+                    activeTab === tabs.liveEvents ? "is-active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveTab(tabs.liveEvents);
+                  }}>
                   Live Events
                 </a>
-                <a 
+                <a
                   data-tab="upcoming-tab"
-                  className={`tab-control ${activeTab === tabs.upcomingEvents ? "is-active" : ""}`}
-                  onClick={() => {setActiveTab(tabs.upcomingEvents)}}
-                >
+                  className={`tab-control ${
+                    activeTab === tabs.upcomingEvents ? "is-active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveTab(tabs.upcomingEvents);
+                  }}>
                   Upcoming
                 </a>
                 <a
                   data-tab="subscribed-tab"
-                  className={`tab-control ${activeTab === tabs.subscribedEvents ? "is-active" : ""}`}
-                  onClick={() => {setActiveTab(tabs.subscribedEvents)}}
-                >
+                  className={`tab-control ${
+                    activeTab === tabs.subscribedEvents ? "is-active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveTab(tabs.subscribedEvents);
+                  }}>
                   Subscribed
                 </a>
                 <div className="store-naver" />
@@ -423,75 +439,79 @@ function Home() {
           <div className="store-sections">
             <div className="container">
               {/*Live Events*/}
-              <div id="live-tab" className={`store-tab-pane ${activeTab === tabs.liveEvents ? "is-active" : ""}`} >
+              <div
+                id="live-tab"
+                className={`store-tab-pane ${
+                  activeTab === tabs.liveEvents ? "is-active" : ""
+                }`}>
                 <div className="columns is-multiline">
                   {/* /partials/commerce/products/products-list.html */}
                   {/*Product*/}
 
-                  {liveEventsList.map(
-                    event => (
-                      <Link to="/past" className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
-                        <div
-                          className="product-card"
-                          data-name="Wine tasting for XYZ brand"
-                          data-host="Whole Foods"
-                          data-colors="true"
-                          data-variants="true"
-                          data-path="assets/img/products/1">
-                          <div className="video-collection">
-                            <a className="episode">
-                              <img
-                                src={event.streamThumbnail}
-                                data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
-                                alt=""
-                              />
-                            </a>
-                          </div>
-                          <div className="product-info">
-                            <h3>{event.eventTitle}</h3>
-                            <p>
-                              {event.eventSubTitle}
-                            </p>
-                          </div>
-                          <div className="product-actions">
-                            <div className="left">
-                              {/* <i
+                  {liveEventsList.map((event) => (
+                    <Link
+                      to="/past"
+                      className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
+                      <div
+                        className="product-card"
+                        data-name="Wine tasting for XYZ brand"
+                        data-host="Whole Foods"
+                        data-colors="true"
+                        data-variants="true"
+                        data-path="assets/img/products/1">
+                        <div className="video-collection">
+                          <a className="episode">
+                            <img
+                              src={event.streamThumbnail}
+                              data-demo-src="assets/img/demo/video/home/collections/c17.jpg"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <div className="product-info">
+                          <h3>{event.eventTitle}</h3>
+                          <p>{event.eventSubTitle}</p>
+                        </div>
+                        <div className="product-actions">
+                          <div className="left">
+                            {/* <i
                                 data-feather="eye"
                                 style={{
                                   stroke: "#5596e6 !important",
                                   fill: "transparent !important",
                                 }}
                               /> */}
-                              <FiEye style={{
-                                  stroke: "#5596e6 !important",
-                                  fill: "transparent !important",
-                                }}/>
-                              <span>{event.liveUsersCount}</span>
-                            </div>
-                            <div
-                              className="right"
-                              data-name="Wine tasting for XYZ brand"
-                              data-price="Trade Winds Speciality"
-                              data-colors="true"
-                              data-variants="true"
-                              data-path="assets/img/products/1">
-                              <a
-                                className="button is-solid accent-button raised quickview-trigger"
-                                style={{
-                                  position: "inherit",
-                                  top: "0 !important",
-                                  right: "0 !important",
-                                  width: "100% !important",
-                                }}>
-                                <i data-feather="eye" />
-                                <span>Watch Now</span>
-                              </a>
-                            </div>
+                            <FiEye
+                              style={{
+                                stroke: "#5596e6 !important",
+                                fill: "transparent !important",
+                              }}
+                            />
+                            <span>{event.liveUsersCount}</span>
+                          </div>
+                          <div
+                            className="right"
+                            data-name="Wine tasting for XYZ brand"
+                            data-price="Trade Winds Speciality"
+                            data-colors="true"
+                            data-variants="true"
+                            data-path="assets/img/products/1">
+                            <a
+                              className="button is-solid accent-button raised quickview-trigger"
+                              style={{
+                                position: "inherit",
+                                top: "0 !important",
+                                right: "0 !important",
+                                width: "100% !important",
+                              }}>
+                              <i data-feather="eye" />
+                              <span>Watch Now</span>
+                            </a>
                           </div>
                         </div>
-                      </Link>
-                    )
-                  )}
+                      </div>
+                    </Link>
+                  ))}
                   {/* <div className="column is-three-fifth-desktop is-two-quarter-widescreen is-two-third-desktop is-one-third-tablet is-half-mobile">
                     <div
                       className="product-card"
@@ -553,20 +573,23 @@ function Home() {
                 </div>
               </div>
               {/*Upcoming Events*/}
-              <div id="upcoming-tab"  className={`store-tab-pane ${activeTab === tabs.upcomingEvents ? "is-active" : ""}`} >
+              <div
+                id="upcoming-tab"
+                className={`store-tab-pane ${
+                  activeTab === tabs.upcomingEvents ? "is-active" : ""
+                }`}>
                 <div className="columns is-multiline">
                   {/* /partials/commerce/products/products-brands.html */}
                   {/*Brand*/}
-                  {upcomingEventsList.map( (event) => 
-                    (
-                    <Link to="/landing" className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
+                  {upcomingEventsList.map((event) => (
+                    <Link
+                      to="/landing"
+                      className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
                       <div className="brand-card">
                         <img src={event.brandLogo} alt="" />
                         <div className="meta">
                           <h3>{event.eventTitle}</h3>
-                          <p>
-                            {event.eventSubTitle}
-                          </p>
+                          <p>{event.eventSubTitle}</p>
                         </div>
                         <div className="brand-stats">
                           <div className="brand-stat">
@@ -588,12 +611,15 @@ function Home() {
                         </div>
                       </div>
                     </Link>
-                    )
-                  )}
+                  ))}
                 </div>
               </div>
               {/*Subscribed Events*/}
-              <div id="subscribed-tab"  className={`store-tab-pane ${activeTab === tabs.subscribedEvents ? "is-active" : ""}`} >
+              <div
+                id="subscribed-tab"
+                className={`store-tab-pane ${
+                  activeTab === tabs.subscribedEvents ? "is-active" : ""
+                }`}>
                 {/* /partials/commerce/products/products-followers.html */}
                 {/* Messages list container */}
                 {/* /partials/pages/inbox/inbox-center-container.html */}

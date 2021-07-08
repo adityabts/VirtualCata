@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import img from './vclogo.png';
+import img from "./vclogo.png";
 
 function Login() {
   let initialState = { username: "", password: "" };
@@ -21,7 +21,7 @@ function Login() {
               <div className="hero-body">
                 <div className="container">
                   <div className="left-caption">
-                    <h2>Join an Exciting Virtual Experience.</h2>
+                    <h2>Join an Exciting Virtual Experience. </h2>
                   </div>
                 </div>
               </div>
