@@ -48368,7 +48368,8 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 .signup-wrapper .process-title {
 	max-width: 840px;
 	margin: 0 auto;
-	text-align: center
+	text-align: center;
+	margin-top: 2rem;
 }
 
 .signup-wrapper .process-title h2 {

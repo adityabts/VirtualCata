@@ -16,17 +16,17 @@ function Home() {
   const [activeTab, setActiveTab] = useState(tabs.liveEvents);
 
   const userData = {
-    profilePicture: allData.userDetails.imageUrl
-      ? allData.userDetails.imageUrl
+    profilePicture: allData.userDetails.profilePicture
+      ? allData.userDetails.profilePicture
       : "https://via.placeholder.com/150x150",
-    firstName: allData.userDetails.givenName
-      ? allData.userDetails.givenName
+    firstName: allData.userDetails.firstName
+      ? allData.userDetails.firstName
       : "Chandler",
-    lastName: allData.userDetails.familyName
-      ? allData.userDetails.familyName
+    lastName: allData.userDetails.lastName
+      ? allData.userDetails.lastName
       : "Bing",
-    emailAddress: allData.userDetails.email
-      ? allData.userDetails.email
+    emailAddress: allData.userDetails.emailAddress
+      ? allData.userDetails.emailAddress
       : "something@something.com",
   };
 
