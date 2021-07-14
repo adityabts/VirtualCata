@@ -97,7 +97,11 @@ function WelcomePage({ onNext }) {
                 appId={fbAppId}
                 fields="name,email,picture"
                 // onClick={(e) => console.log("fb",e)}
-                // callback={(e) => console.log("fb callback",e)}
+                callback={(e) => console.log("fb callback",e)}
+                // render={renderProps => (
+                //   <button onClick={renderProps.onClick}>This is my custom FB button</button>
+                // )}
+              
                 size="small"
                 fields="Sign Up"
                 
