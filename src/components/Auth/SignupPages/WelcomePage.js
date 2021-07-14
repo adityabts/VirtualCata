@@ -3,6 +3,7 @@ import authContext from "../../../Context/authContext";
 import { refreshTokenSetup } from "../../../utils/refreshToken";
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 const stepValue =1;
 
@@ -99,7 +100,23 @@ function WelcomePage({ onNext }) {
                 // callback={(e) => console.log("fb callback",e)}
                 size="small"
                 fields="Sign Up"
-                buttonStyle={{ marginTop: "20px", width:'100%' }}
+                
+                buttonStyle={
+                  {
+                    marginTop: "20px",
+                    width:'100%',
+                    width: '100%',
+                    background: 'white',
+                    boxShadow: '0px 5px 7px -4px #8080809c',
+                    border: '1px solid #ddd',
+                    borderRadius: '3px',
+                    color: '#4267B2',
+                    textTransform: 'capitalize',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    height: '40px',
+                  }
+                }
               />
             </div>
           </div>
