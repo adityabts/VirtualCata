@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import authContext from "../../../Context/authContext";
+import { sendEmail } from '../../../services/authentication.services';
 
 function UserDetails({ handleChange, onPrev, onNext }) {
   
@@ -102,6 +103,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
     {
       const newUserDetails = {...userDetails, emailAddress, firstName, lastName, zipCode, dateOfBirth};
       setUserDetails(newUserDetails);
+      sendEmail(emailAddress,firstName);
       onNext();
     }
   }
