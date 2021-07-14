@@ -36,7 +36,7 @@ function InterestsSelection({ onNext, onPrev}) {
 
     const history = useHistory(); 
     const [userInterests, setUseInterests] = useState([]);
-    const [error, setError] = useState(true);
+    const [error, setError] = useState(false);
     const handleSelect = (interest) => {
         let newValue = [...userInterests];
         if(userInterests.includes(interest))
