@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
 import authContext from "../../../Context/authContext";
+import { FiLifeBuoy, FiPower, FiSettings } from "react-icons/fi";
+import { getCurrentUser } from '../../../utils/user';
+import { sendEmail } from "../../../services/authentication.services";
 
 export default function NavDrop({ isActive }) {
   let history = useHistory();
@@ -14,23 +17,19 @@ export default function NavDrop({ isActive }) {
     history.push("/login");
   };
 
-  const [userDetails, setUserDetails] = useState(
-    allData.userDetails ? allData.userDetails : null
-  );
+  const [ user, setUser ] = useState({});
 
   useEffect(() => {
-    setUserDetails({ ...allData.userDetails });
-    console.log("User Details :: ", userDetails);
-  }, [allData]);
+    const currentUser = getCurrentUser();
+    setUser(currentUser);
+  }, [])
 
   return (
     <div className={`nav-drop is-account-dropdown ${isActive && "is-active"}`}>
       <div className="inner">
         <div className="nav-drop-header">
           <span className="username">
-            {userDetails.givenName
-              ? `${userDetails.givenName} ${userDetails.familyName}`
-              : "Chandler Bing"}
+            {`${user.firstName} ${user.lastName}`}
           </span>
           <DarkModeSwitch />
         </div>
@@ -41,8 +40,8 @@ export default function NavDrop({ isActive }) {
                 <div className="image">
                   <img
                     src={
-                      userDetails.imageUrl
-                        ? userDetails.imageUrl
+                      user.profileImage
+                        ? user.profileImage
                         : "https://via.placeholder.com/400x400"
                     }
                     data-demo-src="assets/img/avatars/jenna.png"
@@ -52,8 +51,8 @@ export default function NavDrop({ isActive }) {
               </div>
               <div className="media-content">
                 <h3>
-                  {userDetails.givenName
-                    ? `${userDetails.givenName} ${userDetails.familyName}`
+                  {user.firstName
+                    ? `${user.firstName} ${user.lastName}`
                     : "Chandler Bing"}
                 </h3>
                 <small>Main account</small>

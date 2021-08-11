@@ -1,8 +1,4 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import Login from "./components/Auth/Login";
-import Signup from "./components/Auth/Signup";
-import ResetPassword from "./components/Auth/ResetPassword";
-import ForgotPassword from "./components/Auth/ForgotPassword";
 import SideBar from "./components/core/SideBar/SideBar";
 import DesktopNavBar from "./components/core/NavBar/DesktopNavBar";
 import MobileNavBar from "./components/core/NavBar/MobileNavBar";
@@ -17,6 +13,10 @@ import AdminAbout from "./components/Profile/AdminAbout";
 import UserProfile from "./components/UserProfile/UserProfile";
 import { Fragment, useState } from "react";
 import authContext from "./Context/authContext";
+
+import User from "./components/User";
+
+
 
 function App() {
   let initialState = {
@@ -40,11 +40,7 @@ function App() {
       {/* <NavBar /> */}
       <Switch>
         <authContext.Provider value={{ allData, setAllData }}>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/reset-password" component={ResetPassword} />
-          <Route exact path="/forgot-password" component={ForgotPassword} />
-          <Route exact path="/signup" component={Signup} />
+          <Route path="/user" component={User} />
 
           <Route exact path="/landing" component={EventLandingPage} />
           <Route exact path="/live" component={LiveEvent} />

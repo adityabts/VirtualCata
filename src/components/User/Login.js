@@ -1,14 +1,49 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import img from "./vclogo.png";
+import { signIn  } from "../../services/authentication.services";
+import { setCurrentUser } from "../../utils/user";
 
-function Login() {
+const Login = () => {
+
+  console.log('In login')
+
   let initialState = { username: "", password: "" };
   const [credentials, setCredentials] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({});
+
+  let history = useHistory();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  const handleSignIn = async () => {
+    let newError = {};
+    if(!credentials.username) {
+      newError = {...newError, email: true}
+    }
+    if(!credentials.password) {
+      newError = {...newError, password: true}
+    }
+    setError(newError);
+
+    if(Object.keys(newError).length == 0) {
+      try {
+        setLoading(true);
+        const user = await signIn({...credentials, loginType:'native' });
+        setCurrentUser(user);
+        history.push('../home')
+      }
+      catch (error) {
+        setError({serverSideError : error.message})
+      }
+      finally {
+        setLoading(false)
+      }
+    }
+  }
 
   return (
     <div>
@@ -55,7 +90,7 @@ function Login() {
                     <div className="field">
                       <div className="control">
                         <input
-                          className="input email-input"
+                          className={`input email-input ${error.email ? 'error' : ''}`}
                           type="email"
                           placeholder="johndoe@domain.com"
                           name="username"
@@ -70,7 +105,7 @@ function Login() {
                     <div className="field">
                       <div className="control">
                         <input
-                          className="input password-input"
+                          className={`input password-input ${error.password ? 'error' : ''}`}
                           type="password"
                           placeholder="●●●●●●●"
                           name="password"
@@ -82,47 +117,36 @@ function Login() {
                         </div>
                       </div>
                     </div>
+                    {error.serverSideError && <div className="field">
+                      <div className="login-error-text">
+                        Error : {error.serverSideError}
+                      </div>
+                    </div>}
                     <div className="field">
                       <div className="column">
-                        <Link to="../home">
-                          <button className="button is-solid primary-button raised is-rounded is-fullwidth">
-                            Login
-                          </button>
-                        </Link>
+                        <button className="button is-solid primary-button raised is-rounded is-fullwidth" onClick={handleSignIn} > 
+                        { loading ? <i class="fa fa-spinner fa-spin" /> : 'Login'}
+                        </button>
                       </div>
                     </div>
                     <div className="field">
-                      <div className="control row">
-                        <a className="mr-5 login-button share__buttons__item share__buttons__item--facebook">
-                          <svg
-                            aria-hidden="true"
-                            width={12}
-                            height={12}
-                            role="img"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 264 512">
-                            <path
-                              fill="currentColor"
-                              d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"
-                            />
-                          </svg>
-                          Login with Facebook
-                        </a>
-                        <a className="login-button share__buttons__item share__buttons__item--google">
-                          <svg
-                            aria-hidden="true"
-                            width={12}
-                            height={12}
-                            role="img"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 488 512">
-                            <path
-                              fill="currentColor"
-                              d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-                            />
-                          </svg>
-                          Login with Google
-                        </a>
+                      <div className="column">
+                        <Link to="../home">
+                          <button 
+                            className="button is-solid primary-button raised is-rounded is-fullwidth mb-3"
+                            style={{backgroundColor: '#4267B2', borderColor: '#4267B2'}}
+                          >
+                            Login with Facebook
+                          </button>
+                        </Link>
+                        <Link to="../home">
+                          <button
+                           className="button is-solid primary-button raised is-rounded is-fullwidth"
+                           style={{ backgroundColor:'#DB4437', borderColor: '#DB4437' }}
+                           >
+                            Login with Google
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

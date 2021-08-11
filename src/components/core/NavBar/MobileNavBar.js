@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NotificationDrop from "../Notifications/NotificationDrop";
 import Explorer from "../Explorer/Explorer";
 import logo from  './vclogo.png';
+import { getCurrentUser } from '../../../utils/user';
 
 export default function MobileNavBar() {
 	const [showNotification, setShowNotification] = useState(false);
 	const [showExplorer, setShowExplorer] = useState(false);
+
+	const [ user, setUser ] = useState({});
+
+	useEffect(() => {
+	  const currentUser = getCurrentUser();
+	  setUser(currentUser);
+	}, [])
+
 	const toggleExplorer = () => {
 		setShowExplorer(!showExplorer);
 	};
@@ -14,6 +23,8 @@ export default function MobileNavBar() {
 	};
 
 	return (
+		<>
+		{user.emailConfirmed == true && <div className="verify-email-strip">Please verify your email address to enjoy all the services on VirtualCata</div>}
 		<div>
 			<nav
 				className="navbar mobile-navbar is-hidden-desktop"
@@ -66,7 +77,7 @@ export default function MobileNavBar() {
 								data-demo-src="assets/img/avatars/jenna.png"
 								alt=""
 							/>
-							<span className="is-heading">Jenna Davis</span>
+							<span className="is-heading">{`${user.firstName} ${user.lastName}`}</span>
 						</a>
 						{/* Mobile Dropdown */}
 						<div className="navbar-dropdown">
@@ -176,5 +187,6 @@ export default function MobileNavBar() {
 			</nav>
 			<Explorer isActive={showExplorer} />
 		</div>
+		</>
 	);
 }

@@ -48368,7 +48368,9 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 .signup-wrapper .process-title {
 	max-width: 840px;
 	margin: 0 auto;
-	text-align: center
+	text-align: center;
+	margin-top: 2rem;
+	padding: 25px;
 }
 
 .signup-wrapper .process-title h2 {
@@ -56071,5 +56073,16 @@ body.is-dark .elements-wrap .element-block code {
 	opacity: .75
 }
 
+.verify-email-strip {
+    position: fixed;
+    bottom: 0px;
+	left: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: red;
+    color: white;
+    z-index: 1000;
+    padding: 5px;
+}
 
 /*# sourceMappingURL=scss */

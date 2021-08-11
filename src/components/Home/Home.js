@@ -1,11 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import NavBar from "../core/NavBar/NavBar";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import authContext from "../../Context/authContext";
+import { getCurrentUser } from '../../utils/user';
 
 function Home() {
-  let { allData, setAllData } = useContext(authContext);
+  const [ user, setUser ] = useState({});
+
+  useEffect(() => {
+    const currentUser = getCurrentUser();
+    setUser(currentUser);
+  }, [])
 
   const tabs = {
     liveEvents: 0,
@@ -14,21 +20,6 @@ function Home() {
   };
 
   const [activeTab, setActiveTab] = useState(tabs.liveEvents);
-
-  const userData = {
-    profilePicture: allData.userDetails.imageUrl
-      ? allData.userDetails.imageUrl
-      : "https://via.placeholder.com/150x150",
-    firstName: allData.userDetails.givenName
-      ? allData.userDetails.givenName
-      : "Chandler",
-    lastName: allData.userDetails.familyName
-      ? allData.userDetails.familyName
-      : "Bing",
-    emailAddress: allData.userDetails.email
-      ? allData.userDetails.email
-      : "something@something.com",
-  };
 
   const userStats = {
     eventsCount: 20,
@@ -369,14 +360,14 @@ function Home() {
               <div className="header-inner">
                 <div className="store-block">
                   <div className="img-container">
-                    <img src={userData.profilePicture} alt="" />
+                    <img src={user.profileImage} alt="" />
                     <div className="follow-badge is-hidden">
                       <i data-feather="check" />
                     </div>
                   </div>
                   <div className="store-meta">
-                    <h3>{`${userData.firstName} ${userData.lastName}`}</h3>
-                    <span>{userData.emailAddress}</span>
+                    <h3>{`${user.firstName} ${user.lastName}`}</h3>
+                    <span>{user.email}</span>
                   </div>
                 </div>
                 <div className="activity-block">
