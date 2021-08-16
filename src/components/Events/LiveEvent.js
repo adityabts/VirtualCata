@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../core/NavBar/NavBar"
 
-function LiveEvent() {
+function LiveEvent( {...props} ) {
   const comments = [
     {
       authorProfilePicture: 'https://via.placeholder.com/150x150',
@@ -75,7 +75,7 @@ function LiveEvent() {
 
   return (
     <div>
-      <NavBar />
+      <NavBar {...props} />
       <div className="view-wrapper is-full">
         <div className="videos-wrapper has-player">
           {/* /html/partials/pages/videos/videos-sidebar.html */}

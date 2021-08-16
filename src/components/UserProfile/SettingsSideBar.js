@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { getCurrentUser } from '../../utils/user';
 
 function SideBar({match, location}) {
+
+  const [ user, setUser ] = useState({});
+
+	useEffect(() => {
+	  const currentUser = getCurrentUser();
+	  setUser(currentUser);
+	}, [])
+
   return (
     <div className="settings-sidebar is-active">
       <div className="settings-sidebar-inner">
@@ -11,7 +20,7 @@ function SideBar({match, location}) {
           </a>
           <div className="avatar-wrap">
             <img
-              src="https://via.placeholder.com/150x150"
+              src={user.profileImage}
               data-demo-src="assets/img/avatars/jenna.png"
               data-user-popover={0}
               alt=""
@@ -20,8 +29,8 @@ function SideBar({match, location}) {
               <i data-feather="check" />
             </div>
           </div>
-          <h4>Jenna Davis</h4>
-          <p>Melbourne, AU</p>
+          <h4>{`${user.firstName} ${user.lastName}`}</h4>
+          <p>{user.email}</p>
         </div>
         <div className="user-menu">
           <div className="user-menu-inner has-slimscroll">

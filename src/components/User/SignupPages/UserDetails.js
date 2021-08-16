@@ -1,6 +1,26 @@
 import React, {useState, useEffect, useContext} from 'react'
 import authContext from "../../../Context/authContext";
-import { sendEmail } from '../../../services/authentication.services';
+
+
+class FormatDate {
+  constructor(inputDate) {
+    if(inputDate) {
+      if(inputDate.getFullYear()) this.year = inputDate.getFullYear();
+      this.month = inputDate.getMonth() + 1;
+      this.date = inputDate.getDate();
+      if(this.month < 10) this.month = '0'+ this.month; 
+      if(this.date < 10) this.date = '0'+ this.date; 
+    }
+  }
+
+  getFormat1() {
+    return `${this.month}-${this.date}-${this.year}`;
+  }
+
+  getFormat2() {
+    return `${this.year}-${this.month}-${this.date}`;
+  }
+}
 
 function UserDetails({ handleChange, onPrev, onNext }) {
   
@@ -8,47 +28,45 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   const [userDetails, setUserDetails] = useState(allData.userDetails);
 
   const [validationErrors, setValidationErrors] = useState({});
-  const [emailAddress, setEmailAddress] = useState(userDetails.emailAddress || undefined);
+  const [emailAddress, setEmailAddress] = useState(userDetails.email || undefined);
   const [firstName, setFirstName] = useState(userDetails.firstName || undefined);
   const [lastName, setLastName] = useState(userDetails.lastName || undefined);
-  const [zipCode, setZipCode] = useState();
-  const [dateOfBirth, setDateOfBirth] = useState();
+  const [zipCode, setZipCode] = useState(userDetails.zipCode || undefined);
+  const [dateOfBirth, setDateOfBirth] = useState(new FormatDate(new Date(userDetails.yearOfBirth)).getFormat2());
 
-
-  useEffect(() => {
-    console.log("User Details on UD page",userDetails);
-  }, [])
 
   useEffect(() => {
     setAllData({ ...allData, userDetails });
   }, [userDetails])
 
-  function numberWithSpaces(x) {
-    if(x && x>99) {
-      var parts = x.toString().split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{2})+(?!\d))/g, " ");
-      return parts.join(".");
-    }
-  }
+  useEffect(() => {
+    const yearOfBirth = new FormatDate(new Date(dateOfBirth)).getFormat1()
+    setUserDetails({
+      ...userDetails,
+      firstName,
+      lastName,
+      yearOfBirth,
+      email: emailAddress,
+      zipCode,
+    })
+  }, [firstName,lastName,dateOfBirth,emailAddress,zipCode])
+
 
   function calculateAge (birthDate, today) {
-
     var years = (today.getFullYear() - birthDate.getFullYear());
     if (today.getMonth() < birthDate.getMonth() || 
     today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
         years--;
     }
     return years;
-}
-
+  }
 
 
   const validateInputs = () => {
 
-    const minAge = 13;
+    const minAge = 18;
     let valid = true;
     let newValidationErrors = {};
-
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
@@ -78,7 +96,6 @@ function UserDetails({ handleChange, onPrev, onNext }) {
         newValidationErrors.zipCode = 'A zip code needs to be 5 or 9 digit long'
         valid = false;
       }
-
     }
     if(dateOfBirth === undefined || dateOfBirth === "") {
       newValidationErrors.dob = 'A valid date of birth is required'
@@ -101,9 +118,6 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   const handleNext = () => {
     if(validateInputs())
     {
-      const newUserDetails = {...userDetails, emailAddress, firstName, lastName, zipCode, dateOfBirth};
-      setUserDetails(newUserDetails);
-      sendEmail(emailAddress,firstName);
       onNext();
     }
   }
@@ -121,8 +135,8 @@ function UserDetails({ handleChange, onPrev, onNext }) {
               type="email"
               className="input"
               placeholder="Enter your email address"
-              onChange={(e) => setEmailAddress(e.target.value)}
-              value={userDetails ? userDetails.emailAddress : null}
+              onChange={(e) => {setEmailAddress(e.target.value)}}
+              value={emailAddress}
               name="email"
               />
           </div>
@@ -166,7 +180,6 @@ function UserDetails({ handleChange, onPrev, onNext }) {
               placeholder="Enter your Zip Code"
               onChange={(e) => setZipCode(e.target.value)}
               value={zipCode}
-              pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
               name="zipCode"
             />
           </div>
@@ -204,4 +217,4 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   )
 }
 
-export default UserDetails
+export default UserDetails;

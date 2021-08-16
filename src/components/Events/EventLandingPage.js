@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../core/NavBar/NavBar";
 import { FiInstagram, FiFacebook, FiLinkedin, FiTwitter, FiChevronRight, FiPlay, FiShare2, FiCalendar, FiMapPin } from "react-icons/fi";
 
-function EventLandingPage() {
+function EventLandingPage({...props}) {
   const event = {
     location: '123 Gilmore Street, Loise Lane, CA',
     coverPicture: 'https://via.placeholder.com/1600x460',
@@ -29,7 +29,7 @@ function EventLandingPage() {
   }
   return (
     <div>
-      <NavBar />
+      <NavBar {...props} />
       <div className="view-wrapper is-full">
         {/*Wrapper*/}
         <div className="event-page-wrapper">

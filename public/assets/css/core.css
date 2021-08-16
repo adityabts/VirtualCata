@@ -18655,8 +18655,8 @@ button.button {
 }
 
 .button.is-solid.primary-button {
-	background: #3d70b2;
-	border-color: #3d70b2;
+	background: #5596e6;
+	border-color: #5596e6;
 	color: #fff
 }
 
@@ -48705,7 +48705,7 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 	.signup-wrapper .outer-panel .outer-panel-inner .account-type img {
 		display: none
 	}
-	.signup-wrapper .outer-panel .outer-panel-inner .account-type .button {
+	/* .signup-wrapper .outer-panel .outer-panel-inner .account-type .button {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -48713,7 +48713,7 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 		height: 100%;
 		width: 100%;
 		opacity: 0
-	}
+	} */
 	.signup-wrapper .process-bar-wrap {
 		max-width: 320px;
 		margin: 0 auto
@@ -48786,8 +48786,6 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	-webkit-transform: rotate(32deg);
-	transform: rotate(32deg)
 }
 
 .login-wrapper .hero.form-hero .logo-wrap .wrap-inner {
@@ -56074,3 +56072,9 @@ body.is-dark .elements-wrap .element-block code {
 
 
 /*# sourceMappingURL=scss */
+
+/* Bootstrap classes */
+
+.text-center {
+	text-align: center !important;
+}

@@ -1,9 +1,10 @@
 import React, {useState, useEffect,  useContext} from 'react';
 import authContext from "../../../Context/authContext";
 import { refreshTokenSetup } from "../../../utils/refreshToken";
+import { Link } from 'react-router-dom'
 import { GoogleLogin } from "react-google-login";
-import FacebookLogin from 'react-facebook-login';
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+// import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 const stepValue =1;
 
@@ -17,11 +18,13 @@ function WelcomePage({ onNext }) {
   const onGoogleSignupSuccess = (data) => {
     const userData = data.profileObj;
     let newUserDetails = {};
-    if(userData.imageUrl) newUserDetails.profilePicture = userData.imageUrl;
+    if(userData.imageUrl) newUserDetails.profileImage = userData.imageUrl;
     if(userData.givenName) newUserDetails.firstName = userData.givenName;
     if(userData.familyName) newUserDetails.lastName = userData.familyName;
-    if(userData.email) newUserDetails.emailAddress = userData.email;
-    newUserDetails.loginType = 'SOCIAL_LOGIN_GOOGLE';
+    if(userData.email) newUserDetails.email = userData.email;
+    newUserDetails.profileType = 'social';
+    newUserDetails.signupProvider = 'Google';
+    newUserDetails.signupToken = data.accessToken;
     setUserDetails(newUserDetails);
     refreshTokenSetup(data);
     onNext();
@@ -29,14 +32,22 @@ function WelcomePage({ onNext }) {
 
   const handleNext = () => {
     let newUserDetails = {};
-    newUserDetails.loginType = 'NATIVE_LOGIN';
-    setUserDetails(newUserDetails);
-    onNext();
+    newUserDetails.profileType = 'native';
+    setUserDetails(newUserDetails)
   }
 
   useEffect(() => {
     setAllData({ ...allData, userDetails });
   }, [userDetails])
+
+  useEffect(() => {
+    console.log(allData.userDetails)
+    if(allData.userDetails && allData.userDetails.profileType) {
+      if(allData.userDetails.profileType === 'native') {
+        onNext();
+      }
+    }
+  }, [allData])
 
   const onGoogleSignupFailure = () => {
     console.log("error");
@@ -82,45 +93,35 @@ function WelcomePage({ onNext }) {
                 Signup with Email
               </button>
               <GoogleLogin
+                render={renderProps => (
+                  <button
+                    className="button is-solid primary-button raised is-fullwidth"
+                    style={{ backgroundColor:'#DB4437', borderColor: '#DB4437', color: 'white' }}
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Login with Google
+                  </button>)}
                 clientId={clientId}
                 buttonText="Sign Up"
                 onSuccess={onGoogleSignupSuccess}
                 onFailure={onGoogleSignupFailure}
                 cookiePolicy={"single_host_origin"}
-                style={{ marginTop: "100px" }}
                 isSignedIn={true}
                 scope={"https://www.googleapis.com/auth/user.gender.read"}
-                className="button is-fullwidth process-button"
-                data-step={"step-dot-2"}
               />
               <FacebookLogin
                 appId={fbAppId}
                 fields="name,email,picture"
-                // onClick={(e) => console.log("fb",e)}
-                callback={(e) => console.log("fb callback",e)}
-                // render={renderProps => (
-                //   <button onClick={renderProps.onClick}>This is my custom FB button</button>
-                // )}
-              
-                size="small"
-                fields="Sign Up"
-                
-                buttonStyle={
-                  {
-                    marginTop: "20px",
-                    width:'100%',
-                    width: '100%',
-                    background: 'white',
-                    boxShadow: '0px 5px 7px -4px #8080809c',
-                    border: '1px solid #ddd',
-                    borderRadius: '3px',
-                    color: '#4267B2',
-                    textTransform: 'capitalize',
-                    fontWeight: '600',
-                    fontSize: '14px',
-                    height: '40px',
-                  }
-                }
+                render={renderProps => (
+                  <button
+                    className="button is-solid primary-button raised is-fullwidth"
+                    style={{ backgroundColor:'#4267B2', borderColor: '#4267B2', color: 'white' }}
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Login with Facebook
+                  </button>)}
               />
             </div>
           </div>

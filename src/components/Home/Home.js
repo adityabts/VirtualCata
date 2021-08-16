@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../core/NavBar/NavBar";
 import { FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import authContext from "../../Context/authContext";
+import { getEvents } from "../../services/events.services";
 
-function Home() {
-  let { allData, setAllData } = useContext(authContext);
+const Home = ({ user , ...props}) => {
 
   const tabs = {
     liveEvents: 0,
@@ -14,21 +13,33 @@ function Home() {
   };
 
   const [activeTab, setActiveTab] = useState(tabs.liveEvents);
+  const [liveEventsList, setLiveEvents] = useState([]);
+  const [upcomingEventsList, setUpcomingEvents] = useState([]);
+  const [subscribedEventsList, setSubscribedEvents] = useState([]);
 
-  const userData = {
-    profilePicture: allData.userDetails.profilePicture
-      ? allData.userDetails.profilePicture
-      : "https://via.placeholder.com/150x150",
-    firstName: allData.userDetails.firstName
-      ? allData.userDetails.firstName
-      : "Chandler",
-    lastName: allData.userDetails.lastName
-      ? allData.userDetails.lastName
-      : "Bing",
-    emailAddress: allData.userDetails.emailAddress
-      ? allData.userDetails.emailAddress
-      : "something@something.com",
-  };
+
+  useEffect(() => {
+    getEvents({
+      "eventTitle" : "",
+      "eventStartDate" : "",
+      "eventCategoryId" : "",
+      "eventType" : "",
+      "eventNature" : "",
+      "hostType" : "",
+      "hostId" : "",
+      "presenterType" : "",
+      "presenterId" : "",
+      "limit" : "",
+      "offset" : "",
+      "sortCol" : "",
+      "sortOrder" : ""
+    })
+      .then((data) => setUpcomingEvents(data)) 
+      .catch((err) => console.log(err))
+  }, [])
+
+
+  console.log("Home user", user);
 
   const userStats = {
     eventsCount: 20,
@@ -36,86 +47,6 @@ function Home() {
     followingsCount: 36,
   };
 
-  const upcomingEventsList = [
-    {
-      id: 1,
-      brandLogo: "assets/img/icons/shop/brands/1.svg",
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      eventDate: "10 - 12 - 2021",
-      eventTime: "20: 00",
-      eventHost: "Whole Foods",
-      eventPresenter: "Trade Winds",
-    },
-    {
-      id: 2,
-      brandLogo: "assets/img/icons/shop/brands/2.svg",
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      eventDate: "10 - 12 - 2021",
-      eventTime: "20: 00",
-      eventHost: "Whole Foods",
-      eventPresenter: "Trade Winds",
-    },
-    {
-      id: 3,
-      brandLogo: "assets/img/icons/shop/brands/3.svg",
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      eventDate: "10 - 12 - 2021",
-      eventTime: "20: 00",
-      eventHost: "Whole Foods",
-      eventPresenter: "Trade Winds",
-    },
-    {
-      id: 4,
-      brandLogo: "assets/img/icons/shop/brands/4.svg",
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      eventDate: "10 - 12 - 2021",
-      eventTime: "20: 00",
-      eventHost: "Whole Foods",
-      eventPresenter: "Trade Winds",
-    },
-  ];
-
-  const liveEventsList = [
-    {
-      id: 1,
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      liveUsersCount: 137,
-      streamThumbnail: "https://via.placeholder.com/400x200",
-    },
-    {
-      id: 2,
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      liveUsersCount: 137,
-      streamThumbnail: "https://via.placeholder.com/400x200",
-    },
-    {
-      id: 3,
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      liveUsersCount: 137,
-      streamThumbnail: "https://via.placeholder.com/400x200",
-    },
-    {
-      id: 4,
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      liveUsersCount: 137,
-      streamThumbnail: "https://via.placeholder.com/400x200",
-    },
-    {
-      id: 5,
-      eventTitle: "Wine tasting for ABC brand by John Doe",
-      eventSubTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      liveUsersCount: 137,
-      streamThumbnail: "https://via.placeholder.com/400x200",
-    },
-  ];
 
   const filterCategories = [
     {
@@ -150,7 +81,7 @@ function Home() {
 
   return (
     <div>
-      <NavBar />
+      <NavBar user={user} />
       <div className="view-wrapper">
         <div className="products-navigation">
           <div className="container">
@@ -369,14 +300,14 @@ function Home() {
               <div className="header-inner">
                 <div className="store-block">
                   <div className="img-container">
-                    <img src={userData.profilePicture} alt="" />
+                    <img src={user.profileImage} alt="" />
                     <div className="follow-badge is-hidden">
                       <i data-feather="check" />
                     </div>
                   </div>
                   <div className="store-meta">
-                    <h3>{`${userData.firstName} ${userData.lastName}`}</h3>
-                    <span>{userData.emailAddress}</span>
+                    <h3>{`${user.firstName} ${user.lastName}`}</h3>
+                    <span>{user.email}</span>
                   </div>
                 </div>
                 <div className="activity-block">
@@ -586,26 +517,26 @@ function Home() {
                       to="/landing"
                       className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
                       <div className="brand-card">
-                        <img src={event.brandLogo} alt="" />
+                        <img src={event.brandLogo ? event.brandLogo : 'https://via.placeholder.com/100x100'} alt="" />
                         <div className="meta">
-                          <h3>{event.eventTitle}</h3>
-                          <p>{event.eventSubTitle}</p>
+                          <h3>{event.EventTitle}</h3>
+                          <p>{event.CategoryName}</p>
                         </div>
                         <div className="brand-stats">
                           <div className="brand-stat">
-                            <span>{event.eventDate}</span>
+                            <span>{new Date(event.EventStartDateTime).toLocaleDateString()}</span>
                             <span>Date</span>
                           </div>
                           <div className="brand-stat">
-                            <span>{event.eventTime}</span>
+                            <span>{new Date(event.EventStartDateTime).toLocaleTimeString()}</span>
                             <span>Time</span>
                           </div>
                           <div className="brand-stat">
-                            <span>{event.eventHost}</span>
+                            <span>{event.HostType}</span>
                             <span>Host</span>
                           </div>
                           <div className="brand-stat">
-                            <span>{event.eventPresenter}</span>
+                            <span>{event.PresenterType}</span>
                             <span>Presenter</span>
                           </div>
                         </div>

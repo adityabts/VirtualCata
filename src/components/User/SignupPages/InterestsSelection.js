@@ -63,11 +63,6 @@ function InterestsSelection({ onNext, onPrev}) {
     return (
         <div id="signup-panel-5" className="process-panel-wrap is-active">
             <div className="form-panel">
-            <img
-                className="success-image"
-                src="assets/img/illustrations/signup/mailbox.svg"
-                alt=""
-            />
             <div className="success-text">
                 <h3>We are almost done. Select a few of your Interests</h3>
                 </div>

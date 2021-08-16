@@ -52,4 +52,17 @@ body.is-dark .signup-interests-card:hover {
         display: block;
         margin-bottom: 5px;
     }
+
+    .signup-wrapper .process-bar {
+        display: none;
+    }
+
+    .signup-wrapper .process-title {
+        margin-top: 0px;
+        margin-bottom: 1rem;
+    }
+
+    .signup-wrapper .process-panel-wrap.is-active {
+        padding: 0rem 1rem;
+    }
 }

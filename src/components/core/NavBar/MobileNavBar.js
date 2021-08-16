@@ -3,7 +3,7 @@ import NotificationDrop from "../Notifications/NotificationDrop";
 import Explorer from "../Explorer/Explorer";
 import logo from  './vclogo.png';
 
-export default function MobileNavBar() {
+export default function MobileNavBar({user}) {
 	const [showNotification, setShowNotification] = useState(false);
 	const [showExplorer, setShowExplorer] = useState(false);
 	const toggleExplorer = () => {
@@ -66,7 +66,7 @@ export default function MobileNavBar() {
 								data-demo-src="assets/img/avatars/jenna.png"
 								alt=""
 							/>
-							<span className="is-heading">Jenna Davis</span>
+							<span className="is-heading">{`${user.firstName} ${user.lastName}`}</span>
 						</a>
 						{/* Mobile Dropdown */}
 						<div className="navbar-dropdown">

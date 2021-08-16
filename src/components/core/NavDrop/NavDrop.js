@@ -3,35 +3,28 @@ import DarkModeSwitch from "../DarkModeSwitch";
 import { Link } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
-import authContext from "../../../Context/authContext";
 import { FiLifeBuoy, FiPower, FiSettings } from "react-icons/fi";
 
-export default function NavDrop({ isActive }) {
-  let history = useHistory();
-  let { allData, setAllData } = useContext(authContext);
+export default function NavDrop({ isActive, user, ...props }) {
+  console.log('NavDropUser$$$$$$$$$$$$$$$$', user);
+
+
   let clientId = process.env.REACT_APP_CLIENT_ID_GOOGLE;
+
+  let history = useHistory();
   const onSuccess = () => {
     console.log("Logout made successfully");
     history.push("/login");
   };
-
-  const [userDetails, setUserDetails] = useState(
-    allData.userDetails ? allData.userDetails : null
-  );
-
-  useEffect(() => {
-    setUserDetails({ ...allData.userDetails });
-    console.log("User Details :: ", userDetails);
-  }, [allData]);
 
   return (
     <div className={`nav-drop is-account-dropdown ${isActive && "is-active"}`}>
       <div className="inner">
         <div className="nav-drop-header">
           <span className="username">
-            {userDetails.givenName
-              ? `${userDetails.givenName} ${userDetails.familyName}`
-              : "Chandler Bing"}
+            {user && user.firstName
+              ? `${user.firstName} ${user.lastName}`
+              : "Name N/A"}
           </span>
           <DarkModeSwitch />
         </div>
@@ -42,8 +35,8 @@ export default function NavDrop({ isActive }) {
                 <div className="image">
                   <img
                     src={
-                      userDetails.imageUrl
-                        ? userDetails.imageUrl
+                      user && user.profileImage
+                        ? user.profileImage
                         : "https://via.placeholder.com/400x400"
                     }
                     data-demo-src="assets/img/avatars/jenna.png"
@@ -53,11 +46,11 @@ export default function NavDrop({ isActive }) {
               </div>
               <div className="media-content">
                 <h3>
-                  {userDetails.givenName
-                    ? `${userDetails.givenName} ${userDetails.familyName}`
-                    : "Chandler Bing"}
+                  {user && user.firstName
+                    ? `${user.firstName} ${user.lastName}`
+                    : "Name N/A"}
                 </h3>
-                <small>Main account</small>
+                {user && <small>{user.email}</small>}
               </div>
               <div className="media-right">
                 <i data-feather="check" />

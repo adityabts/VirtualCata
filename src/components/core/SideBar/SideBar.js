@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FiMonitor, FiCalendar, FiLayout, FiArchive, FiCheck, FiSettings, FiUsers, FiBarChart2,FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { getCurrentUser } from '../../../utils/user';
 
 export default function SideBar() {
+
+	
+	const [ user, setUser ] = useState({});
+
+	useEffect(() => {
+	  const currentUser = getCurrentUser();
+	  setUser(currentUser);
+	}, [])
+
 	return (
 		<div className="view-wrapper is-full">
 			<div className="videos-wrapper has-player">

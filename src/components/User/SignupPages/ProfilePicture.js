@@ -35,8 +35,8 @@ function ProfilePicture({src, onNext, onPrev}) {
 
   useEffect(() => {
     console.log("User Details on PP page",userDetails);
-    if(userDetails.profilePicture) {
-      setProfilePicture(userDetails.profilePicture);
+    if(userDetails.profileImage) {
+      setProfilePicture(userDetails.profileImage);
     }
   }, [])
 

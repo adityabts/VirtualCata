@@ -5,8 +5,11 @@ import NavDrop from "../NavDrop/NavDrop";
 import { FiBell } from "react-icons/fi";
 import { IoAppsSharp } from "react-icons/io5";
 import logo from  './vclogo.png';
+import userEvent from "@testing-library/user-event";
 
-function DesktopNavBar() {
+function DesktopNavBar(props) {
+	const user = props.user;
+
 	const [showNotification, setShowNotification] = useState(false);
 	const [showExplorer, setShowExplorer] = useState(false);
 	const [showNavDrop, setShowNavDrop] = useState(false);
@@ -88,13 +91,13 @@ function DesktopNavBar() {
 							>
 							<div className="user-image">
 								<img
-									src="https://via.placeholder.com/400x400"
+									src={user.profileImage}
 									data-demo-src="assets/img/avatars/jenna.png"
 									alt=""
 								/>
 								<span className="indicator" />
 							</div>
-							<NavDrop isActive={showNavDrop}/>
+							<NavDrop isActive={showNavDrop} {...props}/>
 						</div>
 					</div>
 				</div>
