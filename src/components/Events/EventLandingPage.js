@@ -68,67 +68,6 @@ function EventLandingPage({ ...props }) {
     return `${da}     @  ${hr}:${min}`;
   };
 
-<<<<<<< Updated upstream
-function EventLandingPage() {
-  const event = {
-    location: '123 Gilmore Street, Loise Lane, CA',
-    coverPicture: 'https://via.placeholder.com/1600x460',
-    title: 'Wine tasting with Estebe',
-    dateTime: 'Saturday, Jul 21 2021 @ 5:00 PM - 11:00 PM',
-    phoneNumber: '+(1) 555-888-1265',
-    emailAddress: 'something@something.com',
-    presenter: 'Presenter Name',
-    website: 'https://www.something.com',
-    eventDetails: `<p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
-                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
-                    Scisse enim te quis coarguere possit? Quid de Platone aut de
-                    Democrito loquar.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
-                    id fugiunt, re eadem defendunt, quae Peripatetici, verba.
-                    Scisse enim te quis coarguere possit? Quid de Platone aut de
-                    Democrito loquar? Duo Reges: constructio interrete. Quod
-                    equidem non reprehendo; Bonum integritas corporis.
-                  </p>`,
-    
-  }
-  return (
-    <div>
-      <NavBar />
-      <div className="view-wrapper is-full">
-        {/*Wrapper*/}
-        <div className="event-page-wrapper">
-          {/*Cover*/}
-          <div className="event-cover">
-            <img
-              className="cover-image"
-              src={event.coverPicture}
-              data-demo-src="assets/img/demo/unsplash/55.jpg"
-              alt=""
-            />
-          </div>
-          {/*Main infos*/}
-          <div className="event-content">
-            <div className="event-head">
-              <div className="left">
-                <h2>{event.title}</h2>
-                <h3>{event.dateTime}</h3>
-                <div className="button-separator">
-                  <FiChevronRight />
-                </div>
-                <div className="info-block">
-                  <div className="info-head">
-                    <div className="event-icon">
-                      {/* <i data-feather="calendar" /> */}
-                      <FiCalendar/>
-                    </div>
-                    <span>Host</span>
-                  </div>
-                  <div className="info-body">
-                    <p>{event.hostName}</p>
-=======
   return (
     <div>
       <NavBar {...props} />
@@ -153,7 +92,6 @@ function EventLandingPage() {
                   <h3>{formatDate(eventDetails.EventStartDateTime)}</h3>
                   <div className="button-separator">
                     <FiChevronRight />
->>>>>>> Stashed changes
                   </div>
                   <div className="info-block">
                     <div className="info-head">
