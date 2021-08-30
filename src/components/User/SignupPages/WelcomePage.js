@@ -27,7 +27,7 @@ function WelcomePage({ onNext }) {
     newUserDetails.signupToken = data.accessToken;
     setUserDetails(newUserDetails);
     refreshTokenSetup(data);
-    onNext();
+    // onNext();
   }
 
   const handleNext = () => {
@@ -100,7 +100,7 @@ function WelcomePage({ onNext }) {
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
-                    Login with Google
+                    Signup with Google
                   </button>)}
                 clientId={clientId}
                 buttonText="Sign Up"
@@ -108,7 +108,6 @@ function WelcomePage({ onNext }) {
                 onFailure={onGoogleSignupFailure}
                 cookiePolicy={"single_host_origin"}
                 isSignedIn={true}
-                scope={"https://www.googleapis.com/auth/user.gender.read"}
               />
               <FacebookLogin
                 appId={fbAppId}
@@ -120,7 +119,7 @@ function WelcomePage({ onNext }) {
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
-                    Login with Facebook
+                    Signup with Facebook
                   </button>)}
               />
             </div>

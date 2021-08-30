@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext } from 'react'
 import authContext from "../../../Context/authContext";
-import ReactCrop from 'react-image-crop';
+// import ReactCrop from 'react-image-crop';
 import { FiPlus } from 'react-icons/fi';
-import 'react-image-crop/dist/ReactCrop.css';
+// import 'react-image-crop/dist/ReactCrop.css';
 import { Fragment } from 'react';
 
 
