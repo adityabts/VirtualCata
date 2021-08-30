@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import authContext from "../../../Context/authContext";
+import verifyZipCode from '../../../services/zipCodes.services';
 
 
 class FormatDate {
@@ -33,11 +34,14 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   const [lastName, setLastName] = useState(userDetails.lastName || undefined);
   const [zipCode, setZipCode] = useState(userDetails.zipCode || undefined);
   const [dateOfBirth, setDateOfBirth] = useState(new FormatDate(new Date(userDetails.yearOfBirth)).getFormat2());
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
     setAllData({ ...allData, userDetails });
   }, [userDetails])
+
+  
 
   useEffect(() => {
     const yearOfBirth = new FormatDate(new Date(dateOfBirth)).getFormat1()
@@ -62,7 +66,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   }
 
 
-  const validateInputs = () => {
+  const validateInputs = async () => {
 
     const minAge = 18;
     let valid = true;
@@ -91,7 +95,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
       valid = false;
     }
     else {
-      if(zipCode.length !== 5 && zipCode.length !== 9)
+      if(zipCode.length !== 5)
       {
         newValidationErrors.zipCode = 'A zip code needs to be 5 or 9 digit long'
         valid = false;
@@ -108,6 +112,19 @@ function UserDetails({ handleChange, onPrev, onNext }) {
         valid = false;
       }
     }
+
+    try {
+      setLoading(true);
+      const data = await verifyZipCode(zipCode);
+      setUserDetails({...userDetails, city: data.city, state: data.state });
+      console.log("Res data", data);
+      setLoading(false);
+    }
+    catch (err) { 
+      setLoading(false);
+      newValidationErrors.zipCode = "The entered zip code is not valid";
+      valid = false;
+    }
     if(!valid) {
       setValidationErrors(newValidationErrors);
       console.log(newValidationErrors);
@@ -115,8 +132,8 @@ function UserDetails({ handleChange, onPrev, onNext }) {
     return valid;
   }
 
-  const handleNext = () => {
-    if(validateInputs())
+  const handleNext = async () => {
+    if(await validateInputs())
     {
       onNext();
     }
@@ -210,6 +227,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
           className="button process-button is-next"
           data-step={"step-dot-3"}
           onClick={handleNext}>
+          { loading ? <i class="fa fa-spinner fa-spin mr-4" /> : null}
           Next
         </button>
       </div>
