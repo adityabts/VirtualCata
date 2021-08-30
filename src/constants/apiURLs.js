@@ -3,3 +3,5 @@ export const login = "https://dev-vcata-webapi-eus.azurewebsites.net/api/LoginEn
 export const verifyEmail = "https://dev-vcata-webapi-eus.azurewebsites.net/api/ValidateEmailToken?code=c4q9cwx6XmCgZcqMQG4QfdYJgxV3Fn5eMX2a78s750ji1xTaYLW3AA==";
 
 export const fetchEvents = "https://dev-vcata-webapi-eus.azurewebsites.net/api/FetchEvents?code=fW1I5g5BhV7d3rqVw2FUYdi5GSmVXcVH6uDXWj7Pdo3RL7zz0zFgxw=="
+
+export const eventVisit = "https://dev-vcata-webapi-eus.azurewebsites.net/api/QRCount?code=g4PF4k7KoORjZ4HefKq4AvJQ/jymeGw14prW/iLslm4ysNFVEyj9iA==";

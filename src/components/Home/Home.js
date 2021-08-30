@@ -34,7 +34,7 @@ const Home = ({ user , ...props}) => {
       "sortCol" : "",
       "sortOrder" : ""
     })
-      .then((data) => setUpcomingEvents(data)) 
+      .then((data) => setUpcomingEvents(data.data)) 
       .catch((err) => console.log(err))
   }, [])
 

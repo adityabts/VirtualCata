@@ -40,7 +40,7 @@ function App(props) {
         <authContext.Provider value={{ allData, setAllData }}>
           <Route path="/user" render={User} />
           <Route path="/home" render={() => <Home user={currentUser} {...props}/>} />
-          <Route exact path="/landing" component={EventLandingPage} />
+          <Route exact path="/landing/:id" component={EventLandingPage} />
           <Route exact path="/live" component={LiveEvent} />
           <Route exact path="/past" component={PastEvent} />
           <Route exact path="/adminProfile" component={AdminProfile} />

@@ -1,8 +1,21 @@
-import React from "react";
+import React,{useEffect} from "react";
 import NavBar from "../core/NavBar/NavBar";
 import { FiInstagram, FiFacebook, FiLinkedin, FiTwitter, FiChevronRight, FiPlay, FiShare2, FiCalendar, FiMapPin } from "react-icons/fi";
+import { registerEventVisit } from "../../services/qr.services";
 
 function EventLandingPage({...props}) {
+  const qrCode = new URLSearchParams(props.location.search).get("qrCode");
+
+  useEffect(() => {
+    const counted = localStorage.getItem(qrCode);
+
+    if(!!!counted) {
+      registerEventVisit(qrCode)
+        .then(() => localStorage.setItem(qrCode, true))
+        .catch((err) => console.error(err));
+    }
+  }, []);
+
   const event = {
     location: '123 Gilmore Street, Loise Lane, CA',
     coverPicture: 'https://via.placeholder.com/1600x460',
