@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { register, login, verifyEmail } from '../constants/apiURLs';
+import { register, login, verifyEmail, forgotPasswordRequest } from '../constants/apiURLs';
 
 export const sendEmail = (emailAddress, name) => {
     let data = JSON.stringify({
@@ -66,3 +66,18 @@ export const verifyEmailwithToken = (token) => {
       .catch((err) => reject(err))
   })
 }
+
+export const forgotPassword = (email) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(forgotPasswordRequest,JSON.stringify({ email }))
+      .then((response) => {
+        if(response.data && response.data.error) {
+          reject(new Error(response.data.data));
+        }
+        resolve(response.data.data);
+      })
+      .catch((err) => reject(err))
+  })
+}
+

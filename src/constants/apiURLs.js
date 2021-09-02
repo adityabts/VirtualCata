@@ -5,3 +5,7 @@ export const verifyEmail = "https://dev-vcata-webapi-eus.azurewebsites.net/api/V
 export const fetchEvents = "https://dev-vcata-webapi-eus.azurewebsites.net/api/FetchEvents?code=fW1I5g5BhV7d3rqVw2FUYdi5GSmVXcVH6uDXWj7Pdo3RL7zz0zFgxw=="
 
 export const eventVisit = "https://dev-vcata-webapi-eus.azurewebsites.net/api/QRCount?code=g4PF4k7KoORjZ4HefKq4AvJQ/jymeGw14prW/iLslm4ysNFVEyj9iA==";
+
+export const feedbackUrl = "https://dev-vcata-webapi-eus.azurewebsites.net/api/CreateFeedback?code=rDNsTfLsTMGeE/1Y0ADOUNKY1EaawybNoCZZpwQFfLx9Anthp4SyoA==";
+
+export const forgotPasswordRequest= "https://dev-vcata-webapi-eus.azurewebsites.net/api/RequestPasswordChange?code=5r1MwmCLVNkkq1/enB/qQw3MwY0r0K1I34QbMil45wVbQ4aRT/HLHQ=="

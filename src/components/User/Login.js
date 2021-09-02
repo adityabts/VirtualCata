@@ -196,7 +196,7 @@ const Login = () => {
                   </div>
                   <div className="section forgot-password">
                     <div className="has-text-centered">
-                      <a href="#">Forgot passwords ? </a>
+                      <a href="/user/forgot-password">Forgot passwords ? </a>
                       <Link to="/user/signup"> Sign Up ?</Link>
                     </div>
                   </div>

@@ -3,6 +3,8 @@ import NavBar from "../core/NavBar/NavBar";
 import { FiInstagram, FiFacebook, FiLinkedin, FiTwitter, FiChevronRight, FiPlay, FiShare2, FiCalendar, FiMapPin } from "react-icons/fi";
 import { registerEventVisit } from "../../services/qr.services";
 
+import FeedBack from "./EventFeedback";
+
 function EventLandingPage({...props}) {
   const qrCode = new URLSearchParams(props.location.search).get("qrCode");
 
@@ -42,203 +44,203 @@ function EventLandingPage({...props}) {
   }
   return (
     <div>
-      <NavBar {...props} />
-      <div className="view-wrapper is-full">
-        {/*Wrapper*/}
-        <div className="event-page-wrapper">
-          {/*Cover*/}
-          <div className="event-cover">
-            <img
-              className="cover-image"
-              src={event.coverPicture}
-              data-demo-src="assets/img/demo/unsplash/55.jpg"
-              alt=""
-            />
-          </div>
-          {/*Main infos*/}
-          <div className="event-content">
-            <div className="event-head">
-              <div className="left">
-                <h2>{event.title}</h2>
-                <h3>{event.dateTime}</h3>
-                <div className="button-separator">
-                  <FiChevronRight />
+      {/*Wrapper*/}
+      <div className="event-page-wrapper">
+        {/*Cover*/}
+        <div className="event-cover">
+          <img
+            className="cover-image"
+            src={event.coverPicture}
+            data-demo-src="assets/img/demo/unsplash/55.jpg"
+            alt=""
+          />
+        </div>
+        {/*Main infos*/}
+        <div className="event-content">
+          <div className="event-head">
+            <div className="left">
+              <h2>{event.title}</h2>
+              <h3>{event.dateTime}</h3>
+              <div className="button-separator">
+                <FiChevronRight />
+              </div>
+              <div className="info-block">
+                <div className="info-head">
+                  <div className="event-icon">
+                    {/* <i data-feather="calendar" /> */}
+                    <FiCalendar/>
+                  </div>
+                  <span>Host</span>
                 </div>
-                <div className="info-block">
-                  <div className="info-head">
-                    <div className="event-icon">
-                      {/* <i data-feather="calendar" /> */}
-                      <FiCalendar/>
-                    </div>
-                    <span>Host</span>
-                  </div>
-                  <div className="info-body">
-                    <p>{event.hostName}</p>
-                  </div>
-                </div>
-                <div className="info-block">
-                  <div className="info-head">
-                    <div className="event-icon">
-                      {/* <i data-feather="map-pin" /> */}
-                      <FiMapPin/>
-                    </div>
-                    <span>Location (Live from)</span>
-                  </div>
-                  <div className="info-body">
-                    <a>{event.location}</a>
-                  </div>
-                </div>
-                <div className="info-block">
-                  <div className="info-head">
-                    <div className="event-icon">
-                      {/* <i data-feather="share-2" /> */}
-                      <FiShare2/>
-                    </div>
-                    <span>Share</span>
-                  </div>
-                  <div className="info-body">
-                    <div className="socials">
-                      <a>
-                        <FiFacebook/>
-                      </a>
-                      <a>
-                        <FiTwitter/>
-                      </a>
-                      <a>
-                        <FiLinkedin/>
-                      </a>
-                      <a>
-                        <FiInstagram/>
-                      </a>
-                    </div>
-                  </div>
+                <div className="info-body">
+                  <p>{event.hostName}</p>
                 </div>
               </div>
-              <div className="right">
-                <h2>Subscribe Now</h2>
-                <div className="subscribe-block">
-                  <p>Add this event to your calendar</p>
-                  <button className="button is-solid primary-button raised">
-                    Add To Calendar
-                  </button>
+              <div className="info-block">
+                <div className="info-head">
+                  <div className="event-icon">
+                    {/* <i data-feather="map-pin" /> */}
+                    <FiMapPin/>
+                  </div>
+                  <span>Location (Live from)</span>
                 </div>
-                <div className="condition has-text-centered">
-                  <span>Or</span>
+                <div className="info-body">
+                  <a>{event.location}</a>
                 </div>
-                <div className="subscribe-block">
-                  <p>
-                    Scan this QR code with your phone to automatically register
-                    for this event.
-                  </p>
-                  <img
-                    src="https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/f/6/2/f621f61ff6_50038379_codeqr-futura.jpg"
-                    alt=""
-                  />
+              </div>
+              <div className="info-block">
+                <div className="info-head">
+                  <div className="event-icon">
+                    {/* <i data-feather="share-2" /> */}
+                    <FiShare2/>
+                  </div>
+                  <span>Share</span>
+                </div>
+                <div className="info-body">
+                  <div className="socials">
+                    <a>
+                      <FiFacebook/>
+                    </a>
+                    <a>
+                      <FiTwitter/>
+                    </a>
+                    <a>
+                      <FiLinkedin/>
+                    </a>
+                    <a>
+                      <FiInstagram/>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-            {/*Details*/}
-            <div className="event-details">
-              {/*Left Side*/}
-              <div className="left">
-                <div className="details-block">
-                  <h3>Event Details</h3>
-                  <div dangerouslySetInnerHTML={{ __html: event.eventDetails }}/>
-                </div>
-                <div className="details-block">
-                  <h3>Event Photos and Videos</h3>
-                  <div className="video-block-wrapper">
-                    <div
-                      id="video-embed"
-                      className="video-block-inner"
-                      data-url="https://www.youtube.com/watch?v=Q_y1NVb4WP8">
-                      <div className="video-overlay" />
-                      <div className="playbutton">
-                        <div className="icon-play">
-                          <FiPlay />
-                        </div>
+            <div className="right">
+              <h2>Subscribe Now</h2>
+              <div className="subscribe-block">
+                <p>Add this event to your calendar</p>
+                <button className="button is-solid primary-button raised">
+                  Add To Calendar
+                </button>
+              </div>
+              <div className="condition has-text-centered">
+                <span>Or</span>
+              </div>
+              <div className="subscribe-block">
+                <p>
+                  Scan this QR code with your phone to automatically register
+                  for this event.
+                </p>
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${window.location.href}`}
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          {/*Details*/}
+          <div className="event-details">
+            {/*Left Side*/}
+            <div className="left">
+              <div className="details-block">
+                <h3>Event Details</h3>
+                <div dangerouslySetInnerHTML={{ __html: event.eventDetails }}/>
+              </div>
+              <div className="details-block">
+                <h3>Event Photos and Videos</h3>
+                <div className="video-block-wrapper">
+                  <div
+                    id="video-embed"
+                    className="video-block-inner"
+                    data-url="https://www.youtube.com/watch?v=Q_y1NVb4WP8">
+                    <div className="video-overlay" />
+                    <div className="playbutton">
+                      <div className="icon-play">
+                        <FiPlay />
                       </div>
                     </div>
                   </div>
-                  <div className="photo-group">
-                    <a
-                      href="https://via.placeholder.com/1600x900"
-                      data-demo-href="assets/img/demo/unsplash/54.jpg"
-                      data-fancybox
-                      data-caption>
-                      <img
-                        src="https://via.placeholder.com/1600x900"
-                        data-demo-src="assets/img/demo/unsplash/54.jpg"
-                        alt=""
-                      />
-                    </a>
-                    <a
-                      href="https://via.placeholder.com/1600x900"
-                      data-demo-href="assets/img/demo/unsplash/7.jpg"
-                      data-fancybox
-                      data-caption>
-                      <img
-                        src="https://via.placeholder.com/1600x900"
-                        data-demo-src="assets/img/demo/unsplash/7.jpg"
-                        alt=""
-                      />
-                    </a>
-                    <a
-                      href="https://via.placeholder.com/1600x900"
-                      data-demo-href="assets/img/demo/unsplash/4.jpg"
-                      data-fancybox
-                      data-caption>
-                      <img
-                        src="https://via.placeholder.com/1600x900"
-                        data-demo-src="assets/img/demo/unsplash/4.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
+                </div>
+                <div className="photo-group">
+                  <a
+                    href="https://via.placeholder.com/1600x900"
+                    data-demo-href="assets/img/demo/unsplash/54.jpg"
+                    data-fancybox
+                    data-caption>
+                    <img
+                      src="https://via.placeholder.com/1600x900"
+                      data-demo-src="assets/img/demo/unsplash/54.jpg"
+                      alt=""
+                    />
+                  </a>
+                  <a
+                    href="https://via.placeholder.com/1600x900"
+                    data-demo-href="assets/img/demo/unsplash/7.jpg"
+                    data-fancybox
+                    data-caption>
+                    <img
+                      src="https://via.placeholder.com/1600x900"
+                      data-demo-src="assets/img/demo/unsplash/7.jpg"
+                      alt=""
+                    />
+                  </a>
+                  <a
+                    href="https://via.placeholder.com/1600x900"
+                    data-demo-href="assets/img/demo/unsplash/4.jpg"
+                    data-fancybox
+                    data-caption>
+                    <img
+                      src="https://via.placeholder.com/1600x900"
+                      data-demo-src="assets/img/demo/unsplash/4.jpg"
+                      alt=""
+                    />
+                  </a>
                 </div>
               </div>
-              {/*Right side*/}
-              <div className="right">
-                <div className="event-owner mt-3">
-                  <img
-                    className="avatar"
-                    src="https://via.placeholder.com/150x150"
-                    data-demo-src="assets/img/avatars/stella.jpg"
-                    data-user-popover={2}
-                    alt=""
-                  />
-                  <div className="meta">
-                    <span>Event presenter</span>
-                    <span>{event.presenter}</span>
-                  </div>
+            </div>
+            {/*Right side*/}
+            <div className="right">
+              <div className="event-owner mt-3">
+                <img
+                  className="avatar"
+                  src="https://via.placeholder.com/150x150"
+                  data-demo-src="assets/img/avatars/stella.jpg"
+                  data-user-popover={2}
+                  alt=""
+                />
+                <div className="meta">
+                  <span>Event presenter</span>
+                  <span>{event.presenter}</span>
                 </div>
-                <div className="side-block">
-                  <div className="side-head">
-                    <span>Phone Number</span>
-                  </div>
-                  <div className="side-body">
-                    <a>{event.phoneNumber}</a>
-                  </div>
+              </div>
+              <div className="side-block">
+                <div className="side-head">
+                  <span>Phone Number</span>
                 </div>
-                <div className="side-block">
-                  <div className="side-head">
-                    <span>Email Address</span>
-                  </div>
-                  <div className="side-body">
-                    <a>{event.emailAddress}</a>
-                  </div>
+                <div className="side-body">
+                  <a>{event.phoneNumber}</a>
                 </div>
-                <div className="side-block">
-                  <div className="side-head">
-                    <span>Website</span>
-                  </div>
-                  <div className="side-body">
-                    <a
-                      href={event.website}
-                      target="_blank">
-                      {event.website}
-                    </a>
-                  </div>
+              </div>
+              <div className="side-block">
+                <div className="side-head">
+                  <span>Email Address</span>
+                </div>
+                <div className="side-body">
+                  <a>{event.emailAddress}</a>
+                </div>
+              </div>
+              <div className="side-block">
+                <div className="side-head">
+                  <span>Website</span>
+                </div>
+                <div className="side-body">
+                  <a
+                    href={event.website}
+                    target="_blank">
+                    {event.website}
+                  </a>
+                </div>
+                <div className="side-body mt-3">
+                  <button className="button is-solid">Pop Up</button>
                 </div>
               </div>
             </div>

@@ -117,7 +117,8 @@ function WelcomePage({ onNext }) {
                     className="button is-solid primary-button raised is-fullwidth"
                     style={{ backgroundColor:'#4267B2', borderColor: '#4267B2', color: 'white' }}
                     onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
+                    disabled={renderProps.isDisabled}
+                    someting={console.log("FB render Props",renderProps)}
                   >
                     Signup with Facebook
                   </button>)}

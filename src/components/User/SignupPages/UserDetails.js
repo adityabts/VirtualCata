@@ -32,16 +32,62 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   const [emailAddress, setEmailAddress] = useState(userDetails.email || undefined);
   const [firstName, setFirstName] = useState(userDetails.firstName || undefined);
   const [lastName, setLastName] = useState(userDetails.lastName || undefined);
+  
+  const [city, setCity] = useState(userDetails.city || undefined);
+  const [state, setState] = useState(userDetails.state || undefined);
+
+  const [cityDisabled, setCityDisabled] = useState(true);
+  const [stateDisabled, setStateDisabled] = useState(true);
+
   const [zipCode, setZipCode] = useState(userDetails.zipCode || undefined);
   const [dateOfBirth, setDateOfBirth] = useState(new FormatDate(new Date(userDetails.yearOfBirth)).getFormat2());
   const [loading, setLoading] = useState(false);
+  const [zipLoading, setZipLoading] = useState(false);
 
+  const fetchCityState = async () => {
+    let newValidationErrors = {...validationErrors};
+    let valid = true;
+    if(zipCode) console.log(zipCode.length)
+    try {
+      setZipLoading(true);
+      const data = await verifyZipCode(zipCode);
+      // setUserDetails({...userDetails, city: data.city, state: data.state });
+      setCity(data.city);
+      setState(data.state);
+      console.log("Res data", data);
+      setLoading(false);
+      const newValidationErrors = {...validationErrors};
+      delete newValidationErrors.city;
+      delete newValidationErrors.state;
+      delete newValidationErrors.zipCode;
+
+      setValidationErrors(newValidationErrors);
+      setCityDisabled(true);
+      setStateDisabled(true);
+
+    }
+    catch (err) { 
+      newValidationErrors.zipCode = "The entered zip code is not valid";
+      valid = false;
+      setValidationErrors(newValidationErrors);
+    }
+    finally {
+      setZipLoading(false);
+    }
+  }
 
   useEffect(() => {
     setAllData({ ...allData, userDetails });
   }, [userDetails])
 
-  
+
+  useEffect(() => {
+    if(zipCode) {
+      if(zipCode.length > 5) setZipCode(zipCode.substring(0,5))
+      else if(zipCode.length === 5) fetchCityState();
+    }
+  }, [zipCode])
+
 
   useEffect(() => {
     const yearOfBirth = new FormatDate(new Date(dateOfBirth)).getFormat1()
@@ -52,8 +98,10 @@ function UserDetails({ handleChange, onPrev, onNext }) {
       yearOfBirth,
       email: emailAddress,
       zipCode,
+      city,
+      state,
     })
-  }, [firstName,lastName,dateOfBirth,emailAddress,zipCode])
+  }, [firstName, lastName, dateOfBirth, emailAddress, zipCode, city, state])
 
 
   function calculateAge (birthDate, today) {
@@ -97,7 +145,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
     else {
       if(zipCode.length !== 5)
       {
-        newValidationErrors.zipCode = 'A zip code needs to be 5 or 9 digit long'
+        newValidationErrors.zipCode = 'A zip code needs to be 5 digit long'
         valid = false;
       }
     }
@@ -111,19 +159,6 @@ function UserDetails({ handleChange, onPrev, onNext }) {
         newValidationErrors.dob = `You must be atleast ${minAge} years old to register`;
         valid = false;
       }
-    }
-
-    try {
-      setLoading(true);
-      const data = await verifyZipCode(zipCode);
-      setUserDetails({...userDetails, city: data.city, state: data.state });
-      console.log("Res data", data);
-      setLoading(false);
-    }
-    catch (err) { 
-      setLoading(false);
-      newValidationErrors.zipCode = "The entered zip code is not valid";
-      valid = false;
     }
     if(!valid) {
       setValidationErrors(newValidationErrors);
@@ -158,47 +193,94 @@ function UserDetails({ handleChange, onPrev, onNext }) {
               />
           </div>
         </div>
-        <div className={`field ${validationErrors.fName && "error-field"}`}>
-          <label>First Name</label>
-          {validationErrors.fName && <label className="error-label">{validationErrors.fName}</label>}
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              placeholder="Enter your first name"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-              name="givenName"
-            />
-          </div>
-        </div>
-        <div className={`field ${validationErrors.lName && "error-field"}`}>
-          <label>Last Name</label>
-          {validationErrors.lName && <label className="error-label">{validationErrors.lName}</label>}
-          <div className="control">
-            <input
-              type="text"
-              className="input"
-              placeholder="Enter your last name"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-              name="familyName"
-            />
+        <div className="columns is-12">
+          <div className="column">
+            <div className={`field ${validationErrors.fName && "error-field"}`}>
+              <label>First Name</label>
+              {validationErrors.fName && <label className="error-label">{validationErrors.fName}</label>}
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="Enter your first name"
+                  onChange={(e) => setFirstName(e.target.value)}
+                  value={firstName}
+                  name="givenName"
+                />
+              </div>
+            </div>
+          </div>  
+          <div className="column">
+            <div className={`field ${validationErrors.lName && "error-field"}`}>
+              <label>Last Name</label>
+              {validationErrors.lName && <label className="error-label">{validationErrors.lName}</label>}
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="Enter your last name"
+                  onChange={(e) => setLastName(e.target.value)}
+                  value={lastName}
+                  name="familyName"
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className={`field ${validationErrors.zipCode && "error-field"}`}>
           <label>Zip Code</label>
           {validationErrors.zipCode && <label className="error-label">{validationErrors.zipCode}</label>}
-          <div className="control">
+          <div className="control" style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
             <input
-              type="text"
+              type="number"
               inputMode="numeric"
               className="input"
               placeholder="Enter your Zip Code"
               onChange={(e) => setZipCode(e.target.value)}
               value={zipCode}
               name="zipCode"
+              max="99999"
+              min="00000"
             />
+            {zipLoading && <i class="fa fa-spinner fa-spin mr-4" />}
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className={`field ${validationErrors.zipCode && "error-field"}`}>
+              <label>City</label>
+              {validationErrors.city && <label className="error-label">{validationErrors.city}</label>}
+              <div className="control">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  className="input"
+                  placeholder="Enter your City"
+                  onChange={(e) => setCity(e.target.value)}
+                  value={city}
+                  name="city"
+                  disabled={cityDisabled}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="column">
+            <div className={`field ${validationErrors.zipCode && "error-field"}`}>
+              <label>State</label>
+              {validationErrors.state && <label className="error-label">{validationErrors.state}</label>}
+              <div className="control">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  className="input"
+                  placeholder="Enter your State"
+                  onChange={(e) => setZipCode(e.target.value)}
+                  value={state}
+                  name="state"
+                  disabled={stateDisabled}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className={`field ${validationErrors.dob && "error-field"}`}>

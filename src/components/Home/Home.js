@@ -514,7 +514,7 @@ const Home = ({ user , ...props}) => {
                   {/*Brand*/}
                   {upcomingEventsList.map((event) => (
                     <Link
-                      to="/landing"
+                      to={`/landing/${event.EventId}`}
                       className="column is-three-fifth-fullhd is-three-quarter-widescreen is-half-desktop is-one-third-tablet is-half-mobile">
                       <div className="brand-card">
                         <img src={event.brandLogo ? event.brandLogo : 'https://via.placeholder.com/100x100'} alt="" />
