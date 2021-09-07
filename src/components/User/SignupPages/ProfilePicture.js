@@ -4,23 +4,34 @@ import authContext from "../../../Context/authContext";
 import { FiPlus } from 'react-icons/fi';
 // import 'react-image-crop/dist/ReactCrop.css';
 import { Fragment } from 'react';
+import { uploadProfilePicture } from '../../../services/profile.services';
+import Toaster from '../../core/Toaster';
+import { setCurrentUser, getCurrentUser } from '../../../utils/user';
 
 
 function ProfilePicture({src, onNext, onPrev}) {
-    const [crop, setCrop] = useState({ aspect: 1 / 1 });
-    const [userProfilePicture, setProfilePicture] = useState();
+    const [loading, setLoading] = useState(false);
+    const [userProfilePicture, setProfilePicture] = useState('https://via.placeholder.com/150x150');
 
   const { allData, setAllData } = useContext(authContext);
   const [userDetails, setUserDetails] = useState(allData.userDetails);
     
   const handleFileSelect = (e) => {
-    console.log("File select", e.target.files[0]);
-    readImage(e.target.files[0]);
-    setProfilePicture(e.target.value);
+    console.log("File select", e);
+    setLoading(true)
+    uploadProfilePicture(e.target.files[0])
+      .then(({profileImage}) => {
+        setProfilePicture(profileImage);
+        const user = getCurrentUser();
+        setCurrentUser({ ...user, profileImage})
+      })
+      .catch((error) => Toaster.fail(error.message))
+      .finally(() => setLoading(false))
   }
 
   function readImage(file) {
     // Check if the file is an image.
+
     if (file.type && !file.type.startsWith('image/')) {
       console.log('File is not an image.', file.type, file);
       return;
@@ -37,6 +48,9 @@ function ProfilePicture({src, onNext, onPrev}) {
     console.log("User Details on PP page",userDetails);
     if(userDetails.profileImage) {
       setProfilePicture(userDetails.profileImage);
+      const user = getCurrentUser();
+      setCurrentUser({ ...user, profileImage: userDetails.profileImage });
+      console.log("After updating user Image", getCurrentUser());
     }
   }, [])
 
@@ -50,16 +64,17 @@ function ProfilePicture({src, onNext, onPrev}) {
                   <FiPlus />
               </label>
               <input type="file" id="file-upload"  onChange={handleFileSelect} style={{display:'none'}}/> 
-              <img
+              {
+                loading ?  
+                <i className="fa fa-spinner fa-spin" style={{fontSize:'3rem'}}/> 
+                :
+                <img
                   id="upload-preview"
-                  src={
-                    userProfilePicture
-                      ? userProfilePicture
-                      : "https://via.placeholder.com/150x150"
-                  }
+                  src={userProfilePicture}
                   data-demo-src="assets/img/avatars/avatar-w.png"
                   alt=""
-              />      
+                />
+              }      
             </div>
             {/* <div className="crop-box-container">
               <ReactCrop src={src} crop={crop} onChange={newCrop => setCrop(newCrop)} className="crop-box"/>  

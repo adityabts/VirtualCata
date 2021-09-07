@@ -154,7 +154,7 @@ const Login = () => {
                     <div className="field">
                       <div className="column">
                         <button className="button is-solid primary-button raised is-rounded is-fullwidth" onClick={handleSignIn} > 
-                        { loading ? <i class="fa fa-spinner fa-spin" /> : 'Login'}
+                        { loading ? <i className="fa fa-spinner fa-spin" /> : 'Login'}
                         </button>
                       </div>
                     </div>
@@ -196,8 +196,8 @@ const Login = () => {
                   </div>
                   <div className="section forgot-password">
                     <div className="has-text-centered">
-                      <a href="#">Forgot passwords ? </a>
-                      <Link to="/user/signup"> Sign Up ?</Link>
+                      <a href="/user/forgot-password">Forgot passwords ? </a>
+                        <Link to="/user/signup"> Sign Up ?</Link>
                     </div>
                   </div>
                 </div>

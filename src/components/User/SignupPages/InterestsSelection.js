@@ -1,47 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
-const interestsList = [
-    {
-      id:1,
-      thumbnail: 'http://simpleicon.com/wp-content/uploads/presentation.png',
-      title: 'Food & Beverages',
-    },
-    {
-      id:2,
-      thumbnail: 'http://simpleicon.com/wp-content/uploads/presentation.png',
-      title: 'Tech & Gadgets',
-    },{
-      id:3,
-      thumbnail: 'http://simpleicon.com/wp-content/uploads/presentation.png',
-      title: 'Dating and Social',
-    },
-    {
-      id:4,
-      thumbnail: 'https://image.flaticon.com/icons/png/512/2928/2928158.png',
-      title: 'Health & Fitness',
-    },{
-      id:5,
-      thumbnail: 'http://simpleicon.com/wp-content/uploads/presentation.png',
-      title: 'Cultural Fests',
-    },
-    {
-      id:6,
-      thumbnail: 'https://image.flaticon.com/icons/png/512/2928/2928158.png',
-      title: 'Science & Literature',
-    },
-  ];
+import { getInterestCategories, updateUserInterestCategories } from '../../../services/profile.services';
 
 function InterestsSelection({ onNext, onPrev}) {
 
     const history = useHistory(); 
     const [userInterests, setUseInterests] = useState([]);
+    const [interestsList, setInterestList] = useState([]);
+    const [loading, setLoading] = useState(false); 
     const [error, setError] = useState(false);
+
+    useEffect(() => {
+      getInterestCategories()
+      .then((interests) => {
+        console.log("Interests", interests);
+        setInterestList(interests);
+      })
+      .catch((error) => console.error(error))
+    }, [])
+
     const handleSelect = (interest) => {
         let newValue = [...userInterests];
         if(userInterests.includes(interest))
         {
-        newValue =  userInterests.filter((items) => items.id !== interest.id);
+        newValue =  userInterests.filter((items) => items.CategoryId !== interest.CategoryId);
         }
         else {
         newValue.push(interest);
@@ -52,10 +34,17 @@ function InterestsSelection({ onNext, onPrev}) {
 
     const handleSubmit = () => {
       if(userInterests.length >= 3) {
-        history.push("/home");        
+        setLoading(true);
+        const payload = [];
+        console.log(userInterests)
+        for(let item of userInterests) payload.push(item.CategoryId);
+        updateUserInterestCategories(payload)
+        .then(() => history.push("/home"))
+        .catch((error) => setError(error.message))    
+        .finally(() => setLoading(false))
       }
       else {
-        setError(true);
+        setError("Please select atleast 3 interests of your choice to help us suggest better and relevant events to you.");
       }
     } 
 
@@ -72,12 +61,11 @@ function InterestsSelection({ onNext, onPrev}) {
                     interestsList.map(
                     item => <div className="column is-4">
                     <div
-                        className="" 
                         className={`card signup-interests-card ${ userInterests. includes(item) ? "is-selected" : ""}`} 
                         onClick={() => handleSelect(item)}
                     >
-                        <img src={item.thumbnail} style={{maxHeight: '40px'}}/>
-                        <p>{item.title}</p>
+                        <img src={item.ImageURL} style={{maxHeight: '40px'}}/>
+                        <p>{item.CategoryName}</p>
                     </div>
                     </div>)
                 }
@@ -88,14 +76,15 @@ function InterestsSelection({ onNext, onPrev}) {
                 {
                   error &&
                   <p  className="is-fullwidth m-2" style={{textAlign:'center', color: 'red'}}>
-                  Please select atleast 3 interests of your choice to help us suggest better and relevant events to you.
+                  {error}
                   </p>
                 }
                 <button
-                id="signup-finish"
-                className="button is-fullwidth"
-                onClick={handleSubmit}>
-                Let Me In
+                  id="signup-finish"
+                  className="button is-fullwidth is-solid accent-button"
+                  onClick={handleSubmit}
+                >
+                  { loading ? <i className="fa fa-spinner fa-spin mr-4" /> : "Let Me In"}
                 </button>
             </div>
             </div>

@@ -64,7 +64,7 @@ function LoginDetails({isActive, value, onNext, onPrev}) {
 
     if(userDetails.profileType && userDetails.profileType == 'native') {
       if(!passwordTestRegex.test(password)) {
-        newValidationErrors.password = 'Your password must have min 8 and max 50 characters with atleast one number and atleast one special character';
+        newValidationErrors.password = 'Your password must have min 8 and max 50 characters with min one number and a special character';
         valid = false;
       }
       if(password !== confirmPassword) {
@@ -179,7 +179,7 @@ function LoginDetails({isActive, value, onNext, onPrev}) {
           className="button process-button is-next"
           data-step={"step-dot-5"}
           onClick={handleNext}>
-          { loading ? <i class="fa fa-spinner fa-spin" /> : 'Next'}
+          { loading ? <i className="fa fa-spinner fa-spin" /> : 'Next'}
         </button>
       </div>
     </div>

@@ -19466,7 +19466,7 @@ body.is-dark .child-dropdown .inner ul li .text span:first-child {
 }
 
 .modal.is-xsmall .modal-content {
-	width: 480px
+	width: 1000px
 }
 
 .modal.is-small .modal-content {
@@ -48242,7 +48242,7 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 	height: 18px;
 	background: #fff;
 	border-radius: 100px;
-	max-width: 520px;
+	max-width: 400px;
 	margin: 0 auto;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -48308,15 +48308,15 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-second {
-	left: calc(25% - 19px)
+	left: calc(33.33% - 19px)
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-third {
-	left: calc(50% - 19px)
+	left: calc(66.66% - 19px)
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-fourth {
-	left: calc(75% - 19px)
+	left: calc(100% - 19px)
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-fifth {
@@ -56077,4 +56077,142 @@ body.is-dark .elements-wrap .element-block code {
 
 .text-center {
 	text-align: center !important;
+}
+
+.w-10 {
+	width: 10% !important;
+}
+
+.w-20 {
+	width: 20% !important;
+}
+
+.w-30 {
+	width: 30% !important;
+}
+
+.w-40 {
+	width: 40% !important;
+}
+
+.w-50 {
+	width: 50% !important;
+}
+
+.w-60 {
+	width: 60% !important;
+}
+
+.w-70 {
+	width: 70% !important;
+}
+
+.w-80 {
+	width: 80% !important;
+}
+
+.w-90 {
+	width: 90% !important;
+}
+
+.w-100 {
+	width: 100% !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+
+
+.float-left {
+	float: left !important;
+}
+
+.float-right {
+	float: right !important;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+.cursor-pointer {
+	cursor: pointer !important;
+}
+
+.opacity-10 {
+	opacity: 0.1;
+}
+
+.opacity-20 {
+	opacity: 0.2;
+}
+
+.opacity-30 {
+	opacity: 0.3;
+}
+
+.opacity-40 {
+	opacity: 0.4;
+}
+
+.opacity-50 {
+	opacity: 0.5;
+}
+
+.opacity-60 {
+	opacity: 0.6;
+}
+
+.opacity-70 {
+	opacity: 0.7;
+}
+
+.opacity-80 {
+	opacity: 0.8;
+}
+
+.opacity-90 {
+	opacity: 0.9;
+}
+
+.is-one-third {
+	width: 33.333%;
+}
+
+.d-inline {
+	display: inline !important;
+}
+
+.d-block {
+	display: block !important;
+}
+
+.text-size-1 {
+	font-size: 1rem !important;
+}
+
+.text-size-2 {
+	font-size: 2rem !important;
+}
+
+.text-size-3 {
+	font-size: 3rem !important;
+}
+
+.text-size-4 {
+	font-size: 4rem !important;
+}
+
+.text-size-5 {
+	font-size: 5rem !important;
+}
+
+.text-gold {
+	color: gold !important;
+}
+
+.text-gold .fa-star:before {
+    text-shadow: 0px 7px 0px lightgoldenrodyellow;
 }

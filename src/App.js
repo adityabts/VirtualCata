@@ -1,6 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import User from './components/User';
 import EventLandingPage from "./components/Events/EventLandingPage";
+import FeedBack from "./components/Events/EventFeedback";
 import LiveEvent from "./components/Events/LiveEvent";
 import PastEvent from "./components/Events/PastEvent";
 import AdminProfile from "./components/Profile/AdminProfile";
@@ -29,12 +30,14 @@ function App(props) {
   };
   const [allData, setAllData] = useState(initialState);
 
-
+  console.log("Google Client ID :::::::::::::::::::", process.env.REACT_APP_CLIENT_ID_GOOGLE);
+  console.log("Google Client Secret :::::::::::::::::::", process.env.REACT_APP_CLIENT_SECRET_GOOGLE);
 
   const currentUser = getCurrentUser();
 
   return (
     <Fragment>
+      <div id="toast-anchor"/>
       {/* <NavBar user={currentUser} /> */}
       <Switch>
         <authContext.Provider value={{ allData, setAllData }}>
@@ -45,6 +48,7 @@ function App(props) {
           <Route exact path="/past" component={PastEvent} />
           <Route exact path="/adminProfile" component={AdminProfile} />
           <Route exact path="/adminAbout" component={AdminAbout} />
+          <Route exact path="/feedback/:id" component={FeedBack} />
           <Route path="/userProfile" component={UserProfile} />
           <Route exact path="/" component={User} />
         </authContext.Provider>
