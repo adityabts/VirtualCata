@@ -19,8 +19,6 @@ function Signup() {
 
   const [stepValue, setStepValue] = useState(1);
 
-
-
   const nextStep = () => {
     setStepValue(stepValue + 1);
   };
@@ -41,8 +39,6 @@ function Signup() {
     nextStep();
     refreshTokenSetup(res);
   };
-
- 
 
   return (
     <div>
@@ -95,71 +91,38 @@ function Signup() {
                 data-step={75}>
                 <FiLock />
               </div>
-              <div
-                id="step-dot-5"
-                className={`dot is-fifth ${
-                  stepValue === 5 ? "is-active" : ""
-                } ${stepValue > 5 ? "is-current" : ""}`}
-                data-step={100}>
-                <FiFlag />
-              </div>
             </div>
           </div>
         </div>
         <div className="outer-panel">
           <div className="outer-panel-inner">
-            <div className="process-title">
-              <h2
-                id="step-title-1"
-                className={`step-title ${stepValue === 1 ? "is-active" : ""}`}>
-                Welcome, select an account type.
-              </h2>
-              <h2
-                id="step-title-2"
-                className={`step-title ${stepValue === 2 ? "is-active" : ""}`}>
-                Tell us more about you.
-              </h2>
-              <h2
-                id="step-title-3"
-                className={`step-title ${stepValue === 3 ? "is-active" : ""}`}>
-                Upload a profile picture.
-              </h2>
-              <h2
-                id="step-title-4"
-                className={`step-title ${stepValue === 4 ? "is-active" : ""}`}>
-                Secure your account.
-              </h2>
-              <h2
-                id="step-title-5"
-                className={`step-title ${stepValue === 5 ? "is-active" : ""}`}>
-                You're all set. Ready?
-              </h2>
-            </div>
-            {stepValue === 1 && <WelcomePage onNext={nextStep}/>}
-            {stepValue === 2 && <UserDetails onNext={nextStep} onPrev={prevStep}/>}
-            {stepValue === 3 && <ProfilePicture onNext={nextStep} onPrev={prevStep} />}      
-            {stepValue === 4 && <LoginDetails onNext={nextStep} onPrev={prevStep}/>}
-            {stepValue === 5 && <InterestsSelection onNext={nextStep} onPrev={prevStep}/>}
-            </div>
-        </div>
-        {/*Edit Credit card Modal*/}
-        <div id="crop-modal" className="modal is-small crop-modal is-animated">
-          <div className="modal-background" />
-          <div className="modal-content">
-            <div className="modal-card">
-              <header className="modal-card-head">
-                <h3>Crop your picture</h3>
-                <div className="close-wrap">
-                  <button className="close-modal" aria-label="close">
-                    <i data-feather="x" />
-                  </button>
-                </div>
-              </header>
-              <div className="modal-card-body">
-                <div id="cropper-wrapper" className="cropper-wrapper"></div>
+              <div className="process-title">
+                <h2
+                  id="step-title-1"
+                  className={`step-title ${stepValue === 1 ? "is-active" : ""}`}>
+                  Welcome, select an account type.
+                </h2>
+                <h2
+                  id="step-title-2"
+                  className={`step-title ${stepValue === 2 ? "is-active" : ""}`}>
+                  Tell us more about you.
+                </h2>
+                <h2
+                  id="step-title-3"
+                  className={`step-title ${stepValue === 3 ? "is-active" : ""}`}>
+                  Upload a profile picture.
+                </h2>
+                <h2
+                  id="step-title-4"
+                  className={`step-title ${stepValue === 4 ? "is-active" : ""}`}>
+                  Secure your account.
+                </h2>
               </div>
+              {stepValue === 1 && <WelcomePage onNext={nextStep}/>}
+              {stepValue === 2 && <UserDetails onNext={nextStep} onPrev={prevStep}/>}
+              {stepValue === 3 && <ProfilePicture onNext={nextStep} onPrev={prevStep} />}   
+              {stepValue === 4 && <InterestsSelection onNext={nextStep} onPrev={prevStep}/>}
             </div>
-          </div>
         </div>
       </div>
     </div>

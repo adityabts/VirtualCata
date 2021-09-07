@@ -27,7 +27,8 @@ function WelcomePage({ onNext }) {
     newUserDetails.signupToken = data.accessToken;
     setUserDetails(newUserDetails);
     refreshTokenSetup(data);
-    // onNext();
+    console.log("Google signup");
+    onNext();
   }
 
   const handleNext = () => {

@@ -68,7 +68,7 @@ function SideBar({match, location}) {
                 <li data-section="preferences" className={ (location.pathname === `${match.url}/preferences`) ? "is-active" : undefined} >
                   <Link to={`${match.url}/preferences`}>
                     <i data-feather="sliders" />
-                    <span>Preferences</span>
+                    <span>Interests</span>
                   </Link>
                 </li>
               </ul>

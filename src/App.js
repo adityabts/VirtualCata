@@ -30,12 +30,14 @@ function App(props) {
   };
   const [allData, setAllData] = useState(initialState);
 
-
+  console.log("Google Client ID :::::::::::::::::::", process.env.REACT_APP_CLIENT_ID_GOOGLE);
+  console.log("Google Client Secret :::::::::::::::::::", process.env.REACT_APP_CLIENT_SECRET_GOOGLE);
 
   const currentUser = getCurrentUser();
 
   return (
     <Fragment>
+      <div id="toast-anchor"/>
       {/* <NavBar user={currentUser} /> */}
       <Switch>
         <authContext.Provider value={{ allData, setAllData }}>

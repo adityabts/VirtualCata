@@ -120,7 +120,7 @@ function ForgotPassword() {
                                         <div className="field">
                                         <div className="column">
                                             <button className="button is-solid primary-button raised is-rounded is-fullwidth" disabled={loading}>
-                                            { loading ? <i class="fa fa-spinner fa-spin mr-4" /> : "Submit"}
+                                            { loading ? <i className="fa fa-spinner fa-spin mr-4" /> : "Submit"}
                                             </button>
                                         </div>
                                     </div>

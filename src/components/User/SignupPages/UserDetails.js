@@ -1,7 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react'
 import authContext from "../../../Context/authContext";
 import verifyZipCode from '../../../services/zipCodes.services';
-
+import { signUp } from '../../../services/authentication.services';
+import Toaster from '../../core/Toaster';
+import { setCurrentUser } from '../../../utils/user';
 
 class FormatDate {
   constructor(inputDate) {
@@ -30,8 +32,13 @@ function UserDetails({ handleChange, onPrev, onNext }) {
 
   const [validationErrors, setValidationErrors] = useState({});
   const [emailAddress, setEmailAddress] = useState(userDetails.email || undefined);
+  const [phoneNumber, setPhoneNumber] = useState(userDetails.phoneNumb || undefined);
   const [firstName, setFirstName] = useState(userDetails.firstName || undefined);
   const [lastName, setLastName] = useState(userDetails.lastName || undefined);
+
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  
   
   const [city, setCity] = useState(userDetails.city || undefined);
   const [state, setState] = useState(userDetails.state || undefined);
@@ -100,8 +107,11 @@ function UserDetails({ handleChange, onPrev, onNext }) {
       zipCode,
       city,
       state,
+      password,
+      cpassword: confirmPassword,
+      phoneNumb: phoneNumber
     })
-  }, [firstName, lastName, dateOfBirth, emailAddress, zipCode, city, state])
+  }, [firstName, lastName, dateOfBirth, emailAddress, zipCode, city, state, phoneNumber, password, confirmPassword])
 
 
   function calculateAge (birthDate, today) {
@@ -160,6 +170,35 @@ function UserDetails({ handleChange, onPrev, onNext }) {
         valid = false;
       }
     }
+
+    const passwordTestRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/;
+
+    if(userDetails.profileType && userDetails.profileType == 'native') {
+      if(!passwordTestRegex.test(password)) {
+        newValidationErrors.password = 'Your password must have min 8 and max 50 characters with min one number and a special character';
+        valid = false;
+      }
+      if(password !== confirmPassword) {
+        newValidationErrors.password = 'Both passwords need to be same';
+        newValidationErrors.confirmPassword = 'Both passwords need to be same';
+        valid = false;
+      } 
+      if(password === undefined || password === "") {
+        newValidationErrors.password = 'A valid password is required';
+        valid = false;
+      }
+      if(confirmPassword === undefined || confirmPassword === "") {
+        newValidationErrors.confirmPassword = 'Please confirm the password';
+        valid = false;
+      }
+    }
+    const numReg = /^[0-9]*$/;
+    if(phoneNumber !== undefined && (phoneNumber.length < 10 || !numReg.test(phoneNumber))) {
+      newValidationErrors.phoneNumber = 'The phone number is not valid';
+      valid = false;
+    }
+
+
     if(!valid) {
       setValidationErrors(newValidationErrors);
       console.log(newValidationErrors);
@@ -168,9 +207,23 @@ function UserDetails({ handleChange, onPrev, onNext }) {
   }
 
   const handleNext = async () => {
+    console.log(validateInputs())
     if(await validateInputs())
     {
-      onNext();
+      try {
+        setLoading(true);
+        const user = await signUp(userDetails);
+        console.log("User storage", user);
+        setCurrentUser(user);
+        onNext();
+      }
+      catch (error) {
+        console.log('Sign in ##########',error);
+        Toaster.fail("Opps! There's a problem.", error.message);
+      }
+      finally {
+        setLoading(false);
+      }
     }
   }
 
@@ -179,20 +232,75 @@ function UserDetails({ handleChange, onPrev, onNext }) {
       id="signup-panel-2"
       className="process-panel-wrap is-active">
       <div className="form-panel">
-        <div className={`field ${validationErrors.emailAddress && "error-field"}`}>
-          <label>Email</label>
-          {validationErrors.emailAddress && <label className="error-label">{validationErrors.emailAddress}</label>}
-          <div className="control">
-              <input
-              type="email"
-              className="input"
-              placeholder="Enter your email address"
-              onChange={(e) => {setEmailAddress(e.target.value)}}
-              value={emailAddress}
-              name="email"
-              />
+        <div className="columns is-12">
+          <div className="column">
+            <div className={`field ${validationErrors.emailAddress && "error-field"}`}>
+              <label>Email</label>
+              {validationErrors.emailAddress && <label className="error-label">{validationErrors.emailAddress}</label>}
+              <div className="control">
+                  <input
+                  type="email"
+                  className="input"
+                  placeholder="Enter your email address"
+                  onChange={(e) => {setEmailAddress(e.target.value)}}
+                  value={emailAddress}
+                  name="email"
+                  />
+              </div>
+            </div>
+          </div>
+          <div className="column">
+            <div className={`field ${validationErrors.phoneNumber && "error-field"}`}>
+              <label>Phone Number</label>
+              {validationErrors.phoneNumber && <label className="error-label">{validationErrors.phoneNumber}</label>}
+              <div className="control">
+                <input
+                  type="number"
+                  className="input"
+                  placeholder="Enter your phone number"
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  maxLength={10}
+                  value={phoneNumber}
+                />
+              </div>
+            </div>
           </div>
         </div>
+
+        {
+          userDetails.profileType !== 'social' &&
+          <div className="columns is-12">
+            <div className="column">
+              <div className={`field ${validationErrors.password && "error-field"}`}>
+                <label>Password</label>
+                {validationErrors.password && <label className="error-label">{validationErrors.password}</label>}
+                <div className="control">
+                    <input
+                      type="password"
+                      className="input"
+                      placeholder="Enter a password"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+              </div>
+            </div>
+            <div className="column is-6">
+              <div className={`field ${validationErrors.confirmPassword && "error-field"}`}>
+                <label>Confirm Password</label>
+                {validationErrors.confirmPassword && <label className="error-label">{validationErrors.confirmPassword}</label>}
+                <div className="control">
+                    <input
+                    type="password"
+                    className="input"
+                    placeholder="Confirm password"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
         <div className="columns is-12">
           <div className="column">
             <div className={`field ${validationErrors.fName && "error-field"}`}>
@@ -242,10 +350,10 @@ function UserDetails({ handleChange, onPrev, onNext }) {
               max="99999"
               min="00000"
             />
-            {zipLoading && <i class="fa fa-spinner fa-spin mr-4" />}
+            {zipLoading && <i className="fa fa-spinner fa-spin mr-4" />}
           </div>
         </div>
-        <div className="columns">
+        <div className="columns" style={{display:'none'}}>
           <div className="column">
             <div className={`field ${validationErrors.zipCode && "error-field"}`}>
               <label>City</label>
@@ -264,7 +372,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
               </div>
             </div>
           </div>
-          <div className="column">
+          <div className="column" style={{display:'none'}}>
             <div className={`field ${validationErrors.zipCode && "error-field"}`}>
               <label>State</label>
               {validationErrors.state && <label className="error-label">{validationErrors.state}</label>}
@@ -309,7 +417,7 @@ function UserDetails({ handleChange, onPrev, onNext }) {
           className="button process-button is-next"
           data-step={"step-dot-3"}
           onClick={handleNext}>
-          { loading ? <i class="fa fa-spinner fa-spin mr-4" /> : null}
+          { loading ? <i className="fa fa-spinner fa-spin mr-4" /> : null}
           Next
         </button>
       </div>

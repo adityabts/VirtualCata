@@ -48242,7 +48242,7 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 	height: 18px;
 	background: #fff;
 	border-radius: 100px;
-	max-width: 520px;
+	max-width: 400px;
 	margin: 0 auto;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -48308,15 +48308,15 @@ body.is-dark .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestion-address
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-second {
-	left: calc(25% - 19px)
+	left: calc(33.33% - 19px)
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-third {
-	left: calc(50% - 19px)
+	left: calc(66.66% - 19px)
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-fourth {
-	left: calc(75% - 19px)
+	left: calc(100% - 19px)
 }
 
 .signup-wrapper .process-bar .progress-wrap .dot.is-fifth {
